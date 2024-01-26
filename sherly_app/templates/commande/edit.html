@@ -1,0 +1,267 @@
+{% extends 'base.html' %}
+
+{% block title %} BL app {% endblock %}
+
+{% block content %}
+<style>
+    .text-container p {
+        margin-bottom: 0;
+    }
+   
+            
+    .custom-table-header th {
+        font-size: 14px; /* Adjust the font size as needed */
+    } 
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table th, .table td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .thead-dark {
+        background-color: #343a40;
+        color: white;
+    }
+  
+ 
+
+    .form-label {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+    .custom-border {
+        border: 2px solid #0e0d0d; /* Adjust the border properties as needed */
+        padding: 10px; /* Add padding inside the border if desired */
+    }
+  
+</style>
+<form method="post">
+    {% csrf_token %}
+    <div class="container custom-container">
+        <!-- First row with logo and two text columns -->
+        <div class="row custom-background-color">
+            <div class="col-md-8">
+                <div class="row custom-background-color2">
+                    
+                    <div class="col-md-3">
+                        
+                        <img src="{{ societe.logo.url }}" alt="Logo" class="img-fluid">
+                       
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-container">
+                            <p>{{societe.nom1}}</p>
+                            <p>{{societe.nom2}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Text column 3 with a table -->
+                <table class="table">
+                    <thead class="thead-dark custom-table-header">
+                        <tr>
+                            <th scope="col">Num FACTURE</th>
+                            <th scope="col">DATE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ bon_livraison.no_bl}}</td>
+                            <td>{{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-8">
+                <div class="row custom-background-color2">
+                    
+                    
+                    <div class="col-md-6">
+                        <div class="text-container">
+                            <p >{{societe.ligne1}}</p>
+                            <p >{{societe.ligne2}}</p>
+                            <p >{{societe.ligne3}}</p>
+                            <p >{{societe.ligne4}}</p>
+                            <p >{{societe.ligne5}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <br/>
+    <div class="row custom-background-color">
+        <div class="col-md-8">
+            <div class="row custom-background-color2">
+                
+                <div class="col-md-6">
+                    <table class="table" >
+                        <thead class="thead-dark custom-table-header">
+                            <tr> 
+                                <th scope="col">Livré a</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            
+                                <td>
+                                    <div class="text-container">
+                                        <input type="text" name="livre1" value="{{societe.livre1}}" class="form-label">
+                                        <input type="text" name="livre2" value="{{societe.livre2}}" class="form-label">
+                                        <input type="text" name="livre3" value="{{societe.livre3}}" class="form-label">
+                                        <input type="text" name="livre4" value="{{societe.livre4}}" class="form-label">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Text column 3 with a table -->
+            <table class="table">
+                <thead class="thead-dark custom-table-header">
+                    <tr>
+                        <th scope="col">Information Achteur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    
+                        <td>
+                            <div class="text-container">
+                               
+                                <input type="text" name="achteur1" value="{{ societe.achteur1 }}" class="form-label">
+                                <input type="text" name="achteur2" value="{{ societe.achteur2 }}" class="form-label">
+                                <input type="text" name="achteur3" value="{{ societe.achteur3 }}" class="form-label">
+                                <input type="text" name="achteur4" value="{{ societe.achteur4 }}" class="form-label">
+                                <input type="text" name="achteur5" value="{{ societe.achteur5 }}" class="form-label">
+                                <input type="text" name="achteur6" value="{{ societe.achteur6 }}" class="form-label">
+
+                                
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-dark custom-table-header">
+                    <tr>
+                        <th scope="col">Num BL</th>
+                        <th scope="col">DATE BL</th>
+                        <th scope="col">Num CMDE</th>
+                        <th scope="col">DATE CMDE</th>
+                        <th scope="col">CODE CLIENT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ bon_livraison.no_bl}}</td>
+                        <td>{{ bon_livraison.date_de_bl   | date:"d-m-Y"}}</td>
+                        <td>{{ bon_livraison.bon_commande.no_cmde }}</td>
+                        <td>{{ bon_livraison.bon_commande.date_de_cmd  | date:"d-m-Y"}}</td>
+                        <td>0033147853314</td>
+                        
+                        
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-dark custom-table-header">
+                    <tr>
+                        <th scope="col">Désignation</th>
+                        <th scope="col">Conditionnement</th>
+                        <th scope="col">Diamétre</th>
+                        <th scope="col">Rayon</th>
+                        <th scope="col">Sphére</th>
+                        <th scope="col">Cylindre</th>
+                        <th scope="col">Axe</th>
+                        <th scope="col">Oeil</th>
+                        <th scope="col">Porteur</th>
+                        <th scope="col">QTE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ bon_livraison.bon_commande.produit_d.designation}}</td>
+                        <td>Boite de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
+                        <td></td>
+                        <td></td>
+                        <td> {{bon_livraison.bon_commande.sphere_d}}</td>
+                        <td> {{bon_livraison.bon_commande.cylindre_d}}</td>
+                        <td> {{bon_livraison.bon_commande.axe_d}}</td>
+                        <td> DROITE</td>
+                        <td> {{bon_livraison.bon_commande.client}}</td>
+                        <td> {{bon_livraison.bon_commande.quatite_d}}</td>
+                        
+                        
+                    </tr>
+                    <tr>
+                        <td>{{ bon_livraison.bon_commande.produit_g.designation}}</td>
+                        <td>Boite de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
+                        <td></td>
+                        <td></td>
+                        <td> {{bon_livraison.bon_commande.sphere_g}}</td>
+                        <td> {{bon_livraison.bon_commande.cylindre_g}}</td>
+                        <td> {{bon_livraison.bon_commande.axe_g}}</td>
+                        <td> GAUCHE</td>
+                        <td> {{bon_livraison.bon_commande.client}}</td>
+                        <td> {{bon_livraison.bon_commande.quatite_g}}</td>
+                        
+                        
+                    </tr>
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="text" name="phrase" value="{{ societe.phrase }}" class="form-label">
+        </div>
+    </div><br>
+    
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-8">
+            <input type="text" name="nif" value="{{ societe.nif }}" class="form-label">
+        </div>
+    </div>
+    
+        
+    <button type="submit" class="btn btn-success btn-block">VALIDER MODIFICATION</button>
+
+    </div>
+    
+<form>
+
+{% endblock %}

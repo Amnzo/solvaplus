@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BL app</title>
+    <!-- Bootstrap CSS via CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        /* Your custom styles here */
+        .text-container p {
+            margin-bottom: 0;
+        }
+
+        .custom-margin {
+            margin-bottom: 0 !important;
+        }
+
+        .custom-background-color {
+            background-color: #dd2e2e;
+            /* Replace with your preferred color code */
+            /* Add any other styling as needed */
+        }
+
+        .custom-background-color2 {
+            background-color: #51dd2e;
+            /* Replace with your preferred color code */
+            /* Add any other styling as needed */
+        }
+
+        .custom-background_c-color {
+            background-color: #141691;
+            /* Replace with your preferred color code */
+            /* Add any other styling as needed */
+        }
+    </style>
+</head>
+
+
+<div class="container">
+    <!-- First row with logo and two text columns -->
+    <div class="row custom-background-color">
+        <div class="col-md-8">
+            <div class="row custom-background-color2">
+                
+                <div class="col-md-3">
+                    <img src="https://via.placeholder.com/100" alt="Logo" class="img-fluid">
+                </div>
+                <div class="col-md-6">
+                    <div class="text-container">
+                        <p contenteditable="true">SHERLY & STRATEGY SL AMNZO</p>
+                        <p contenteditable="true">Division Optical</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Text column 3 with a table -->
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Num FACTURE</th>
+                        <th scope="col">DATE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ bon_livraison.no_bl}}</td>
+                        <td>{{ bon_livraison.date_de_bl  |date:"Y-m-d"}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-8">
+            <div class="row custom-background-color2">
+                
+                <div class="col-md-6">
+                    <div class="text-container">
+                        <p contenteditable="true">AV Naciones Unidas</p>
+                        <p contenteditable="true">Ed Cristamar 30 ,</p>
+                        <p contenteditable="true">Peurto Banus 29660,</p>
+                        <p contenteditable="true">Mail: admin@gmail.com</p>
+                        <p contenteditable="true">Numero IVA: ESB06835052</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="row custom-background-color">
+        <div class="col-md-8">
+            <div class="row custom-background-color2">
+                
+                <div class="col-md-6">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Livré a</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="text-container">
+                                        <p contenteditable="true">SCROTIS  OPTIC 2000 </p>
+                                        <p contenteditable="true">38 rue Saint Denis</p>
+                                        <p contenteditable="true">92700 COLOMBES</p>
+                                        <p contenteditable="true">Mail: admin@gmail.com</p>
+                                        <p contenteditable="true">FRANCE</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Text column 3 with a table -->
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Information Achteur</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="text-container">
+                                <p contenteditable="true">SCROTIS  OPTIC 2000 </p>
+                                <p contenteditable="true">38 rue Saint Denis</p>
+                                <p contenteditable="true">92700 COLOMBES</p>
+                                <p contenteditable="true">Mail: admin@gmail.com</p>
+                                <p contenteditable="true">FRANCE</p>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Num BL</th>
+                        <th scope="col">DATE BL</th>
+                        <th scope="col">Num CMDE</th>
+                        <th scope="col">DATE CMDE</th>
+                        <th scope="col">CODE CLIENT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ bon_livraison.no_bl}}</td>
+                        <td>{{ bon_livraison.date_de_bl  |date:"Y-m-d"}}</td>
+                        <td>{{ bon_livraison.bon_commande.no_cmde }}</td>
+                        <td>{{ bon_livraison.bon_commande.date_de_cmd |date:"Y-m-d" }}</td>
+                        <td>0033147853314</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="row ">
+        <div class="col-md-12">
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Désignation</th>
+                        <th scope="col">Conditionnement</th>
+                        <th scope="col">Diamétre</th>
+                        <th scope="col">Rayon</th>
+                        <th scope="col">Sphére</th>
+                        <th scope="col">Cylindre</th>
+                        <th scope="col">Axe</th>
+                        <th scope="col">Oeil</th>
+                        <th scope="col">Porteur</th>
+                        <th scope="col">QTE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ bon_livraison.bon_commande.produit_d.designation}}</td>
+                        <td>Boite de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
+                        <td></td>
+                        <td></td>
+                        <td> {{bon_livraison.bon_commande.sphere_d}}</td>
+                        <td> {{bon_livraison.bon_commande.cylindre_d}}</td>
+                        <td> {{bon_livraison.bon_commande.axe_d}}</td>
+                        <td> DROITE</td>
+                        <td> {{bon_livraison.bon_commande.client}}</td>
+                        <td> {{bon_livraison.bon_commande.quatite_d}}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ bon_livraison.bon_commande.produit_g.designation}}</td>
+                        <td>Boite de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
+                        <td></td>
+                        <td></td>
+                        <td> {{bon_livraison.bon_commande.sphere_g}}</td>
+                        <td> {{bon_livraison.bon_commande.cylindre_g}}</td>
+                        <td> {{bon_livraison.bon_commande.axe_g}}</td>
+                        <td> DROITE</td>
+                        <td> {{bon_livraison.bon_commande.client}}</td>
+                        <td> {{bon_livraison.bon_commande.quatite_g}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+   
+    <!-- Add more rows as needed -->
+
+</div>

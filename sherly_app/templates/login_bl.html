@@ -1,0 +1,74 @@
+<!-- templates/login.html -->
+
+{% extends 'base_login.html' %}
+{% load static %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<style>
+
+.container {
+background-image:  url('https://www.shutterstock.com/image-illustration/contact-lenses-water-surface-air-600nw-2101580629.jpg');
+
+
+}
+</style>
+
+<div class="container">
+    <br>
+        <div class="row justify-content-center">
+         
+            <div class="col-md-6">
+                <div class="card">
+                    <!-- Header with logo -->
+                    <div class="card-header" style="background-color: white; color: black;">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-6"> 
+                                 
+                                 <img src="{% static 'sherly_logo.png' %}" alt="Logo" style="height: 180px; width: auto;">
+                                
+
+                                
+                                
+                                </div>
+                            
+                            <div class="col-md-6"><h2 class="mb-0"></h2></div>
+                        </div>
+                    
+                       
+                        
+                       
+                    </div>
+                    <div class="card-body">
+                        <form method="post" class="form">
+                            {% csrf_token %}
+                            {{ form.non_field_errors }}
+
+                            <div class="form-group">
+                                <label for="{{ form.username.id_for_label }}" class="form-label">Username:</label>
+                                <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Enter your username" required>
+                                {{ form.username.errors }}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="{{ form.password.id_for_label }}" class="form-label">Password:</label>
+                                <input type="password" class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="Enter your password" required>
+                                {{ form.password.errors }}
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6"> <button type="submit" class="btn btn-success w-100">Login</button></div>
+                            </div>
+
+                            
+                        </form>
+                    </div>
+                </div>
+                <br><br>
+            </div>
+        </div>
+    </div>
+{% endblock %}
