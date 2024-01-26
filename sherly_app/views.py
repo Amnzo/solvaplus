@@ -171,7 +171,7 @@ def generate_pdf(request, bl_id):
         #return render(request,'pdf/pdf.html',context)
         html = render(request, 'pdf/pdf.html', context).content
         html_str = html.decode('utf-8')
-        config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
+        config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
         
         pdf = pdfkit.from_string(html_str, False, options={'encoding': 'UTF-8', 'disable-javascript': None, 'enable-local-file-access': ''}, configuration=config)
         response = HttpResponse(pdf, content_type='application/pdf')
