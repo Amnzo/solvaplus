@@ -62,7 +62,7 @@
             min-width: 250px;
             max-width: 250px;
             background: #4CAF50; /* Green color */
-            color: #ffffff;
+            color: white;
             transition: all 0.3s;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -93,18 +93,18 @@
             padding: 15px;
             font-size: 1.1em;
             display: block;
-            color: #dfe3e8;
+            color: white;
             transition: all 0.3s;
         }
 
         #sidebar ul li a:hover {
-            color: #ffffff;
+            color: black;
             text-decoration: none;
         }
 
         #sidebar ul li.active > a,
         a[aria-expanded="true"] {
-            color: #ffffff;
+            color: red;
         }
 
         #content {
@@ -144,16 +144,19 @@
         }
 
         .avatar-link {
-    display: block; /* Ensures the link takes up the full width of its container */
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+ 
 }
 
 .avatar-img {
     border-radius: 50%; /* Makes the image circular */
     width: 80px; /* Adjust the width as needed */
-    height: 80px0px; /* Adjust the height as needed */
+    height: 80px; /* Adjust the height as needed */
     object-fit: cover; /* Ensures the image covers the entire circle */
+    background-color: #320eb3;
 }
-
     
     </style>
     
@@ -166,118 +169,62 @@
             <button type="button" id="sidebarCollapse" class="btn">
                 <i class="fas fa-bars"></i>
             </button>
-  
             <div class="sidebar-header">
                 {% if user.is_superuser %}
+                
                 <a href="{% url 'company' %}" class="avatar-link">
-                    <img src="{% static 'c.png' %}" alt="Avatar" class="avatar-img">
+                    <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
                 </a>
                 {% else %}
-                
-                    <img src="{% static 'c.png' %}" alt="Avatar" class="avatar-img">
-                
-                
+                <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
                 {% endif %}
             </div>
-            
-            
             {% if user.is_superuser %}
-
             <ul class="list-unstyled components">
                 <li>
-                    <a href="" title="Profile">
-                        <i class="fas fa-user-circle"></i> BIENVENUE {{ user.username|upper }}
+                    <a href="{% url 'profile' %}" title="USERS">
+
+                        <i class="fas fa-user-circle"></i> PROFILE ADMIN
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'list_user' %}" title="USERS">
+                        <i class="fas fa-user"></i> LISTE DES UTILISATEURS
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'categorie_list' %}" title="CATEGORIES">
+                        <i class="fas fa-folder"></i> LISTE DES CATEGORIES
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'product_list' %}" title="PRODUITS">
+                        <i class="fas fa-cube"></i> LISTE DES PRODUITS
                     </a>
                 </li>
                 
-                <li class="active">
-                    <a href="#utilisateurSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-user"></i> UTILISATEURS
+                <li>
+                    <a href="{% url 'commande_list' %}" title="COMMANDES">
+                        <i class="fas fa-truck"></i> LISTE DES COMMANDES
                     </a>
-                    <ul class="collapse list-unstyled" id="utilisateurSubmenu">
-                        <li>
-                            <a href="{% url 'list_user' %}" title="USERS">LISTE DES UTILISATEURS</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'add_user' %}" title="Add USER">AJOUTER UTILISATEUR</a>
-                        </li>
-                    </ul>
                 </li>
-                <li class="active">
-                    <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-cube"></i> PRODUITS
-                    </a>
-                    <ul class="collapse list-unstyled" id="homeSubmenu">
-                        <li>
-                            <a href="{% url 'product_list' %}" title="produits">LISTE DES PRODUITS </a>
-                        </li>
-                        <li>
-                            <a href="{% url 'add_product' %}" title="Add produit">AJOUTER PRODUIT</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="active">
-                    <a href="#categorieSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-folder"></i> CATEGORIES
-                    </a>
-                    <ul class="collapse list-unstyled" id="categorieSubmenu">
-                        <li>
-                            <a href="{% url 'categorie_list' %}" title="Client">LISTE DES CATEGORIES</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'add_categorie' %}" title="Add Category">AJOUTER CATEGORIE</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="active">
-                    <a href="#commandeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-truck"></i> COMMANDES
-                    </a>
-                    <ul class="collapse list-unstyled" id="commandeSubmenu">
-                        <li>
-                            <a href="{% url 'commande_list' %}" title="Client">LISTE DES COMMANDES</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'add_commande' %}" title="Add Category">AJOUTER COMMANDE</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="active">
-                    <a href="" title="Client">
+                <li>
+                    <a href="#" title="FACTURES">
                         <i class="fas fa-file-invoice-dollar"></i> FACTURES
                     </a>
                 </li>
-                <!-- Add more links as needed -->
                 <li>
                     <a href="{% url 'bl_logout' %}" title="Logout">
                         <i class="fas fa-sign-out-alt"></i> Logout
                     </a>
                 </li>
-                
-                
             </ul>
             {% else %}
             <ul class="list-unstyled components">
                 <li>
-                    <a href="" title="Profile">
-                        <i class="fas fa-user-circle"></i> BIENVENUE {{ user.username|upper }}
+                    <a href="{% url 'commande_list' %}" title="COMMANDES">
+                        <i class="fas fa-truck"></i> LISTE DES COMMANDES
                     </a>
-                </li>
-                <li class="active">
-                    <a href="#commandeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
-                        <i class="fas fa-truck"></i> COMMANDES
-                    </a>
-                    <ul class="collapse list-unstyled" id="commandeSubmenu">
-                        <li>
-                            <a href="{% url 'commande_list' %}" title="Client">LISTE DES COMMANDES</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'add_commande' %}" title="Add Category">AJOUTER COMMANDE</a>
-                        </li>
-                    </ul>
                 </li>
                 <li>
                     <a href="{% url 'bl_logout' %}" title="Logout">
@@ -310,14 +257,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
     <!-- Custom JS for sidebar toggle -->
-    <script>
-        $(document).ready(function () {
-            $("#sidebarCollapse").on("click", function () {
-                $("#sidebar").toggleClass("active");
-                $("#content").toggleClass("active");
-            });
-        });
-    </script>
+    
 
     {% block extra_js %}{% endblock %}
 </body>

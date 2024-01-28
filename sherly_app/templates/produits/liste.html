@@ -3,6 +3,61 @@
 {% block title %} BL app {% endblock %}
 
 {% block content %}
+<style>
+    .pagination {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-inner {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.pagination-link {
+    color: #333;
+    text-decoration: none;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border-radius: 3px;
+}
+
+.current-page {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    margin: 0 2px;
+    border-radius: 3px;
+}
+
+#productTable th,
+    #productTable td {
+        text-align: center;
+    }
+    input[type="checkbox"][disabled] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 4px;
+    cursor: not-allowed;
+}
+
+    input[type="checkbox"][disabled]:checked {
+    background-color: green;
+    border-color: green; /* Adjust border color */
+}
+
+input[type="checkbox"][disabled]:not(:checked) {
+    background-color: red;
+    border-color: red; /* Adjust border color */
+}
+
+</style>
     <div class="container mt-4">
         <div class="container">
             {% if messages %}
@@ -19,27 +74,55 @@
                     <h2 class="mb-0">LISTE DES PRODUITS</h2>
                 </div>
                 <div class="card-body">
-                    <table class="table table-striped">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="categorie1">CATEGORIE </label>
+                                <select class="form-control" id="filterByFamille" name="filterByFamille">
+                                    <option value=""  selected>TOUS</option>
+                                    {% for famille in famille_list %}
+                                    <option value="{{ famille }}">{{ famille }}</option>
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+
+                        </div>
+
+                        
+
+
+                    </div>
+                  
+                    <br>
+                    <table class="table table-striped" id="productTable">
                         <thead>
                             <tr>
-                                <th>RÉFERENCE</th> 
-                                <th>DESIGNATION</th> 
+                                <th>REFERENCE</th> 
+                                <th>CATEGORIE</th> 
+                                <th>DÉSIGNATION</th> 
                                 <th>CONDITIONNEMENT</th> 
-                                <th>FAMILLE</th> 
                                 <th>PRIX</th>
+                                <th>ACTIVE</th>
                                 <th>ACTION</th>
                             </tr>
                         </thead>
                         <tbody>
                             {% for product in products %}
-                                <tr>
+                                <tr data-famille="{{ product.famille.famille }}">
                                     <td>{{ product.reference }}</td>
+                                    <td>{{ product.famille.famille}}</td>
                                     <td>{{ product.designation }}</td>
                                     <td>BOITE DE {{ product.conditionnement_count }}</td>
-                                    <td>{{ product.famille.famille }}</td>
+                                   
+                              
                                     <td>{{ product.prix }}</td>
                                     <td>
-                                        <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
+                                        <input type="checkbox" disabled {% if product.is_active %}checked{% endif %}>
+                                    </td>
+                                    <td>
+                                      
                                         <a href="{% url 'edit_product' id=product.id %}" class="text-warning"><i class="bi bi-pencil"></i></a>
                                     </td>
                                 </tr>
@@ -47,26 +130,54 @@
                         </tbody>
                     </table>
                     
+                    
+                    
                     <!-- Pagination -->
                     <div class="pagination">
-                        <span class="step-links">
+                        <div class="pagination-inner">
                             {% if products.has_previous %}
-                                <a href="?page=1">&laquo; first</a>
-                                <a href="?page={{ products.previous_page_number }}">previous</a>
+                                <a class="pagination-link" href="?page=1">&laquo; First</a>
+                                <a class="pagination-link" href="?page={{ products.previous_page_number }}">Previous</a>
                             {% endif %}
-
-                            <span class="current">
-                                Page {{ products.number }} of {{ products.paginator.num_pages }}.
-                            </span>
-
+                    
+                            {% for num in products.paginator.page_range %}
+                                {% if num == products.number %}
+                                    <span class="current-page">{{ num }}</span>
+                                {% else %}
+                                    <a class="pagination-link" href="?page={{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endfor %}
+                    
                             {% if products.has_next %}
-                                <a href="?page={{ products.next_page_number }}">next</a>
-                                <a href="?page={{ products.paginator.num_pages }}">last &raquo;</a>
+                                <a class="pagination-link" href="?page={{ products.next_page_number }}">Next</a>
+                                <a class="pagination-link" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
                             {% endif %}
-                        </span>
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                    </div>
+                    </div>
+                    </div>
+                    </div>
+                    
+                    {% endblock %}
+
+                    {% block extra_js %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#filterByFamille').change(function(){
+                var selectedFamille = $(this).val();
+                $('#productTable tbody tr').hide();
+                if(selectedFamille === ""){
+                    $('#productTable tbody tr').show();
+                } else {
+                    $('#productTable tbody tr[data-famille="' + selectedFamille + '"]').show();
+                }
+            });
+        });
+
+
+
+
+    </script>
 {% endblock %}

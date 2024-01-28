@@ -16,7 +16,7 @@
                         <!-- Row 1 -->
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="nomClientTextField">NOM CLIENT</label>
+                                <label for="nomClientTextField">REFERENCE PORTEUR</label>
                                 <div class="input-group">
                                     <!-- Replace the select element with a text field -->
                                     <input type="text" class="form-control" id="client" name="client" required oninput="this.value = this.value.toUpperCase()">
@@ -26,16 +26,16 @@
 
                         <div class="form-row">
                             <div class="form-group col-md-2">
-                                <label for="libele1">L'OEIL DROIT</label>
+                                <label for="libele1">OEIL DROIT</label>
                             </div>
                         </div>
                         <!-- ------------------Ligne1 BL ---------------------------------------------- -->
                         <!-- Row 2 -->
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="categorie">Categorie</label>
+                                <label for="categorie">CATÉGORIE</label>
                                 <select class="form-control selectpicker" id="categorie_d" name="categorie_d" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for category in categories %}
                                         <option value="{{ category.id }}">{{ category.famille }}</option>
                                     {% endfor %}
@@ -43,9 +43,9 @@
                             </div>
                             
                             <div class="form-group col-md-3">
-                                <label for="produit">Produit</label>
+                                <label for="produit">PRODUIT</label>
                                 <select class="form-control selectpicker" id="produit_d" name="produit_d" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for product in products %}
                                         <option value="{{ product.id }}">{{ product.designation }}</option>
                                     {% endfor %}
@@ -53,18 +53,18 @@
                             </div>
                             
                             <div class="form-group col-md-2">
-                                <label for="sphere">Sphere</label>
+                                <label for="sphere">SPHERE</label>
                                 <select class="form-control" id="sphere_d" name="sphere_d" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for value in sphere_range %}
                                         <option value="{{ value }}">{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="categorie1">Cylindre </label>
+                                <label for="categorie1">CYLINDRE </label>
                                 <select class="form-control" id="cylindre_d" name="cylindre_d" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for value in cylindre_range %}
                                         <option value="{{ value }}">{{ value }}</option>
                                     {% endfor %}
@@ -72,9 +72,9 @@
                             </div>
 
                             <div class="form-group col-md-2">
-                                <label for="axe">Axe </label>
+                                <label for="axe">AXE </label>
                                 <select class="form-control" id="axe_d" name="axe_d" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for value in axe_range %}
                                         <option value="{{ value }}">{{ value }}</option>
                                     {% endfor %}
@@ -85,9 +85,9 @@
                         <!-- Second row for Quantity -->
                             <div class="form-row">
                                 <div class="form-group col-md-12">
-                                    <label for="quatite_d">Quantity</label>
+                                    <label for="quatite_d">QUANTITÉ</label>
                                     <select class="form-control" id="quatite_d" name="quatite_d" required>
-                                        <option value="" disabled selected>Choose</option>
+                                        <option value="" disabled selected>CHOISIR</option>
                                         {% for value in quantite_range %}
                                             <option value="{{ value }}">{{ value }}</option>
                                         {% endfor %}
@@ -100,14 +100,14 @@
                         <!-- Row 1 -->
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="libele1">L'OEIL GAUCHE</label>
+                                <label for="libele1">OEIL GAUCHE</label>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="categorie1">Categorie</label>
                                 <select class="form-control" id="categorie_g" name="categorie_g" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for category in categories %}
                                         <option value="{{ category.id }}">{{ category.famille }}</option>
                                     {% endfor %}
@@ -116,25 +116,25 @@
                             <div class="form-group col-md-3">
                                 <label for="categorie1">Produit</label>
                                 <select class="form-control" id="produit_g" name="produit_g" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for product in products %}
                                         <option value="{{ product.id }}">{{ product.designation }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="sphere">Sphere</label>
+                                <label for="sphere">SPHERE</label>
                                 <select class="form-control" id="sphere_g" name="sphere_g" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for value in sphere_range %}
                                         <option value="{{ value }}">{{ value }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group col-md-2">
-                                <label for="categorie1">Cylindre </label>
+                                <label for="categorie1">CYLINDRE </label>
                                 <select class="form-control" id="cylindre_g" name="cylindre_g" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for value in cylindre_range %}
                                         <option value="{{ value }}">{{ value }}</option>
                                     {% endfor %}
@@ -142,9 +142,9 @@
                             </div>
 
                             <div class="form-group col-md-2">
-                                <label for="axe">Axe </label>
+                                <label for="axe">AXE </label>
                                 <select class="form-control" id="axe_g" name="axe_g" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for value in axe_range %}
                                         <option value="{{ value }}">{{ value }}</option>
                                     {% endfor %}
@@ -158,9 +158,9 @@
                         <div class="form-row">
                             
                             <div class="form-group col-md-12">
-                                <label for="axe">Quatité </label>
+                                <label for="axe">QUANTITÉ </label>
                                 <select class="form-control" id="quatite_g" name="quatite_g" required>
-                                    <option value="" disabled selected>Choose</option>
+                                    <option value="" disabled selected>CHOISIR</option>
                                     {% for value in quantite_range %}
                                         <option value="{{ value }}">{{ value }}</option>
                                     {% endfor %}

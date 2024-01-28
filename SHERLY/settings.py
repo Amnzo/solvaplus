@@ -66,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'sherly_app.context_processors.societer_info',  # Register your custom context processor
             ],
         },
     },
@@ -131,6 +132,7 @@ LOGIN_URL = '/login/'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 MEDIA_URL = '/media/'
 
 # Static files (CSS, JavaScript, images)
@@ -144,7 +146,35 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'salmi.ensa.ilsi@gmail.Com'  # Replace with your Gmail email address
 EMAIL_HOST_PASSWORD = 'ukih xbxk ognh ksyb'
-os.environ['GTK_PATH'] = 'C:/Program Files/GTK3-Runtime Win64'
+
+
+# EMAIL_HOST_PASSWORD = ' UVQ6D-48EFA-5G6BG-MRURW-LKKA7'  # Mot de passe de votre compte Hotmail
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp-mail.outlook.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'aslal-salmi@hotmail.fr'  # Your Hotmail email address
+# EMAIL_HOST_PASSWORD = 'UVQ6D-48EFA-5G6BG-MRURW-LKKA7'
+
+# settings.py
+print("lOadiiiiing all appp----------------------------")
+# Celery Configuration
+CELERY_BROKER_URL = 'amqp://localhost'  # Adjust if your RabbitMQ setup differs
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Example Redis result backend, adjust as needed
+
+
+# Celery Beat Configuration (optional, for scheduling tasks)
+
+from datetime import timedelta
+
+CELERY_BEAT_SCHEDULE = {
+    'generate-and-send-bl-pdf': {
+        'task': 'sherly_app.tasks.generate_and_send_bl_pdf',
+        'schedule': timedelta(seconds=300),  # Adjust the schedule as needed
+    },
+}
+
 
 
 

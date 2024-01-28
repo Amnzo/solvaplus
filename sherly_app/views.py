@@ -1,5 +1,7 @@
 
 
+import os
+
 from django.http import JsonResponse
 from django.shortcuts import render,HttpResponse,redirect
 from django.contrib.auth.decorators import login_required
@@ -18,6 +20,7 @@ from django.contrib.auth import authenticate, login,logout
 # Create your views here.
 
 def bl_custom_login(request):
+    societe = Societe.objects.first()
     if request.method == 'POST':
         form = CustomLoginForm(request.POST)
         if form.is_valid():
@@ -54,14 +57,26 @@ def categorie_list(request):
 def add_categorie(request):
         if request.method == 'POST':
             famille_name = request.POST.get('famille')
-            Famille.objects.create(famille=famille_name)
+            active=request.POST.get('is_active')
+            is_active=False
+            if active=="on":
+                is_active=True
+
+            Famille.objects.create(famille=famille_name,is_active=is_active)
             return redirect('categorie_list')  # Redirect to the category list page
         return render(request, 'categories/ajouter.html')
 
 def edit_categorie(request,id):
         famille=Famille.objects.get(pk=id)
         if request.method == 'POST':
+            print(request.POST.get('is_active'))
             famille.famille=request.POST.get('famille')
+            active=request.POST.get('is_active')
+            if active=="on":
+                famille.is_active=True
+            else :
+                famille.is_active=False
+            
             famille.save()
             return redirect('categorie_list')  # Redirect to the category list page
         
@@ -155,14 +170,37 @@ def add_commande(request):
 @login_required(login_url='bl_login')
 def commande_list(request):
     if request.user.is_superuser:
-        bl_data = Bon_Commande.objects.all().order_by('-date_de_cmd')
+        #bl_data = Bon_Commande.objects.all().order_by('-date_de_cmd')
+        bl_data = Bon_Commande.objects.filter(is_active=True).order_by('-date_de_cmd')
+
     else:
-        bl_data = Bon_Commande.objects.filter(user=request.user).order_by('-date_de_cmd')
+        #bl_data = Bon_Commande.objects.filter(user=request.user).order_by('-date_de_cmd')
+        bl_data = Bon_Commande.objects.filter(user=request.user, is_active=True).order_by('-date_de_cmd')
+
     return render(request, 'commande/liste.html', {'bl_data': bl_data})
+
+def delete_confirmation(request,id):
+    bon_commande=Bon_Commande.objects.get(pk=id)
+    context = { 'bon_commande':bon_commande}    
+    return render(request,'commande/confirmation.html',context)
+def delete_commande(request, id):
+    # Récupérer la commande à supprimer
+    commande = Bon_Commande.objects.get(id=id)
+    print(id)
+    commande.is_active=False
+    # Supprimer la commande
+    commande.save()
+    # Redirection vers la liste des commandes
+    return redirect('commande_list')
     #------------------------------------------------------
+
+from django.core.mail import send_mail, EmailMessage
+from django.conf import settings
 
 
 def generate_pdf(request, bl_id):
+    
+    
     try:
         bon_livraison = Bon_Livraison.objects.get(pk=bl_id)
         societe = Societe.objects.first()
@@ -171,12 +209,20 @@ def generate_pdf(request, bl_id):
         #return render(request,'pdf/pdf.html',context)
         html = render(request, 'pdf/pdf.html', context).content
         html_str = html.decode('utf-8')
-        config = pdfkit.configuration(wkhtmltopdf='/usr/bin/wkhtmltopdf')
+        config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
         
-        pdf = pdfkit.from_string(html_str, False, options={'encoding': 'UTF-8', 'disable-javascript': None, 'enable-local-file-access': ''}, configuration=config)
+
+        pdf = pdfkit.from_string(html_str, False, options={'encoding': 'UTF-8', 'enable-local-file-access': ''}, configuration=config)
+        # subject = f'bon de livraison numero {bon_livraison.no_bl}'
+        # message = f' Bonjour , Ceci est un Bon de Livraison numero {bon_livraison.no_bl} envoyé depuis Django au 6eme café.'
+        # from_email = 'optiquejaures@hotmail.com'
+        # recipient_list = ['salmi.ensa.ilsi@gmail.com','gestionrecrutement@hotmail.com']
+        # email = EmailMessage(subject, message, from_email, recipient_list)
+        # email.attach(f'bon_livraison_{bon_livraison.no_bl}.pdf', pdf, 'application/pdf')
+        # email.send()
         response = HttpResponse(pdf, content_type='application/pdf')
         response['Content-Disposition'] = f'inline; filename=bon_livraison_{bl_id}.pdf'
-        print(response)
+        #print(response)
         return response
 
     except Bon_Livraison.DoesNotExist:
@@ -242,9 +288,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 @login_required(login_url='bl_login')
 def products_list(request):
     products = Produit.objects.all().order_by('designation')
+    famille_list = Famille.objects.all()
     
     # Set the number of items per page
-    items_per_page = 5
+    items_per_page = 8
     
     # Create a Paginator instance
     paginator = Paginator(products, items_per_page)
@@ -262,7 +309,7 @@ def products_list(request):
         # If the page parameter is out of range, show the last page
         products = paginator.page(paginator.num_pages)
     
-    return render(request, 'produits/liste.html', {'products': products})
+    return render(request, 'produits/liste.html', {'products': products,'famille_list':famille_list})
 
 def edit_product(request,id):
     product = Produit.objects.get(pk=id)
@@ -270,6 +317,10 @@ def edit_product(request,id):
         form_data = request.POST.dict()
         famille= Famille.objects.get(pk=form_data.get('famille'))
         product.designation=form_data.get('designation')
+        if request.POST.get('is_active')=="on":
+            product.is_active=True
+        else :
+            product.is_active=False
         product.famille=famille
         product.prix=form_data.get('prix')
         product.conditionnement_count=form_data.get('conditionnement')
@@ -287,9 +338,14 @@ def add_product(request):
     if request.method == 'POST':
         form_data = request.POST.dict()
         famille= Famille.objects.get(pk=form_data.get('famille'))
+        active=request.POST.get('is_active')
+        is_active=False
+        if active=="on":
+                is_active=True
         produit=Produit(
              designation=form_data.get('designation'),
              famille=famille,
+             is_active=is_active,
              prix=form_data.get('prix'),
              conditionnement_count=form_data.get('conditionnement'),
 
@@ -333,7 +389,32 @@ def add_user(request):
 
             # Redirect to a success page or login the user, etc.
             return redirect('list_user')
+        
     else:
         form = CustomUserRegistrationForm()
 
     return render(request, 'utilisateurs/ajouter.html', {'form': form})
+
+
+
+def profile(request):
+    if request.method == 'POST':
+        form = CustomUserRegistrationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            request.user.username = username
+            request.user.set_password(password)  # Use set_password to securely update the password
+            request.user.save()
+            messages.success(request, "PROFILE ADMINISTRATEUR CHANGÉ AVEC SUCCÈS")
+            return redirect(list_user)
+    form = CustomUserRegistrationForm()
+    
+    return render(request, 'utilisateurs/profile.html', {'form':form})
+
+
+
+
+
+
+

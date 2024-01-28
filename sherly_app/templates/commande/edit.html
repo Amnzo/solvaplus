@@ -59,6 +59,7 @@
                     <div class="col-md-3">
                         
                         <img src="{{ societe.logo.url }}" alt="Logo" class="img-fluid">
+                        
                        
 
                     </div>
@@ -75,7 +76,7 @@
                 <table class="table">
                     <thead class="thead-dark custom-table-header">
                         <tr>
-                            <th scope="col">Num FACTURE</th>
+                            <th scope="col">N<sup>o</sup> BL</th>
                             <th scope="col">DATE</th>
                         </tr>
                     </thead>
@@ -114,7 +115,7 @@
                     <table class="table" >
                         <thead class="thead-dark custom-table-header">
                             <tr> 
-                                <th scope="col">Livré a</th>
+                                <th scope="col">LIVRE A</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -140,7 +141,7 @@
             <table class="table">
                 <thead class="thead-dark custom-table-header">
                     <tr>
-                        <th scope="col">Information Achteur</th>
+                        <th scope="col">INFORMATION  ACHETEUR</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -170,9 +171,9 @@
             <table class="table">
                 <thead class="thead-dark custom-table-header">
                     <tr>
-                        <th scope="col">Num BL</th>
+                        <th scope="col">N<sup>o</sup> BL</th>
                         <th scope="col">DATE BL</th>
-                        <th scope="col">Num CMDE</th>
+                        <th scope="col">N<sup>o</sup> CMDE</th>
                         <th scope="col">DATE CMDE</th>
                         <th scope="col">CODE CLIENT</th>
                     </tr>
@@ -198,46 +199,45 @@
             <table class="table">
                 <thead class="thead-dark custom-table-header">
                     <tr>
-                        <th scope="col">Désignation</th>
-                        <th scope="col">Conditionnement</th>
-                        <th scope="col">Diamétre</th>
-                        <th scope="col">Rayon</th>
-                        <th scope="col">Sphére</th>
-                        <th scope="col">Cylindre</th>
-                        <th scope="col">Axe</th>
-                        <th scope="col">Oeil</th>
-                        <th scope="col">Porteur</th>
-                        <th scope="col">QTE</th>
+                        <th scope="col">Référence</th>
+                                    <th scope="col">Désignation</th>
+                                    <th scope="col">Conditionnement</th>
+                                    <th scope="col">Diamètre </th>
+                                    <th scope="col">Rayon</th>
+                                    <th scope="col">Sphère </th>
+                                    <th scope="col">Cylindre</th>
+                                    <th scope="col">Axe</th>
+                                    <th scope="col">Oeil <br>D/G</th> 
+                                    <th scope="col">Porteur</th>
+                                    <th scope="col">QTE</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td>{{ bon_livraison.bon_commande.produit_d.reference}}</td>
                         <td>{{ bon_livraison.bon_commande.produit_d.designation}}</td>
                         <td>Boite de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
                         <td></td>
                         <td></td>
-                        <td> {{bon_livraison.bon_commande.sphere_d}}</td>
-                        <td> {{bon_livraison.bon_commande.cylindre_d}}</td>
-                        <td> {{bon_livraison.bon_commande.axe_d}}</td>
-                        <td> DROITE</td>
-                        <td> {{bon_livraison.bon_commande.client}}</td>
-                        <td> {{bon_livraison.bon_commande.quatite_d}}</td>
-                        
-                        
+                        <td>{{bon_livraison.bon_commande.sphere_d}}</td>
+                        <td>{{bon_livraison.bon_commande.cylindre_d}}</td>
+                        <td>{{bon_livraison.bon_commande.axe_d}}</td>
+                        <td>DROITE</td>
+                        <td>{{bon_livraison.bon_commande.client}}</td>
+                        <td>{{bon_livraison.bon_commande.quatite_d}}</td>
                     </tr>
                     <tr>
+                        <td>{{ bon_livraison.bon_commande.produit_g.reference}}</td>
                         <td>{{ bon_livraison.bon_commande.produit_g.designation}}</td>
                         <td>Boite de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
                         <td></td>
                         <td></td>
-                        <td> {{bon_livraison.bon_commande.sphere_g}}</td>
-                        <td> {{bon_livraison.bon_commande.cylindre_g}}</td>
-                        <td> {{bon_livraison.bon_commande.axe_g}}</td>
-                        <td> GAUCHE</td>
-                        <td> {{bon_livraison.bon_commande.client}}</td>
-                        <td> {{bon_livraison.bon_commande.quatite_g}}</td>
-                        
-                        
+                        <td>{{bon_livraison.bon_commande.sphere_g}}</td>
+                        <td>{{bon_livraison.bon_commande.cylindre_g}}</td>
+                        <td>{{bon_livraison.bon_commande.axe_g}}</td>
+                        <td>GAUCHE</td>
+                        <td>{{bon_livraison.bon_commande.client}}</td>
+                        <td>{{bon_livraison.bon_commande.quatite_g}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -253,7 +253,13 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-8">
+            {% if societe.nif %}
             <input type="text" name="nif" value="{{ societe.nif }}" class="form-label">
+            {% else %}
+            <input type="text" name="nif" value="NIF:B062835052-N&ordm; IVA : ESB068350052" class="form-label">
+         
+            {% endif %}
+           
         </div>
     </div>
     
@@ -265,3 +271,4 @@
 <form>
 
 {% endblock %}
+

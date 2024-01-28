@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation de suppression</title>
+    <!-- Inclure Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Votre CSS personnalisé -->
+    <style>
+        /* Ajoutez ici votre CSS personnalisé */
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card" style="background-color: #4CAF50; color: white;">
+                <div class="card-header">
+                    Confirmation de suppression
+                </div>
+                <div class="card-body">
+                    <form id="deleteForm" action="/delete_commande/{{ bon_commande.id }}/" method="post">
+                        {% csrf_token %}
+                        <p>Êtes-vous sûr de vouloir supprimer la commande No {{ bon_commande.no_cmde }} ?</p>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="confirmation" name="confirmation">
+                            <label class="form-check-label" for="confirmation">Oui, je suis sûr</label>
+                        </div>
+                        <button id="deleteButton" type="submit" class="btn btn-danger mt-3" disabled>Supprimer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Inclure Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Votre JavaScript personnalisé -->
+<script>
+    document.getElementById('confirmation').addEventListener('change', function() {
+        document.getElementById('deleteButton').disabled = !this.checked;
+    });
+</script>
+
+</body>
+</html>

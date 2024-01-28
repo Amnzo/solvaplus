@@ -3,6 +3,30 @@
 {% block title %} BL app {% endblock %}
 
 {% block content %}
+<style>
+
+/* Add these styles to your CSS */
+input[type="checkbox"][disabled] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid;
+    border-radius: 4px;
+    cursor: not-allowed;
+}
+
+input[type="checkbox"][disabled]:checked {
+    background-color: green;
+    border-color: green; /* Adjust border color */
+}
+
+input[type="checkbox"][disabled]:not(:checked) {
+    background-color: red;
+    border-color: red; /* Adjust border color */
+}
+</style>
     <div class="container mt-4">
         
         
@@ -18,14 +42,15 @@
             
             <div class="card">
                 <div class="card-header" style="background-color: #4CAF50; color: white;">
-                    <h2 class="mb-0">LISTE DES FAMILLES</h2>
+                    <h2 class="mb-0">LISTE DES CATEGORIES</h2>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>NOM FAMILLE</th> 
-                                <th>ACTION</th>
+                                <th style="text-align: center;">NOM CATEGORIE</th> 
+                                <th style="text-align: center;">ACTIVE</th>
+                                <th style="text-align: center;">ACTION</th>
 
                                
                             </tr>
@@ -34,11 +59,14 @@
                            
                             {% for famille in familles %}
                                 <tr>
-                                    <td>{{famille.famille}}</td>
+                                    <td style="text-align: center;">{{famille.famille}}</td>
+                                    <td style="text-align: center;">
+                                        <input type="checkbox" disabled {% if famille.is_active %}checked{% endif %}>
+                                    </td>
 
-                                    <td>
+                                    <td style="text-align: center;">
                                       
-                                        <a href="#" class="text-danger"><i class="bi bi-trash"></i></a>
+                                    
                                         <a href="{% url 'edit_categorie' id=famille.id %}" class="text-warning"><i class="bi bi-pencil"></i></a>
                                     </td>
 

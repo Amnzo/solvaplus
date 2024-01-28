@@ -26,7 +26,7 @@ class Societe(models.Model):
     achteur4=models.CharField(max_length=50,default='FRANCE')
     achteur5=models.CharField(max_length=50,default='Numero TVA Intraceo')
     achteur6=models.CharField(max_length=50,default='FR7547911891')
-    nif=models.CharField(max_length=100,default="NIF:B062835052 № IVA : ESB068350052")
+    nif=models.CharField(max_length=100,blank=True,null=True)
     phrase=models.CharField(max_length=100,default="L'expédition s'effectue conformément a nos conditions générales de vente")
 
 
@@ -37,6 +37,7 @@ class Societe(models.Model):
 # Create your models here.
 class Famille(models.Model):
     famille = models.CharField(max_length=255)
+    is_active = models.BooleanField(default=True)  # Boolean field for activation status
     # Other fields for the Family model can be added here
 
     def __str__(self):
@@ -49,6 +50,7 @@ class Produit(models.Model):
     conditionnement_count = models.IntegerField(default=1)
     prix = models.DecimalField(max_digits=10, decimal_places=2)
     reference = models.CharField(max_length=7, default='', editable=False)  # Set editable to False to prevent manual editing
+    is_active = models.BooleanField(default=True)  # Boolean field for activation status
     def generate_reference(self):
         # Generate a reference in the format PXXYZZ
         random_digits = ''.join(random.choices(string.digits, k=2))
@@ -96,6 +98,7 @@ class Bon_Commande(models.Model):
     quatite_g = models.IntegerField()
     date_de_cmd = models.DateTimeField(default=timezone.now)
     no_cmde = models.CharField(max_length=20, unique=True, editable=False,default='DEFAULT_VALUE')
+    is_active=models.BooleanField(default=True)
     
 
     def __str__(self):

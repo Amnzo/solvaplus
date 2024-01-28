@@ -14,6 +14,25 @@ background-image:  url('https://www.shutterstock.com/image-illustration/contact-
 
 
 }
+.larger-text {
+    font-size: 20px; /* Adjust the font size as needed */
+}
+
+.avatar-link {
+    display: flex; /* Use flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center;
+ 
+}
+
+.avatar-img {
+    border-radius: 50%; /* Makes the image circular */
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    object-fit: cover; /* Ensures the image covers the entire circle */
+    background-color: #320eb3;
+}
+
 </style>
 
 <div class="container">
@@ -21,41 +40,44 @@ background-image:  url('https://www.shutterstock.com/image-illustration/contact-
         <div class="row justify-content-center">
          
             <div class="col-md-6">
-                <div class="card">
+                <div class="card"  >
                     <!-- Header with logo -->
                     <div class="card-header" style="background-color: white; color: black;">
-                        <div class="row">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-6"> 
-                                 
-                                 <img src="{% static 'sherly_logo.png' %}" alt="Logo" style="height: 180px; width: auto;">
+                        <div class="row align-items-center justify-content-center"> <!-- Added justify-content-center class here -->
+                            <div class="col-md-1"></div>
+                            <div class="col-md-4 text-center">
+                                <a href="" class="avatar-link">
+                                    <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
+                                </a>
+                               
                                 
-
-                                
-                                
+                            </div>
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center h-100">
+                                    <div>
+                                        <span class="larger-text">{{societe.nom1}}</span><br>
+                                        <span>{{societe.nom2}}</span>
+                                    </div>
                                 </div>
-                            
-                            <div class="col-md-6"><h2 class="mb-0"></h2></div>
+                            </div>
                         </div>
-                    
-                       
-                        
-                       
                     </div>
+                    
                     <div class="card-body">
                         <form method="post" class="form">
                             {% csrf_token %}
                             {{ form.non_field_errors }}
 
                             <div class="form-group">
-                                <label for="{{ form.username.id_for_label }}" class="form-label">Username:</label>
-                                <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Enter your username" required>
+                                <label for="{{ form.username.id_for_label }}" class="form-label">Nom d'utilisateur :</label>
+                                <input type="text" class="form-control" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Entrez votre nom d'utilisateur" required oninput="this.value = this.value.toUpperCase()">
                                 {{ form.username.errors }}
                             </div>
 
                             <div class="form-group">
-                                <label for="{{ form.password.id_for_label }}" class="form-label">Password:</label>
-                                <input type="password" class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="Enter your password" required>
+                                <label for="{{ form.password.id_for_label }}" class="form-label">Mot de passe:</label>
+                                <input type="password" class="form-control" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="Entrez votre mot de passe" oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*)\./g, '$1');" required>
+
                                 {{ form.password.errors }}
                             </div>
                             <div class="row">

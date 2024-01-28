@@ -20,6 +20,15 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control" id="famille" name="famille" value="{{ famille.famille }}" required oninput="this.value = this.value.toUpperCase()">
                                     </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-1">
+                                    <label for="is_active">ACTIVE</label>
+                                    <div class="input-group">
+                                        <input type="checkbox" class="form-control" id="is_active" name="is_active" {% if famille.is_active %}checked{% endif %}>
+                                    </div>
                                 </div>
                             </div>
 
