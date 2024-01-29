@@ -26,7 +26,8 @@ SECRET_KEY = 'django-insecure-h-@(^g(2lq2vqs+-pl1t-j(eh=3(w)5z)fj&y&plea=xdsc2=a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['*']
+
 
 
 # Application definition
@@ -157,24 +158,17 @@ EMAIL_HOST_PASSWORD = 'ukih xbxk ognh ksyb'
 # EMAIL_HOST_USER = 'aslal-salmi@hotmail.fr'  # Your Hotmail email address
 # EMAIL_HOST_PASSWORD = 'UVQ6D-48EFA-5G6BG-MRURW-LKKA7'
 
-# settings.py
-print("lOadiiiiing all appp----------------------------")
-# Celery Configuration
-CELERY_BROKER_URL = 'amqp://localhost'  # Adjust if your RabbitMQ setup differs
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'  # Example Redis result backend, adjust as needed
 
-
-# Celery Beat Configuration (optional, for scheduling tasks)
-
-from datetime import timedelta
-
-CELERY_BEAT_SCHEDULE = {
-    'generate-and-send-bl-pdf': {
-        'task': 'sherly_app.tasks.generate_and_send_bl_pdf',
-        'schedule': timedelta(seconds=300),  # Adjust the schedule as needed
-    },
+PDFKIT_CONFIG = {
+    'wkhtmltopdf': 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
 }
 
+# PDFKIT_CONFIG = {
+#     'wkhtmltopdf': '/usr/bin/wkhtmltopdf'
+# }
+# settings.py
+print("---------------Starting-----------------")
+# Celery Configuration
 
 
 

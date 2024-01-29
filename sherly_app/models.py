@@ -28,8 +28,9 @@ class Societe(models.Model):
     achteur6=models.CharField(max_length=50,default='FR7547911891')
     nif=models.CharField(max_length=100,blank=True,null=True)
     phrase=models.CharField(max_length=100,default="L'expédition s'effectue conformément a nos conditions générales de vente")
-
-
+   
+    boite_envoi = models.CharField(max_length=100,default="gestionrecrutement@hotmail.com", error_messages={'invalid': "L'adresse email de boite d'envoi est invalide."})
+    boite_reception = models.CharField(max_length=100,default="optiquejaures@hotmail.com", error_messages={'invalid': "L'adresse email de boite de réception est invalide."})
 
     def __str__(self):
         return f"{self.id}"
@@ -105,45 +106,11 @@ class Bon_Commande(models.Model):
         return f'Bon_Commande for {self.client}----{self.no_cmde}----{self.id} '
     
 
-    def save(self, *args, **kwargs):
-        created = not bool(self.pk)
-        # Call the superclass's save method to ensure the object is saved and has an id
-        super().save(*args, **kwargs)
-
-        # Generate the unique No CMDE based on date_de_bl, id, and a counter
-        date_part = self.date_de_cmd.strftime('%Y%m%d')
-        counter = Bon_Commande.objects.filter(date_de_cmd__date=self.date_de_cmd.date()).count() + 1
-        padded_id = f"{(self.id * self.id)+self.id }"
-        self.no_cmde = f"{date_part}{padded_id}"
-
-        super().save(*args, **kwargs)
-        if created:
-            Bon_Livraison.objects.create(bon_commande=self)
-        
-            
-
-
 
 class Bon_Livraison(models.Model):
     bon_commande = models.OneToOneField(Bon_Commande, on_delete=models.CASCADE, related_name='bon_livraison')
     date_de_bl = models.DateTimeField(default=timezone.now)
     no_bl = models.CharField(max_length=20, unique=True, editable=False,default='DEFAULT_VALUE')
-
-
-
-    def save(self, *args, **kwargs):
-        # Set date_de_bl to the date_de_bl of the associated Bon_Commande plus one day
-        
-        next_day = self.bon_commande.date_de_cmd + timezone.timedelta(days=1)
-        while next_day.weekday() >= 5:
-            next_day += timezone.timedelta(days=1)
-        self.date_de_bl = next_day
-       # padded_id = f"{self.id + 7}"
-        last_bon_livraison = Bon_Livraison.objects.last()
-        padded_id = f"{(last_bon_livraison.id * last_bon_livraison.id )+last_bon_livraison.id}" if last_bon_livraison else "1"
-        #padded_id = f"{(self.id * self.id)+self.id }"
-        date_part = next_day.strftime('%Y%m%d')
-        self.no_bl = f"{date_part}{padded_id}"
-        super().save(*args, **kwargs)
+    emailed = models.BooleanField(default=False)
     def __str__(self):
         return f'Bon_Livraison for {self.no_bl}----{self.id}----{self.date_de_bl} '

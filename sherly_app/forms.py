@@ -1,5 +1,6 @@
 from django import forms
-
+from django.core.validators import validate_email
+from django.core.exceptions import ValidationError
 from .models import Famille, Produit,Societe
 class CustomLoginForm(forms.Form):
     username = forms.CharField(label='Username')
@@ -30,6 +31,21 @@ class CustomUserRegistrationForm(forms.Form):
 class CompanyForm(forms.ModelForm):
     class Meta:
         model = Societe
-        fields = ['nom1', 'nom2','ligne1','ligne2','ligne3','ligne4','ligne5','logo','code_client']
+        fields = ['nom1', 'nom2','ligne1','ligne2','ligne3','ligne4','ligne5','logo','code_client','boite_envoi','boite_reception']
+    def clean_boite_envoi(self):
+        boite_envoi = self.cleaned_data.get('boite_envoi')
+        if boite_envoi:
+            try:
+                validate_email(boite_envoi)
+            except ValidationError:
+                raise forms.ValidationError("L'adresse email de boite d'envoi est invalide.")
+        return boite_envoi
 
-
+    def clean_boite_reception(self):
+        boite_reception = self.cleaned_data.get('boite_reception')
+        if boite_reception:
+            try:
+                validate_email(boite_reception)
+            except ValidationError:
+                raise forms.ValidationError("L'adresse email de boite de réception est invalide.")
+        return boite_reception

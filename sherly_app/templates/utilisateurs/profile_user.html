@@ -8,7 +8,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header" style="background-color: #4CAF50; color: white;">
-                        <h2 class="mb-0">PROFILE ADMINISTRATEUR</h2>
+                        <h2 class="mb-0">PROFILE DE {{profile.username}}</h2>
                     </div>
                     <div class="card-body">
                         <form method="post">
@@ -18,7 +18,7 @@
                                 <div class="form-group col-md-12">
                                     <label for="username">NOM D'UTILISATEUR</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="username" name="username" required value="{{user.username}}" oninput="this.value = this.value.toUpperCase()">
+                                        <input type="text" class="form-control" id="username" name="username" required value="{{profile.username}}" oninput="this.value = this.value.toUpperCase()">
                                     </div>
                                     {% if form.username.errors %}
                                         <span class="text-danger">{{ form.username.errors.0 }}</span>

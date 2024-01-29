@@ -83,7 +83,8 @@
                     <tbody>
                         <tr>
                             <td>{{ bon_livraison.no_bl}}</td>
-                            <td>{{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</td>
+                            <td>
+                            <input type="date" name="date_de_bl" value="{{ bon_livraison.date_de_bl|date:'Y-m-d' }}"></td>
                         </tr>
                     </tbody>
                 </table>

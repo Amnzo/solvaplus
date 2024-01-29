@@ -16,6 +16,18 @@
             <div class="card-body">
                 <form method="post" enctype="multipart/form-data" id="companyForm">
                     {% csrf_token %}
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>Erreur:</strong> Veuillez corriger les erreurs ci-dessous.
+                        <ul>
+                            {% for field, error_list in form.errors.items %}
+                            {% for error in error_list %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
                     <div class="row">
                         <div class="col-md-2">
                             <img id="logoPreview" src="{{ form.instance.logo.url }}" alt="Logo" class="img-fluid">
@@ -38,33 +50,45 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <label for="{{ form.logo.id_for_label }}" class="form-label d-block">Change Logo:</label>
                             <input type="file" class="form-control" id="{{ form.logo.id_for_label }}" name="{{ form.logo.name }}" onchange="previewLogo()">
                         </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                            BOITE D'ENVOI :  <input type="text" class="form-control" id="{{ form.boite_envoi.id_for_label }}" name="{{ form.boite_envoi.name }}" value="{{ form.boite_envoi.value }}" required >
+                        </div>
                     </div><br>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <input type="text" class="form-control" id="{{ form.ligne1.id_for_label }}" name="{{ form.ligne1.name }}" value="{{ form.ligne1.value }}" required oninput="this.value = this.value.toUpperCase()">
                         </div>
+                        <div class="col-md-2"></div>
+                        <div class="col-md-5">
+                           BOITE DE RECEPTION:  <input type="text" class="form-control" id="{{ form.boite_reception.id_for_label }}" name="{{ form.boite_reception.name }}" value="{{ form.boite_reception.value }}" required >
+                        </div>
+                       
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <input type="text" class="form-control" id="{{ form.ligne2.id_for_label }}" name="{{ form.ligne2.name }}" value="{{ form.ligne2.value }}" required oninput="this.value = this.value.toUpperCase()">
                         </div>
+
+                        
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <input type="text" class="form-control" id="{{ form.ligne3.id_for_label }}" name="{{ form.ligne3.name }}" value="{{ form.ligne3.value }}" required oninput="this.value = this.value.toUpperCase()">
                         </div>
+                       
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <input type="text" class="form-control" id="{{ form.ligne4.id_for_label }}" name="{{ form.ligne4.name }}" value="{{ form.ligne4.value }}" required oninput="this.value = this.value.toUpperCase()">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-5">
                             <input type="text" class="form-control" id="{{ form.ligne5.id_for_label }}" name="{{ form.ligne5.name }}" value="{{ form.ligne5.value }}" required oninput="this.value = this.value.toUpperCase()">
                         </div>
                     </div><br>

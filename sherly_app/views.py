@@ -9,6 +9,8 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import User
+
+from SHERLY.settings import PDFKIT_CONFIG
 from .forms import CompanyForm, CustomLoginForm, CustomUserRegistrationForm, ProduitForm
 from .models import *
 from django.views.decorators.csrf import csrf_exempt
@@ -98,7 +100,12 @@ def company(request):
             form = CompanyForm(request.POST, request.FILES, instance=societe)
             if form.is_valid():
                 form.save()
-            return redirect('categorie_list')
+                return redirect('categorie_list')
+            else:
+                form = CompanyForm(request.POST,request.FILES, instance=societe)
+                return render(request, 'company/edit.html', {'form': form})
+
+
         else :
            
             #form=CompanyForm()
@@ -110,9 +117,15 @@ def company(request):
 
 
 
+
+
     
 #---------------------------------Commande--------------------------------------------------------
 
+def next_business_day(date):
+    while date.weekday() >= 5:  # Saturday or Sunday
+        date += timezone.timedelta(days=1)
+    return date
 
 @login_required(login_url='bl_login')
 def add_commande(request):
@@ -123,6 +136,10 @@ def add_commande(request):
         produit_d = Produit.objects.get(pk=form_data.get('produit_d'))
         categorie_g= Famille.objects.get(pk=form_data.get('categorie_g'))
         produit_g = Produit.objects.get(pk=form_data.get('produit_g'))
+        date_part = timezone.now().strftime('%Y%m%d')
+        last_bon_commande = Bon_Commande.objects.last()
+        padded_id = f"{(last_bon_commande.id * last_bon_commande.id) + last_bon_commande.id}" if last_bon_commande else "1"
+        no_cmde = f"{date_part}{padded_id}"
         bon_commande = Bon_Commande(client=form_data.get('client'),
                         categorie_d=categorie_d,categorie_g=categorie_g,
                         produit_d=produit_d,produit_g =produit_g,
@@ -131,11 +148,23 @@ def add_commande(request):
                         axe_d=form_data.get('axe_d'),axe_g=form_data.get('axe_g'),
                         quatite_d=form_data.get('quatite_d'),quatite_g=form_data.get('quatite_g'),
                         user=request.user,
-
-                          
+                        no_cmde=no_cmde,                       
                           
                            )
         bon_commande.save()
+        next_day = timezone.now() + timezone.timedelta(days=1)
+        next_valid_day = next_business_day(next_day.date())
+        last_bon_livraison = Bon_Livraison.objects.last()
+        padded_id = f"{(last_bon_livraison.id * last_bon_livraison.id) + last_bon_livraison.id}" if last_bon_livraison else "1"
+        date_part = next_valid_day.strftime('%Y%m%d')
+        no_bl = f"{date_part}{padded_id}"
+        Bon_Livraison.objects.create(
+            bon_commande=bon_commande,
+            date_de_bl=next_valid_day,
+            no_bl=no_bl,
+            # You may need to handle no_bl generation here as per your logic
+        )
+
         messages.success(request, 'Bon de Commande créé avec succes')
         return redirect('commande_list')
     else:
@@ -209,8 +238,9 @@ def generate_pdf(request, bl_id):
         #return render(request,'pdf/pdf.html',context)
         html = render(request, 'pdf/pdf.html', context).content
         html_str = html.decode('utf-8')
-        config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
-        
+        #config = pdfkit.configuration(wkhtmltopdf='C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe')
+        config = pdfkit.configuration(wkhtmltopdf=PDFKIT_CONFIG['wkhtmltopdf'])
+
 
         pdf = pdfkit.from_string(html_str, False, options={'encoding': 'UTF-8', 'enable-local-file-access': ''}, configuration=config)
         # subject = f'bon de livraison numero {bon_livraison.no_bl}'
@@ -257,7 +287,13 @@ def edit_commande(request,bl_id):
         societe.achteur6= request.POST.get('achteur6')
         societe.phrase= request.POST.get('phrase')
         societe.nif= request.POST.get('nif')
+
+        date_de_bl=request.POST.get('date_de_bl')
+        print(date_de_bl)
         societe.save()
+        bon_livraison.date_de_bl=date_de_bl
+        bon_livraison.save()
+        
         return redirect('commande_list')
 
     else :
@@ -407,10 +443,32 @@ def profile(request):
             request.user.set_password(password)  # Use set_password to securely update the password
             request.user.save()
             messages.success(request, "PROFILE ADMINISTRATEUR CHANGÉ AVEC SUCCÈS")
-            return redirect(list_user)
-    form = CustomUserRegistrationForm()
+            return redirect('list_user')
+    else:
+        form = CustomUserRegistrationForm()  # Moved form instantiation inside the else block
+
+    return render(request, 'utilisateurs/profile.html', {'form': form})
+
+
+from django.contrib.auth import get_user_model
+def profile_user(request, id):
+    profile = User.objects.get(id=id)
     
-    return render(request, 'utilisateurs/profile.html', {'form':form})
+    if request.method == 'POST':
+        form = CustomUserRegistrationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            profile.username = username
+            profile.set_password(password)
+            profile.save()
+            messages.success(request, f"LE PROFILE DE {profile.username} CHANGÉ AVEC SUCCÈS")
+            return redirect('list_user')
+    else:
+        form = CustomUserRegistrationForm()  # Pass profile as instance
+
+    return render(request, 'utilisateurs/profile_user.html', {'form': form, 'profile': profile})
+
 
 
 
