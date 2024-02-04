@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Define custom styles */
+        .custom-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+
+        .text-container p {
+            margin-bottom: 0;
+        }
+
+        .custom-table-header th {
+            font-size: 14px; /* Adjust the font size as needed */
+        }
+
+        .table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .table th, .table td {
+            border: 1px solid #dddddd;
+            text-align: left;
+             text-align: center; /* Center-align text */
+            padding: 8px;
+        }
+
+        .thead-dark {
+            background-color: #343a40;
+            color: white;
+        }
+
+
+
+
+        .cadre {
+            border: 2px solid black; /* Define border properties */
+            padding: 10px; /* Add padding around the content */
+        }
+        .custom-table td[style*="width: 13%;"] {
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .larger-text {
+    font-size: 20px; /* Adjust the font size as needed */
+}
+
+.smaller-text {
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    /* Ajoutez d'autres styles d'impression ici */
+}
+
+
+    </style>
+</head>
+<body><br><br><br>
+    <div class="center-container">
+        <div class="cadre">
+            <div class="container custom-container">
+                <!-- First row with logo and two text columns -->
+                <table>
+                    <tr>
+                        <td style="width: 15%;" >
+
+                            <img src="data:image/png;base64,{{ logo_base64 }}" alt="Company Logo" style="max-width: 100%; height: auto;">
+                        </td>
+                        <td style="width: 33%; text-align: left;" class="custom-background-color2"> <!-- Set text alignment to left -->
+                            <div class="text-container">
+                                <span class="larger-text">{{ societe.nom1 }}</span> <br>
+                                <span class="smaller-text">{{ societe.nom2 }}</span>
+                            </div>
+                        </td>
+                        <td style="width: 33%;">
+                            <!-- Content for the third column -->
+                            <table class="table inner-table">
+                                <thead class="thead-dark custom-table-header">
+                                    <tr>
+                                        <br>
+                                        <th scope="col">N&ordm; BL</th>
+                                        <th scope="col">DATE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ bon_livraison.no_bl}}</td>
+                                        <td>{{ bon_livraison.date_de_bl | date:"d-m-Y"}}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="row custom-background-color2">
+                            <div class="col-md-6">
+                                <div class="text-container">
+                                    <p contenteditable="true">{{societe.ligne1}}</p>
+                                    <p contenteditable="true">{{societe.ligne2}},</p>
+                                    <p contenteditable="true">{{societe.ligne3}},</p>
+                                    <p contenteditable="true">{{societe.ligne4}}</p>
+                                    <p contenteditable="true">{{societe.ligne5}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+                <table class="table custom-table">
+                    <tr>
+                        <td style="width: 33%;" class="custom-background-color">
+                            <table class="table inner-table">
+                                <thead class="thead-dark custom-table-header">
+                                    <tr>
+                                        <th scope="col">LIVRE A</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: center;" >
+                                            {{ societe.livre1 }} <br>
+                                            {{ societe.livre2 }} <br>
+                                            {{ societe.livre3 }} <br>
+                                            {{ societe.livre4 }} <br>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                        <td style="width: 13%;" >
+                            <!-- Content -->
+
+                        </td>
+                        <td style="width: 33%;">
+                            <!-- Content -->
+                            <table class="table inner-table">
+                                <thead class="thead-dark custom-table-header">
+                                    <tr><br><br>
+                                        <th scope="col">INFORMATION  ACHETEUR</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: center;" >
+                                            {{ societe.achteur1 }} <br>
+                                            {{ societe.achteur2 }} <br>
+                                            {{ societe.achteur3 }} <br>
+                                            {{ societe.achteur4 }} <br>
+                                            {{ societe.achteur5 }} <br>
+                                            {{ societe.achteur6 }} <br>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table><br><br>
+
+                <div class="row ">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead class="thead-dark custom-table-header">
+                                <tr>
+                                    <th scope="col">N&ordm; BL</th>
+                                    <th scope="col">DATE BL</th>
+                                    <th scope="col">N&ordm; CMDE</th>
+                                    <th scope="col">DATE CMDE</th>
+                                    <th scope="col">CODE CLIENT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ bon_livraison.no_bl}}</td>
+                                    <td>{{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</td>
+                                    <td>{{ bon_livraison.bon_commande.no_cmde }}</td>
+                                    <td>{{ bon_livraison.bon_commande.date_de_cmd | date:"d-m-Y"}}</td>
+                                    <td>0033147853314</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <br><br>
+
+                <div class="row ">
+                    <div class="col-md-12">
+                        <table class="table">
+                            <thead class="thead-dark custom-table-header">
+                                <tr>
+                                    <th scope="col">Réf</th>
+                                    <th scope="col">Désignation</th>
+                                    <th scope="col">Conditionnement</th>
+                                    <th scope="col">Diamètre </th>
+                                    <th scope="col">Rayon</th>
+                                    <th scope="col">Sphère </th>
+                                    <th scope="col">Cylindre</th>
+                                    <th scope="col">Axe</th>
+                                    <th scope="col">Oeil <br>D/G</th>
+                                    <th scope="col">Porteur</th>
+                                    <th scope="col">QTE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ bon_livraison.bon_commande.produit_d.reference}}</td>
+                                    <td>{{ bon_livraison.bon_commande.produit_d.designation}}</td>
+                                    <td>Boite de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{bon_livraison.bon_commande.sphere_d}}</td>
+                                    <td>{{bon_livraison.bon_commande.cylindre_d}}</td>
+                                    <td>{{bon_livraison.bon_commande.axe_d}}</td>
+                                    <td>DROITE</td>
+                                    <td>{{bon_livraison.bon_commande.client}}</td>
+                                    <td>{{bon_livraison.bon_commande.quatite_d}}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ bon_livraison.bon_commande.produit_g.reference}}</td>
+                                    <td>{{ bon_livraison.bon_commande.produit_g.designation}}</td>
+                                    <td>Boite de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>{{bon_livraison.bon_commande.sphere_g}}</td>
+                                    <td>{{bon_livraison.bon_commande.cylindre_g}}</td>
+                                    <td>{{bon_livraison.bon_commande.axe_g}}</td>
+                                    <td>GAUCHE</td>
+                                    <td>{{bon_livraison.bon_commande.client}}</td>
+                                    <td>{{bon_livraison.bon_commande.quatite_g}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <br><br>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ societe.phrase }}
+                    </div>
+                </div>
+                <br><br><br><br><br>
+
+                <table style="width: 80%;">
+                    <tr>
+                        <td style="width: 33.33%;"></td>
+                        <td style="width: 66.67%; text-align: center;">
+                            {% if societe.nif %}
+                            {{ societe.nif }}
+                            {% else %}
+                            NIF:B062835052-N&ordm; IVA : ESB068350052
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -7,11 +7,11 @@
     .text-container p {
         margin-bottom: 0;
     }
-   
-            
+
+
     .custom-table-header th {
         font-size: 14px; /* Adjust the font size as needed */
-    } 
+    }
     .table {
         border-collapse: collapse;
         width: 100%;
@@ -27,8 +27,8 @@
         background-color: #343a40;
         color: white;
     }
-  
- 
+
+
 
     .form-label {
     width: 100%;
@@ -46,7 +46,7 @@
         border: 2px solid #0e0d0d; /* Adjust the border properties as needed */
         padding: 10px; /* Add padding inside the border if desired */
     }
-  
+
 </style>
 <form method="post">
     {% csrf_token %}
@@ -55,12 +55,12 @@
         <div class="row custom-background-color">
             <div class="col-md-8">
                 <div class="row custom-background-color2">
-                    
+
                     <div class="col-md-3">
-                        
+
                         <img src="{{ societe.logo.url }}" alt="Logo" class="img-fluid">
-                        
-                       
+
+
 
                     </div>
                     <div class="col-md-6">
@@ -93,8 +93,8 @@
         <div class="row ">
             <div class="col-md-8">
                 <div class="row custom-background-color2">
-                    
-                    
+
+
                     <div class="col-md-6">
                         <div class="text-container">
                             <p >{{societe.ligne1}}</p>
@@ -111,17 +111,17 @@
     <div class="row custom-background-color">
         <div class="col-md-8">
             <div class="row custom-background-color2">
-                
+
                 <div class="col-md-6">
                     <table class="table" >
                         <thead class="thead-dark custom-table-header">
-                            <tr> 
+                            <tr>
                                 <th scope="col">LIVRE A</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                            
+
                                 <td>
                                     <div class="text-container">
                                         <input type="text" name="livre1" value="{{societe.livre1}}" class="form-label">
@@ -147,10 +147,10 @@
                 </thead>
                 <tbody>
                     <tr>
-                    
+
                         <td>
                             <div class="text-container">
-                               
+
                                 <input type="text" name="achteur1" value="{{ societe.achteur1 }}" class="form-label">
                                 <input type="text" name="achteur2" value="{{ societe.achteur2 }}" class="form-label">
                                 <input type="text" name="achteur3" value="{{ societe.achteur3 }}" class="form-label">
@@ -158,7 +158,7 @@
                                 <input type="text" name="achteur5" value="{{ societe.achteur5 }}" class="form-label">
                                 <input type="text" name="achteur6" value="{{ societe.achteur6 }}" class="form-label">
 
-                                
+
                             </div>
                         </td>
                     </tr>
@@ -186,12 +186,12 @@
                         <td>{{ bon_livraison.bon_commande.no_cmde }}</td>
                         <td>{{ bon_livraison.bon_commande.date_de_cmd  | date:"d-m-Y"}}</td>
                         <td>0033147853314</td>
-                        
-                        
+
+
                     </tr>
                 </tbody>
             </table>
-            
+
         </div>
     </div>
 
@@ -208,7 +208,7 @@
                                     <th scope="col">Sphère </th>
                                     <th scope="col">Cylindre</th>
                                     <th scope="col">Axe</th>
-                                    <th scope="col">Oeil <br>D/G</th> 
+                                    <th scope="col">Oeil <br>D/G</th>
                                     <th scope="col">Porteur</th>
                                     <th scope="col">QTE</th>
                     </tr>
@@ -242,7 +242,7 @@
                     </tr>
                 </tbody>
             </table>
-            
+
         </div>
     </div>
     <div class="row">
@@ -250,7 +250,7 @@
             <input type="text" name="phrase" value="{{ societe.phrase }}" class="form-label">
         </div>
     </div><br>
-    
+
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-8">
@@ -258,17 +258,17 @@
             <input type="text" name="nif" value="{{ societe.nif }}" class="form-label">
             {% else %}
             <input type="text" name="nif" value="NIF:B062835052-N&ordm; IVA : ESB068350052" class="form-label">
-         
+
             {% endif %}
-           
+
         </div>
     </div>
-    
-        
+
+
     <button type="submit" class="btn btn-success btn-block">VALIDER MODIFICATION</button>
 
     </div>
-    
+
 <form>
 
 {% endblock %}

@@ -28,8 +28,8 @@ input[type="checkbox"][disabled]:not(:checked) {
 }
 </style>
     <div class="container mt-4">
-        
-        
+
+
         <div class="container">
                                 {% if messages %}
                             <ul class="message-list">
@@ -39,7 +39,7 @@ input[type="checkbox"][disabled]:not(:checked) {
                         </ul>
                     {% endif %}
                     <a href="{% url 'add_categorie' %}" class="btn btn-success mb-4">AJOUTER</a>
-            
+
             <div class="card">
                 <div class="card-header" style="background-color: #4CAF50; color: white;">
                     <h2 class="mb-0">LISTE DES CATEGORIES</h2>
@@ -48,15 +48,15 @@ input[type="checkbox"][disabled]:not(:checked) {
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th style="text-align: center;">NOM CATEGORIE</th> 
+                                <th style="text-align: center;">NOM CATEGORIE</th>
                                 <th style="text-align: center;">ACTIVE</th>
                                 <th style="text-align: center;">ACTION</th>
 
-                               
+
                             </tr>
                         </thead>
                         <tbody>
-                           
+
                             {% for famille in familles %}
                                 <tr>
                                     <td style="text-align: center;">{{famille.famille}}</td>
@@ -65,8 +65,8 @@ input[type="checkbox"][disabled]:not(:checked) {
                                     </td>
 
                                     <td style="text-align: center;">
-                                      
-                                    
+
+
                                         <a href="{% url 'edit_categorie' id=famille.id %}" class="text-warning"><i class="bi bi-pencil"></i></a>
                                     </td>
 

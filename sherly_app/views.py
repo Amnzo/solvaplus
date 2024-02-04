@@ -78,21 +78,33 @@ def edit_categorie(request,id):
                 famille.is_active=True
             else :
                 famille.is_active=False
-            
+
             famille.save()
             return redirect('categorie_list')  # Redirect to the category list page
-        
+
         return render(request, 'categories/edit_famille.html',{'famille':famille})
 
 
 def fetch_related_products(request):
     famille_id = request.GET.get('famille_id')
+    print(request.GET.get('famille_id'))
     # Retrieve related products based on the selected family (or category)
     products = Produit.objects.filter(famille=famille_id).values('id', 'designation')
     return JsonResponse(list(products), safe=False)
 
-
-
+def fetch_related_products_in_liste(request):
+    famille_id = request.GET.get('famille_id')
+    print(f"famille_id {famille_id}")
+    if famille_id:
+    # Retrieve related products based on the selected family (or category)
+        products = Produit.objects.filter(famille_id=famille_id).values(
+        'reference', 'famille__famille',  'designation', 'conditionnement_count', 'prix', 'is_active', 'id')
+    else:
+        # Retrieve all products
+        products = Produit.objects.all().values(
+            'reference', 'famille__famille',  'designation', 'conditionnement_count', 'prix', 'is_active', 'id')
+    print(list(products))  # Check the output in your server console
+    return JsonResponse(list(products), safe=False)
 #-------------------------------------------------------------------------
 def company(request):
         societe = Societe.objects.first()
@@ -107,7 +119,7 @@ def company(request):
 
 
         else :
-           
+
             #form=CompanyForm()
             form = CompanyForm(instance=societe)  # Redirect to the category list page
         return render(request, 'company/edit.html', {'form': form})
@@ -119,7 +131,7 @@ def company(request):
 
 
 
-    
+
 #---------------------------------Commande--------------------------------------------------------
 
 def next_business_day(date):
@@ -148,8 +160,8 @@ def add_commande(request):
                         axe_d=form_data.get('axe_d'),axe_g=form_data.get('axe_g'),
                         quatite_d=form_data.get('quatite_d'),quatite_g=form_data.get('quatite_g'),
                         user=request.user,
-                        no_cmde=no_cmde,                       
-                          
+                        no_cmde=no_cmde,
+
                            )
         bon_commande.save()
         next_day = timezone.now() + timezone.timedelta(days=1)
@@ -165,12 +177,12 @@ def add_commande(request):
             # You may need to handle no_bl generation here as per your logic
         )
 
-        messages.success(request, 'Bon de Commande créé avec succes')
+        messages.success(request, 'Commande créé avec succes')
         return redirect('commande_list')
     else:
-    
+
         #sphere_range = [round(x, 2) for x in range(-600/100, 601/100, 5/100)]
-        
+
         sphere_range  = [round(x, 2) for x in [-6 + i * 0.25 for i in range(49)]]
         # Generate the range of values from -3 to +3 with a step of 0.5
         cylindre_range = [round(x, 2) for x in [-3 + i * 0.25 for i in range(25)]]
@@ -178,7 +190,7 @@ def add_commande(request):
         # Generate the range of values from 0 to 180 with a step of 5
         axe_range = [round(x, 2) for x in range(0, 181, 5)]
         quantite_range = [round(x, 2) for x in range(1, 51, 1)]
-        categories = Famille.objects.all()
+        categories = Famille.objects.filter(is_active=True)
         products = Produit.objects.all()
 
         context = {
@@ -195,7 +207,7 @@ def add_commande(request):
             # ... other context data
         }
         return render(request,'commande/ajouter.html', context)
-    
+
 @login_required(login_url='bl_login')
 def commande_list(request):
     if request.user.is_superuser:
@@ -210,7 +222,7 @@ def commande_list(request):
 
 def delete_confirmation(request,id):
     bon_commande=Bon_Commande.objects.get(pk=id)
-    context = { 'bon_commande':bon_commande}    
+    context = { 'bon_commande':bon_commande}
     return render(request,'commande/confirmation.html',context)
 def delete_commande(request, id):
     # Récupérer la commande à supprimer
@@ -227,9 +239,10 @@ from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 
 
-def generate_pdf(request, bl_id):
-    
-    
+
+def generate_pdf333(request, bl_id):
+
+
     try:
         bon_livraison = Bon_Livraison.objects.get(pk=bl_id)
         societe = Societe.objects.first()
@@ -259,17 +272,17 @@ def generate_pdf(request, bl_id):
         return HttpResponse("Bon Livraison not found", status=404)
     except Exception as e:
         return HttpResponse(f"Error: {e}", status=500)
-        
-        
+
+
 
 
 
   #----------------------------------------------
-    
-    
+
+
 
 def edit_commande(request,bl_id):
-    bon_livraison = Bon_Livraison.objects.get(pk=bl_id) 
+    bon_livraison = Bon_Livraison.objects.get(pk=bl_id)
     societe = Societe.objects.first()
     print(societe)
 
@@ -293,11 +306,11 @@ def edit_commande(request,bl_id):
         societe.save()
         bon_livraison.date_de_bl=date_de_bl
         bon_livraison.save()
-        
+
         return redirect('commande_list')
 
     else :
-        bon_livraison = Bon_Livraison.objects.get(pk=bl_id) 
+        bon_livraison = Bon_Livraison.objects.get(pk=bl_id)
         return render(request,'commande/edit.html', {'bon_livraison': bon_livraison,'societe':societe})
 #-------------------------------------------PDF------------------------------------
  # Send the email with the PDF attachment
@@ -324,17 +337,17 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 @login_required(login_url='bl_login')
 def products_list(request):
     products = Produit.objects.all().order_by('designation')
-    famille_list = Famille.objects.all()
-    
+    famille_list = Famille.objects.filter(is_active=True)
+
     # Set the number of items per page
     items_per_page = 8
-    
+
     # Create a Paginator instance
     paginator = Paginator(products, items_per_page)
-    
+
     # Get the current page number from the request's GET parameters
     page = request.GET.get('page')
-    
+
     try:
         # Get the Page object for the requested page
         products = paginator.page(page)
@@ -344,7 +357,7 @@ def products_list(request):
     except EmptyPage:
         # If the page parameter is out of range, show the last page
         products = paginator.page(paginator.num_pages)
-    
+
     return render(request, 'produits/liste.html', {'products': products,'famille_list':famille_list})
 
 def edit_product(request,id):
@@ -363,9 +376,9 @@ def edit_product(request,id):
         product.save()
         messages.success(request, 'Produit Modifié avec succes')
         return redirect('product_list')
-    familles = Famille.objects.all() 
+    familles = Famille.objects.all()
     return render(request,'produits/edit_product.html',{'familles':familles,'product':product})
-    
+
 
 
 
@@ -386,16 +399,32 @@ def add_product(request):
              conditionnement_count=form_data.get('conditionnement'),
 
         )
-         
+
         produit.save()
         messages.success(request, 'Produit créé avec succes')
 
-        return redirect('product_list') 
+        return redirect('product_list')
 
     else:
-        
-        familles = Famille.objects.all() 
+
+        familles = Famille.objects.filter(is_active=True)
         return render(request,'produits/ajouter.html',{'familles':familles})
+
+def hotmail(request):
+    print("Try to send to hotmail")
+    subject = 'Subject here from chdlol lmdlol'
+    message = 'Here is the message.'
+    from_email = 'aslal-salmi@hotmail.fr'
+    recipient_list = ['salmi.ensa.ilsi@gmail.com']
+
+    try:
+        print("Recipient List:", recipient_list)  # Check the value of recipient_list
+        send_mail(subject, message, from_email, recipient_list)
+        return HttpResponse("Email sent successfully.")
+    except Exception as e:
+        return HttpResponse(f"Email sending failed because offff: {str(e)}")
+
+
 
 def test_email(request):
     subject = 'Test Email'
@@ -409,7 +438,7 @@ def test_email(request):
 
 #---------------------------------UTILISATEUR-------------------------------------------------------
 def list_user(request):
-        users = User.objects.all().order_by('-id')
+        users = User.objects.filter(is_superuser=False).order_by('-id')
         return render(request, 'utilisateurs/liste_user.html', {'users': users})
 
 
@@ -425,7 +454,7 @@ def add_user(request):
 
             # Redirect to a success page or login the user, etc.
             return redirect('list_user')
-        
+
     else:
         form = CustomUserRegistrationForm()
 
@@ -453,14 +482,21 @@ def profile(request):
 from django.contrib.auth import get_user_model
 def profile_user(request, id):
     profile = User.objects.get(id=id)
-    
+
     if request.method == 'POST':
+        is_active=False
         form = CustomUserRegistrationForm(request.POST)
         if form.is_valid():
+            print("inside form validation")
+            active=request.POST.get('is_active')
+            print(active)
+            if active=="on":
+                is_active=True
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             profile.username = username
             profile.set_password(password)
+            profile.is_active=is_active
             profile.save()
             messages.success(request, f"LE PROFILE DE {profile.username} CHANGÉ AVEC SUCCÈS")
             return redirect('list_user')
@@ -469,6 +505,138 @@ def profile_user(request, id):
 
     return render(request, 'utilisateurs/profile_user.html', {'form': form, 'profile': profile})
 
+
+
+import base64
+import tempfile
+import pdfkit
+from django.http import HttpResponse, FileResponse
+from django.template.loader import render_to_string
+from django.urls import reverse
+from .models import Bon_Livraison, Societe
+
+def generate_pdf(request, bl_id):
+    try:
+        bon_livraison = Bon_Livraison.objects.get(pk=bl_id)
+
+        societe = Societe.objects.first()
+
+        # Read logo image file and encode it as base64
+        with open(societe.logo.path, "rb") as image_file:
+            logo_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+
+        context = {'bon_livraison': bon_livraison, 'societe': societe, 'logo_base64': logo_base64}
+        html = render_to_string('pdf/telechargement.html', context)
+
+        config = pdfkit.configuration(wkhtmltopdf=PDFKIT_CONFIG['wkhtmltopdf'])
+        pdf = pdfkit.from_string(html, False, options={'encoding': 'UTF-8'}, configuration=config)
+
+        # Write the PDF content to a temporary file
+        with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(pdf)
+            temp_file.seek(0)
+            file_path = temp_file.name
+
+        # Return the PDF file as a response for download
+        response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="bon_livraison_{bon_livraison.no_bl}.pdf"'
+        return response
+
+    except Bon_Livraison.DoesNotExist:
+        logger.error("Bon Livraison not found")
+        return HttpResponse("Bon Livraison not found", status=404)
+    except Exception as e:
+        logger.error(f"Error: {e}")
+        return HttpResponse("Internal Server Error", status=500)
+
+
+
+def generate_facture(request):
+
+    societe = Societe.objects.first()
+    with open(societe.logo.path, "rb") as image_file:
+            logo_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+
+    bon_ids = request.GET.get('bon_ids')
+    num_facture = request.GET.get('num_facture')
+    date_facture = request.GET.get('date_facture')
+
+
+    # Strip off square brackets and split the string
+    bon_ids_list = [int(bon_id) for bon_id in bon_ids.strip('[]').split(',')]
+
+    bons_livraison = Bon_Livraison.objects.filter(pk__in=bon_ids_list)
+    context = {
+        'bons_livraison':bons_livraison,
+        'logo_base64':logo_base64,
+        'societe': societe,
+        'num_facture':num_facture,
+        'date_facture':date_facture
+    }
+    html = render_to_string('facture/telechargement_facture.html', context)
+    config = pdfkit.configuration(wkhtmltopdf=PDFKIT_CONFIG['wkhtmltopdf'])
+    pdf = pdfkit.from_string(html, False, options={'encoding': 'UTF-8'}, configuration=config)
+
+        # Write the PDF content to a temporary file
+    with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(pdf)
+            temp_file.seek(0)
+            file_path = temp_file.name
+
+        # Return the PDF file as a response for download
+    response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="Facture__{num_facture}.pdf"'
+    return response
+
+
+#---------------------Facture-----------------------------
+
+
+from collections import defaultdict
+from datetime import datetime, timedelta
+
+
+
+import calendar
+from datetime import datetime, timedelta
+from collections import defaultdict
+from sherly_app.models import Bon_Livraison
+
+def facture(request):
+    aujourd_hui = datetime.now()
+    premier_jour_mois_actuel = aujourd_hui.replace(day=1)
+
+    date_dix_mois_avant = premier_jour_mois_actuel - timedelta(days=30*10)
+
+    bons_livraison = Bon_Livraison.objects.filter(date_de_bl__gte=date_dix_mois_avant)
+
+    bons_par_mois = defaultdict(list)
+    for bon in bons_livraison:
+        last_day_of_month = calendar.monthrange(bon.date_de_bl.year, bon.date_de_bl.month)[1]
+        mois_concerne = bon.date_de_bl.strftime('%Y-%m-{}'.format(last_day_of_month))
+        bons_par_mois[mois_concerne].append(bon.id)  # Append the ID instead of the object
+
+    liste_factures = []
+    for mois, bon_ids in bons_par_mois.items():
+        mois_date = datetime.strptime(mois, '%Y-%m-%d')
+        next_day = mois_date + timedelta(days=1)
+
+        year_of_mois = mois_date.year
+        month_of_mois = mois_date.month
+        day_of_mois = mois_date.day
+        if aujourd_hui.year == year_of_mois and aujourd_hui.month == month_of_mois:
+            continue
+        else:
+            numero_facture = f'{mois.replace("-", "")}'
+            liste_factures.append({
+                'mois_concerne': mois,
+                'numero_facture': f'{int(numero_facture)+90}',
+                'nombre_bons': len(bon_ids),  # Use the count of IDs
+                'displayed_day': next_day.strftime('%Y-%m-%d'),
+                'bon_ids': bon_ids  # Pass the list of Bon_Livraison IDs
+            })
+
+    return render(request, 'facture/liste_facture.html', {'liste_factures': liste_factures})
 
 
 

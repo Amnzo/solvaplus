@@ -43,8 +43,8 @@
 
 </style>
     <div class="container mt-4">
-        
-        
+
+
         <div class="container">
                                 {% if messages %}
                             <ul class="message-list">
@@ -56,7 +56,7 @@
             <a href="{% url 'add_commande' %}" class="btn btn-success mb-4">AJOUTER</a>
             <div class="card">
                 <div class="card-header" style="background-color: #4CAF50; color: white;">
-                    <h2 class="mb-0">LISTE DES BONS DE COMMANDE</h2>
+                    <h2 class="mb-0">LISTE DES COMMANDES</h2>
                 </div>
                 <div class="card-body">
                     <table class="table table-striped">
@@ -65,17 +65,17 @@
                                 <th>DATE DE BL</th>
                                 <th>NOM CLIENT</th>
                                 <th>DATE DE CMDE</th>
-                                <th>No BL</th>
+                                <th>N<sup>o</sup> BL</th>
                                 <th>CRÉATEUR</th>
-                                
+
                                 {% if user.is_superuser %}
-                                <th>Action</th>
+                                <th>ACTION</th>
                                 {% endif %}
-                               
+
                             </tr>
                         </thead>
                         <tbody>
-                           
+
                             {% for item in bl_data %}
                                 <tr>
                                     <td>{{item.bon_livraison.date_de_bl  | date:"d-m-Y"}}</td>
@@ -86,7 +86,7 @@
                                     {% if user.is_superuser %}
                                     <td>
                                         <a href="{% url 'page' bl_id=item.bon_livraison.id  %}" class="text-primary"><i class="bi bi-download"></i></a>
-                                        
+
                                         <a href="{% url 'delete_confirmation' id=item.id %}" class="text-danger" ><i class="bi bi-trash"></i></a>
                                         <a href="{% url 'edit_commande' bl_id=item.bon_livraison.id %}" class="text-warning"><i class="bi bi-pencil"></i></a>
                                     </td>

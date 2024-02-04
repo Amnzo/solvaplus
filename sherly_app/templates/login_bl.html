@@ -22,7 +22,7 @@ background-image:  url('https://www.shutterstock.com/image-illustration/contact-
     display: flex; /* Use flexbox */
     justify-content: center; /* Center horizontally */
     align-items: center;
- 
+
 }
 
 .avatar-img {
@@ -30,7 +30,7 @@ background-image:  url('https://www.shutterstock.com/image-illustration/contact-
     width: 100px; /* Adjust the width as needed */
     height: 100px; /* Adjust the height as needed */
     object-fit: cover; /* Ensures the image covers the entire circle */
-    background-color: #320eb3;
+
 }
 
 </style>
@@ -38,7 +38,7 @@ background-image:  url('https://www.shutterstock.com/image-illustration/contact-
 <div class="container">
     <br>
         <div class="row justify-content-center">
-         
+
             <div class="col-md-6">
                 <div class="card"  >
                     <!-- Header with logo -->
@@ -49,8 +49,8 @@ background-image:  url('https://www.shutterstock.com/image-illustration/contact-
                                 <a href="" class="avatar-link">
                                     <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
                                 </a>
-                               
-                                
+
+
                             </div>
                             <div class="col-md-6">
                                 <div class="d-flex align-items-center h-100">
@@ -62,7 +62,7 @@ background-image:  url('https://www.shutterstock.com/image-illustration/contact-
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="card-body">
                         <form method="post" class="form">
                             {% csrf_token %}
@@ -85,7 +85,7 @@ background-image:  url('https://www.shutterstock.com/image-illustration/contact-
                                 <div class="col-md-6"> <button type="submit" class="btn btn-success w-100">Login</button></div>
                             </div>
 
-                            
+
                         </form>
                     </div>
                 </div>

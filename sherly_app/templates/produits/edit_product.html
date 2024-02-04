@@ -13,18 +13,11 @@
                 <div class="card-body">
                     <form method="post">
                         {% csrf_token %}
-    
-                        <!-- Bootstrap form styling -->
-                        <div class="form-group">
-                            <label > DÉSIGNATION</label>
-                            <input type="text" class="form-control" id="designation" name="designation" value="{{ product.designation }}" required oninput="this.value = this.value.toUpperCase()">
-                           
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="categorie1">FAMILLE </label>
+
+                                                <div class="form-group">
+                            <label for="categorie1">CATEGORIE </label>
                             <select class="form-control" id="famille" name="famille" required>
-                                
+
                                 <option value="" disabled>Choose</option>
                                 {% for value in familles %}
                                     <option value="{{ value.id }}" {% if value.id == product.famille.id %} selected {% endif %}>{{ value.famille }}</option>
@@ -32,14 +25,23 @@
                             </select>
                         </div>
 
+                        <!-- Bootstrap form styling -->
+                        <div class="form-group">
+                            <label > DÉSIGNATION</label>
+                            <input type="text" class="form-control" id="designation" name="designation" value="{{ product.designation }}" required oninput="this.value = this.value.toUpperCase()">
+
+                        </div>
+
+
+
                         <div class="form-group">
                             <label>PRIX</label>
                             <input type="number" step="any" class="form-control" id="prix" name="prix" value="{{ product.prix }}"  required pattern="^[0-9]+(\.[0-9]+)?$">
                             {{ form.prix.errors }}
                         </div>
-    
-                        
-    
+
+
+
                         <div class="form-group">
                             <label >CONDITIONNEMENT:</label>
                             <input type="number" class="form-control" id="conditionnement" name="conditionnement" value="{{ product.conditionnement_count }}" required>
@@ -54,14 +56,14 @@
                                 </div>
                             </div>
                         </div>
-                       
 
-                        
-                        
+
+
+
                         <div class="text-center mt-3">
                             <button type="submit" class="btn btn-success">MODIFIER</button>
                         </div>
-    
+
                     </form>
                 </div>
             </div>

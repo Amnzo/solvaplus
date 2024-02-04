@@ -1,0 +1,22 @@
+2024-02-02 12:17:11,761 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-02 12:17:11,761 - INFO - ---------------JOB DOOR-----------------
+2024-02-02 12:17:11,761 - INFO - ---------------INSIDE JOB-----------------
+2024-02-02 12:17:11,762 - INFO - Checking Bon Livraison for today's date...
+2024-02-02 12:17:11,763 - INFO - ---------------this is what i find ----------------
+2024-02-02 12:17:11,763 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 20240205240----16----2024-02-02 00:00:00+00:00 >]>
+2024-02-02 12:17:11,835 - INFO - Sending email for Bon Livraison ID: 16
+2024-02-02 12:17:11,835 - INFO - Beginning email verification
+2024-02-02 12:17:11,840 - INFO - Preparing BL 20240205240 
+2024-02-02 12:17:16,246 - INFO - Email sent for bon de livraison 20240205240
+2024-02-03 09:00:46,753 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-03 09:00:46,754 - INFO - ---------------JOB DOOR-----------------
+2024-02-03 09:00:46,754 - INFO - ---------------INSIDE JOB-----------------
+2024-02-03 09:00:46,766 - INFO - Checking Bon Livraison for today's date...
+2024-02-03 09:00:46,767 - INFO - ---------------this is what i find ----------------
+2024-02-03 09:00:46,767 - INFO - <QuerySet []>
+2024-02-04 09:00:46,231 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-04 09:00:46,233 - INFO - ---------------JOB DOOR-----------------
+2024-02-04 09:00:46,233 - INFO - ---------------INSIDE JOB-----------------
+2024-02-04 09:00:46,233 - INFO - Checking Bon Livraison for today's date...
+2024-02-04 09:00:46,234 - INFO - ---------------this is what i find ----------------
+2024-02-04 09:00:46,234 - INFO - <QuerySet []>

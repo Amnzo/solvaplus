@@ -28,7 +28,7 @@ class Societe(models.Model):
     achteur6=models.CharField(max_length=50,default='FR7547911891')
     nif=models.CharField(max_length=100,blank=True,null=True)
     phrase=models.CharField(max_length=100,default="L'expédition s'effectue conformément a nos conditions générales de vente")
-   
+
     boite_envoi = models.CharField(max_length=100,default="gestionrecrutement@hotmail.com", error_messages={'invalid': "L'adresse email de boite d'envoi est invalide."})
     boite_reception = models.CharField(max_length=100,default="optiquejaures@hotmail.com", error_messages={'invalid': "L'adresse email de boite de réception est invalide."})
 
@@ -43,7 +43,7 @@ class Famille(models.Model):
 
     def __str__(self):
         return self.famille
-    
+
 class Produit(models.Model):
     #nom = models.CharField(max_length=50)
     designation = models.CharField(max_length=255, blank=True, null=True)
@@ -88,23 +88,23 @@ class Bon_Commande(models.Model):
     produit_d = models.ForeignKey(Produit, on_delete=models.CASCADE, related_name='commandes_d')
     sphere_d = models.FloatField()
     cylindre_d = models.FloatField()
-    axe_d = models.FloatField()
+    axe_d = models.IntegerField()
     quatite_d = models.IntegerField()
-    
+
     categorie_g = models.ForeignKey(Famille, on_delete=models.CASCADE, related_name='commandes_g')
     produit_g = models.ForeignKey(Produit, on_delete=models.CASCADE, related_name='commandes_g')
     sphere_g = models.FloatField()
     cylindre_g = models.FloatField()
-    axe_g = models.FloatField()
+    axe_g = models.IntegerField()
     quatite_g = models.IntegerField()
     date_de_cmd = models.DateTimeField(default=timezone.now)
     no_cmde = models.CharField(max_length=20, unique=True, editable=False,default='DEFAULT_VALUE')
     is_active=models.BooleanField(default=True)
-    
+
 
     def __str__(self):
         return f'Bon_Commande for {self.client}----{self.no_cmde}----{self.id} '
-    
+
 
 
 class Bon_Livraison(models.Model):

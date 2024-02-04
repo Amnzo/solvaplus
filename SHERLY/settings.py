@@ -79,10 +79,16 @@ WSGI_APPLICATION = 'SHERLY.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'sherylstrategy$default',
+        'USER': 'sherylstrategy',
+        'PASSWORD': 'salmi@ensa123',
+        'HOST': 'sherylstrategy.mysql.pythonanywhere-services.com',   # Or your MySQL server's hostname
+        'PORT': '3306',        # Or your MySQL server's port
     }
 }
 
@@ -141,12 +147,25 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'sherly_app/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST_USER = 'aslal-salmi@hotmail.fr'
+EMAIL_HOST_PASSWORD = 'mhphnqtwculehajq'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'salmi.ensa.ilsi@gmail.Com'  # Replace with your Gmail email address
-EMAIL_HOST_PASSWORD = 'ukih xbxk ognh ksyb'
+DEFAULT_FROM_EMAIL = 'aslal-salmi@hotmail.fr'
+SERVER_EMAIL = 'aslal-salmi@hotmail.fr'
+# Email
+
+#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#EMAIL_HOST = 'smtp.office365.com'
+#EMAIL_HOST_USER = 'aslal-salmi@hotmail.fr'
+#EMAIL_HOST_PASSWORD = 'mhphnqtwculehajq'
+#EMAIL_PORT = 587
+#EMAIL_USE_TLS = True
+#DEFAULT_FROM_EMAIL = 'aslal-salmi@hotmail.fr'
+#SERVER_EMAIL = 'aslal-salmi@hotmail.fr'
 
 
 # EMAIL_HOST_PASSWORD = ' UVQ6D-48EFA-5G6BG-MRURW-LKKA7'  # Mot de passe de votre compte Hotmail
@@ -159,17 +178,13 @@ EMAIL_HOST_PASSWORD = 'ukih xbxk ognh ksyb'
 # EMAIL_HOST_PASSWORD = 'UVQ6D-48EFA-5G6BG-MRURW-LKKA7'
 
 
-PDFKIT_CONFIG = {
-    'wkhtmltopdf': 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
-}
+#PDFKIT_CONFIG = {
+#   'wkhtmltopdf': 'C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe'
+#}
 
-# PDFKIT_CONFIG = {
-#     'wkhtmltopdf': '/usr/bin/wkhtmltopdf'
-# }
+PDFKIT_CONFIG = {
+     'wkhtmltopdf': '/usr/bin/wkhtmltopdf'
+}
 # settings.py
 print("---------------Starting-----------------")
 # Celery Configuration
-
-
-
-

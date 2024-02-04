@@ -8,7 +8,7 @@
         <div class="container">
             <div class="card">
                 <div class="card-header" style="background-color: #4CAF50; color: white;">
-                    <h2 class="mb-0">AJOUT D'UN BON DE LIVRAISON</h2>
+                    <h2 class="mb-0">AJOUT D'UNE COMMANDE</h2>
                 </div>
                 <div class="card-body">
                     <form method="post">
@@ -41,7 +41,7 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            
+
                             <div class="form-group col-md-3">
                                 <label for="produit">PRODUIT</label>
                                 <select class="form-control selectpicker" id="produit_d" name="produit_d" required>
@@ -51,7 +51,7 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            
+
                             <div class="form-group col-md-2">
                                 <label for="sphere">SPHERE</label>
                                 <select class="form-control" id="sphere_d" name="sphere_d" required>
@@ -105,7 +105,7 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-3">
-                                <label for="categorie1">Categorie</label>
+                                <label for="categorie1">CATÉGORIE</label>
                                 <select class="form-control" id="categorie_g" name="categorie_g" required>
                                     <option value="" disabled selected>CHOISIR</option>
                                     {% for category in categories %}
@@ -114,7 +114,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
-                                <label for="categorie1">Produit</label>
+                                <label for="categorie1">PRODUIT</label>
                                 <select class="form-control" id="produit_g" name="produit_g" required>
                                     <option value="" disabled selected>CHOISIR</option>
                                     {% for product in products %}
@@ -150,13 +150,13 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            
+
                             <!-- ... other form groups ... -->
                         </div>
 
 
                         <div class="form-row">
-                            
+
                             <div class="form-group col-md-12">
                                 <label for="axe">QUANTITÉ </label>
                                 <select class="form-control" id="quatite_g" name="quatite_g" required>
@@ -179,7 +179,7 @@
         </div>
     </div>
 
-    
+
 {% endblock %}
 {% block extra_js %}
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

@@ -9,7 +9,7 @@
             margin: 0 auto;
         }
 
-    
+
 
         .text-container p {
             margin-bottom: 0;
@@ -36,8 +36,8 @@
             color: white;
         }
 
-       
-        
+
+
 
         .cadre {
             border: 2px solid black; /* Define border properties */
@@ -61,7 +61,7 @@ body {
     /* Ajoutez d'autres styles d'impression ici */
 }
 
-       
+
     </style>
 </head>
 <body><br><br><br>
@@ -72,7 +72,9 @@ body {
                 <table>
                     <tr>
                         <td style="width: 15%;" >
-                            <img src="{{ logo_absolute_url }}" alt="" style="max-width: 100%; height: auto;">
+                             <img src="data:image/png;base64,{{ logo_base64 }}" alt="Company Logo" style="max-width: 100%; height: auto;">
+
+
                         </td>
                         <td style="width: 33%; text-align: left;" class="custom-background-color2"> <!-- Set text alignment to left -->
                             <div class="text-container">
@@ -86,7 +88,7 @@ body {
                                 <thead class="thead-dark custom-table-header">
                                     <tr>
                                         <br>
-                                        <th scope="col">N<sup>o</sup> BL</th>
+                                        <th scope="col">N&ordm; BL</th>
                                         <th scope="col">DATE</th>
                                     </tr>
                                 </thead>
@@ -94,7 +96,7 @@ body {
                                     <tr>
                                         <td>{{ bon_livraison.no_bl}}</td>
                                         <td>{{ bon_livraison.date_de_bl | date:"d-m-Y"}}</td>
-                                       
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -121,7 +123,7 @@ body {
                 <br/>
                 <table class="table custom-table">
                     <tr>
-                        <td style="width: 33%;" class="custom-background-color"> 
+                        <td style="width: 33%;" class="custom-background-color">
                             <table class="table inner-table">
                                 <thead class="thead-dark custom-table-header">
                                     <tr>
@@ -142,7 +144,7 @@ body {
                         </td>
                         <td style="width: 13%;" >
                             <!-- Content -->
-                           
+
                         </td>
                         <td style="width: 33%;">
                             <!-- Content -->
@@ -174,9 +176,9 @@ body {
                         <table class="table">
                             <thead class="thead-dark custom-table-header">
                                 <tr>
-                                    <th scope="col">N<sup>o</sup> BL</th>
+                                    <th scope="col">N&ordm; BL</th>
                                     <th scope="col">DATE BL</th>
-                                    <th scope="col">N<sup>o</sup> CMDE</th>
+                                    <th scope="col">N&ordm; CMDE</th>
                                     <th scope="col">DATE CMDE</th>
                                     <th scope="col">CODE CLIENT</th>
                                 </tr>
@@ -207,7 +209,7 @@ body {
                                     <th scope="col">Sphère </th>
                                     <th scope="col">Cylindre</th>
                                     <th scope="col">Axe</th>
-                                    <th scope="col">Oeil <br>D/G</th> 
+                                    <th scope="col">Oeil <br>D/G</th>
                                     <th scope="col">Porteur</th>
                                     <th scope="col">QTE</th>
                                 </tr>
@@ -260,11 +262,11 @@ body {
                             {{ societe.nif }}
                             {% else %}
                             NIF:B062835052-N&ordm; IVA : ESB068350052
-                         
+
                             {% endif %}
-                        
+
                         </td>
-                        
+
                     </tr>
                 </table>
             </div>

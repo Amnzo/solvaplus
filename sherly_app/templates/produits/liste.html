@@ -81,7 +81,7 @@ input[type="checkbox"][disabled]:not(:checked) {
                                 <select class="form-control" id="filterByFamille" name="filterByFamille">
                                     <option value=""  selected>TOUS</option>
                                     {% for famille in famille_list %}
-                                    <option value="{{ famille }}">{{ famille }}</option>
+                                    <option value="{{ famille.id }}">{{ famille }}</option>
                                 {% endfor %}
                                 </select>
                             </div>
@@ -90,19 +90,19 @@ input[type="checkbox"][disabled]:not(:checked) {
 
                         </div>
 
-                        
+
 
 
                     </div>
-                  
+
                     <br>
                     <table class="table table-striped" id="productTable">
                         <thead>
                             <tr>
-                                <th>REFERENCE</th> 
-                                <th>CATEGORIE</th> 
-                                <th>DÉSIGNATION</th> 
-                                <th>CONDITIONNEMENT</th> 
+                                <th>REFERENCE</th>
+                                <th>CATEGORIE</th>
+                                <th>DÉSIGNATION</th>
+                                <th>CONDITIONNEMENT</th>
                                 <th>PRIX</th>
                                 <th>ACTIVE</th>
                                 <th>ACTION</th>
@@ -115,23 +115,23 @@ input[type="checkbox"][disabled]:not(:checked) {
                                     <td>{{ product.famille.famille}}</td>
                                     <td>{{ product.designation }}</td>
                                     <td>BOITE DE {{ product.conditionnement_count }}</td>
-                                   
-                              
+
+
                                     <td>{{ product.prix }}</td>
                                     <td>
                                         <input type="checkbox" disabled {% if product.is_active %}checked{% endif %}>
                                     </td>
                                     <td>
-                                      
+
                                         <a href="{% url 'edit_product' id=product.id %}" class="text-warning"><i class="bi bi-pencil"></i></a>
                                     </td>
                                 </tr>
                             {% endfor %}
                         </tbody>
                     </table>
-                    
-                    
-                    
+
+
+
                     <!-- Pagination -->
                     <div class="pagination">
                         <div class="pagination-inner">
@@ -139,7 +139,7 @@ input[type="checkbox"][disabled]:not(:checked) {
                                 <a class="pagination-link" href="?page=1">&laquo; First</a>
                                 <a class="pagination-link" href="?page={{ products.previous_page_number }}">Previous</a>
                             {% endif %}
-                    
+
                             {% for num in products.paginator.page_range %}
                                 {% if num == products.number %}
                                     <span class="current-page">{{ num }}</span>
@@ -147,7 +147,7 @@ input[type="checkbox"][disabled]:not(:checked) {
                                     <a class="pagination-link" href="?page={{ num }}">{{ num }}</a>
                                 {% endif %}
                             {% endfor %}
-                    
+
                             {% if products.has_next %}
                                 <a class="pagination-link" href="?page={{ products.next_page_number }}">Next</a>
                                 <a class="pagination-link" href="?page={{ products.paginator.num_pages }}">Last &raquo;</a>
@@ -158,25 +158,47 @@ input[type="checkbox"][disabled]:not(:checked) {
                     </div>
                     </div>
                     </div>
-                    
+
                     {% endblock %}
 
                     {% block extra_js %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <script>
+
         $(document).ready(function(){
-            $('#filterByFamille').change(function(){
-                var selectedFamille = $(this).val();
-                $('#productTable tbody tr').hide();
-                if(selectedFamille === ""){
-                    $('#productTable tbody tr').show();
-                } else {
-                    $('#productTable tbody tr[data-famille="' + selectedFamille + '"]').show();
-                }
-            });
+    $('#filterByFamille').change(function(){
+        var selectedFamille = $(this).val();
+        // Toujours envoyer la demande au serveur, même si selectedFamille est vide
+        $.ajax({
+            url: "{% url 'fetch_related_products_in_liste' %}",
+            data: {
+                famille_id: selectedFamille
+            },
+            dataType: 'json',
+            success: function(response) {
+                $('#productTable tbody').empty();
+                console.log(response); // Clear existing rows
+                $.each(response, function(index, product) {
+                    var editUrl = '/edit_product/' + product.id + '/'; // Construct the edit URL
+                    var newRow = '<tr>' +
+                        '<td>' + product.reference + '</td>' +
+                        '<td>' + product.famille__famille + '</td>' +
+                        '<td>' + product.designation + '</td>' +
+                        '<td>BOITE DE ' + product.conditionnement_count + '</td>' +
+                        '<td>' + product.prix + '</td>' +
+                        '<td><input type="checkbox" disabled ' + (product.is_active ? 'checked' : '') + '></td>' +
+                        '<td><a href="' + editUrl + '" class="text-warning"><i class="bi bi-pencil"></i></a></td>' +
+                        '</tr>';
+                    $('#productTable tbody').append(newRow);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error(error);
+            }
         });
-
-
+    });
+});
 
 
     </script>
