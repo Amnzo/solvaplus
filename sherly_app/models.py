@@ -26,7 +26,7 @@ class Societe(models.Model):
     achteur4=models.CharField(max_length=50,default='FRANCE')
     achteur5=models.CharField(max_length=50,default='Numero TVA Intraceo')
     achteur6=models.CharField(max_length=50,default='FR7547911891')
-    nif=models.CharField(max_length=100,blank=True,null=True)
+    nif=models.CharField(max_length=100,blank=True,null=True,default='NIF:B062835052-Nº IVA : ESB068350201152')
     phrase=models.CharField(max_length=100,default="L'expédition s'effectue conformément a nos conditions générales de vente")
 
     boite_envoi = models.CharField(max_length=100,default="gestionrecrutement@hotmail.com", error_messages={'invalid': "L'adresse email de boite d'envoi est invalide."})
@@ -114,3 +114,23 @@ class Bon_Livraison(models.Model):
     emailed = models.BooleanField(default=False)
     def __str__(self):
         return f'Bon_Livraison for {self.no_bl}----{self.id}----{self.date_de_bl} '
+    
+
+class Facture(models.Model):
+    col1= models.CharField(max_length=20, default='Désignation')
+    col2= models.CharField(max_length=20, default='Qté')
+    col3= models.CharField(max_length=20, default='P.Ht')
+    col4= models.CharField(max_length=20, default='% Remise')
+    col5= models.CharField(max_length=20, default='Montant Remise')
+    col6= models.CharField(max_length=20, default='P.U.net Ht')
+    col7= models.CharField(max_length=20, default='Facture en EUR')
+    col8= models.CharField(max_length=20, default='%TVA')
+    facture1=models.CharField(max_length=50,default='SCROTIS  OPTIC 2000 ')
+    facture2=models.CharField(max_length=50,default='38 rue Saint Denis')
+    facture3=models.CharField(max_length=50,default='92700 COLOMBES')
+    facture4=models.CharField(max_length=50,default='FRANCE')
+    facture5=models.CharField(max_length=50,default='Numero TVA Intraceo')
+    facture6=models.CharField(max_length=50,default='FR7547911891')
+    nif_facture=models.CharField(max_length=100,blank=True,null=True,default='NIF:B062835052-Nº IVA : ESB068350201152')
+    def __str__(self):
+        return f'Facture Numero {self.id}----{self.col1} '

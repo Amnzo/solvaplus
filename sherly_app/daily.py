@@ -65,7 +65,8 @@ def send_email(bl_id):
         pdf = pdfkit.from_string(html, False, options={'encoding': 'UTF-8', 'disable-javascript': None, 'enable-local-file-access': ''}, configuration=config)
 
         subject = f'bon de livraison numero {bon_livraison.no_bl}'
-        message = f'Bonjour, Ceci est un Bon de Livraison numero {bon_livraison.no_bl} envoyé depuis Django au 6eme café.'
+        message = f'Bonjour, Ceci est un Bordereau de Livraison numero {bon_livraison.no_bl} envoyé depuis  SHERYL & STRATEGY SL.'
+        #message = f'Bonjour, Ceci est un Bon de Livraison numero {bon_livraison.no_bl} envoyé depuis Django au 6eme café.'
         from_email = societe.boite_envoi
         recipient_list = ['salmi.ensa.ilsi@gmail.com', societe.boite_reception]
         email = EmailMessage(subject, message, from_email, recipient_list)

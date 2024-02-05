@@ -166,21 +166,16 @@
     <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
-            <button type="button" id="sidebarCollapse" class="btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="sidebar-header">
-                {% if user.is_superuser %}
-
-                <a href="{% url 'company' %}" class="avatar-link">
-                    <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
-                </a>
-                {% else %}
-                <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
-                {% endif %}
-            </div>
+           
+      
             {% if user.is_superuser %}
             <ul class="list-unstyled components">
+                <li>
+                    <a href="{% url 'company' %}" title="USERS">
+
+                        <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
+                    </a>
+                </li>
                 <li>
                     <a href="{% url 'profile' %}" title="USERS">
 
@@ -222,6 +217,13 @@
             </ul>
             {% else %}
             <ul class="list-unstyled components">
+
+                <li>
+                    <a href="{% url 'profile' %}" title="USERS">
+
+                        <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
+                    </a>
+                </li>
                 <li>
                     <a href="{% url 'commande_list' %}" title="COMMANDES">
                         <i class="fas fa-truck"></i> LISTE DES COMMANDES

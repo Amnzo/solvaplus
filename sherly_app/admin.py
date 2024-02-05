@@ -7,6 +7,7 @@ admin.site.register(Produit)
 admin.site.register(Famille)
 
 admin.site.register(Societe)
+admin.site.register(Facture)
 
 class Bon_CommandeAdmin(admin.ModelAdmin):
     list_display = ('id', 'date_de_cmd', 'no_cmde')  # Add the fields you want to display in the list

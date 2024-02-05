@@ -83,11 +83,11 @@
                                 <td>
 
 
-                                    <a href="{% url 'generate_facture' %}?bon_ids={{ facture.bon_ids }}&num_facture={{ facture.numero_facture }}&date_facture={{ facture.mois_concerne }}" class="text-primary"><i class="bi bi-download"></i></a>
+                                <a href="{% url 'generate_facture' %}?bon_ids={{ facture.bon_ids }}&num_facture={{ facture.numero_facture }}&date_facture={{ facture.mois_concerne }}" class="text-primary"><i class="bi bi-download"></i></a>
 
 
-                                    <a href="" class="text-danger" ><i class="bi bi-trash"></i></a>
-                                    <a href="" class="text-warning"><i class="bi bi-pencil"></i></a>
+                                    
+                                    <a href="{% url 'edit_facture' %}?bon_ids={{ facture.bon_ids }}&num_facture={{ facture.numero_facture }}&date_facture={{ facture.mois_concerne }}"  class="text-warning"><i class="bi bi-pencil"></i></a>
                                 </td>
 
                             </tr>

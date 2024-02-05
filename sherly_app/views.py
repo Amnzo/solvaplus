@@ -536,7 +536,7 @@ import pdfkit
 from django.http import HttpResponse, FileResponse
 from django.template.loader import render_to_string
 from django.urls import reverse
-from .models import Bon_Livraison, Societe
+from .models import Bon_Livraison, Societe,Facture
 
 def generate_pdf(request, bl_id):
     try:
@@ -573,9 +573,44 @@ def generate_pdf(request, bl_id):
         return HttpResponse("Internal Server Error", status=500)
 
 
+def edit_facture(request):
+    facture = Facture.objects.first()
+    if request.method == 'POST':  
+        facture.col1=request.POST.get('col1')
+        facture.col2=request.POST.get('col2')
+        facture.col3=request.POST.get('col3')
+        facture.col4=request.POST.get('col4')
+        facture.col5=request.POST.get('col5')
+        facture.col6=request.POST.get('col6')
+        facture.col7=request.POST.get('col7')
+        facture.col8=request.POST.get('col8')
+        facture.save()
+        return redirect('facture')
+    else :
+    
+        societe = Societe.objects.first()
+        
+        with open(societe.logo.path, "rb") as image_file:
+                logo_base64 = base64.b64encode(image_file.read()).decode('utf-8')
+        bon_ids = request.GET.get('bon_ids')
+        num_facture = request.GET.get('num_facture')
+        date_facture = request.GET.get('date_facture')
+        bon_ids_list = [int(bon_id) for bon_id in bon_ids.strip('[]').split(',')]
+
+        bons_livraison = Bon_Livraison.objects.filter(pk__in=bon_ids_list)
+        context = {
+            'bons_livraison':bons_livraison,
+            'logo_base64':logo_base64,
+            'societe': societe,
+            'num_facture':num_facture,
+            'date_facture':date_facture,
+            'facture':facture,
+        }
+
+        return render(request,'facture/edit_facture.html', context)
 
 def generate_facture(request):
-
+    facture = Facture.objects.first()
     societe = Societe.objects.first()
     with open(societe.logo.path, "rb") as image_file:
             logo_base64 = base64.b64encode(image_file.read()).decode('utf-8')
@@ -594,23 +629,24 @@ def generate_facture(request):
         'logo_base64':logo_base64,
         'societe': societe,
         'num_facture':num_facture,
-        'date_facture':date_facture
+        'date_facture':date_facture,
+        'facture':facture
     }
-    return render(request,'facture/telechargement_facture.html', context)
-    # html = render_to_string('facture/telechargement_facture.html', context)
-    # config = pdfkit.configuration(wkhtmltopdf=PDFKIT_CONFIG['wkhtmltopdf'])
-    # pdf = pdfkit.from_string(html, False, options={'encoding': 'UTF-8'}, configuration=config)
+    #return render(request,'facture/telechargement_facture.html', context)
+    html = render_to_string('facture/telechargement_facture.html', context)
+    config = pdfkit.configuration(wkhtmltopdf=PDFKIT_CONFIG['wkhtmltopdf'])
+    pdf = pdfkit.from_string(html, False, options={'encoding': 'UTF-8'}, configuration=config)
 
     #     # Write the PDF content to a temporary file
-    # with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-    #         temp_file.write(pdf)
-    #         temp_file.seek(0)
-    #         file_path = temp_file.name
+    with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+            temp_file.write(pdf)
+            temp_file.seek(0)
+            file_path = temp_file.name
 
     #     # Return the PDF file as a response for download
-    # response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
-    # response['Content-Disposition'] = f'attachment; filename="Facture__{num_facture}.pdf"'
-    # return response
+    response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+    response['Content-Disposition'] = f'attachment; filename="Facture__{num_facture}.pdf"'
+    return response
 
 
 #---------------------Facture-----------------------------

@@ -1,0 +1,311 @@
+
+
+{% load custom_filters %}
+
+
+<style>
+    .text-container p {
+        margin-bottom: 0;
+    }
+
+
+    .custom-table-header th {
+        font-size: 14px; /* Adjust the font size as needed */
+    }
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table th, .table td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .thead-dark {
+        background-color: #343a40;
+        color: white;
+    }
+    .no-border td, .no-border th {
+        border: none;
+    }
+
+
+    .form-label {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+    .custom-border {
+        border: 2px solid #0e0d0d; /* Adjust the border properties as needed */
+        padding: 10px; /* Add padding inside the border if desired */
+    }
+
+    .custom-table td,
+    .custom-table th {
+        font-size: 16px; /* Adjust the font size as needed */
+    }
+
+    .custom-table .col4-small,
+    .custom-table .col4-small input.form-label {
+        width: 70px;/* Adjust the font size as needed */
+    }
+
+
+</style>
+<form method="post">
+    {% csrf_token %}
+
+    <div class="center-container">
+        <div class="cadre">
+            <div class="container custom-container">
+                <!-- First row with logo and two text columns -->
+              
+                <table>
+                    <tr>
+                        <td style="width: 15%;" >
+
+                            <img src="data:image/png;base64,{{ logo_base64 }}" alt="Company Logo" style="max-width: 100%; height: auto;">
+                        </td>
+                        <td style="width: 33%; text-align: left;" class="custom-background-color2"> <!-- Set text alignment to left -->
+                            <div class="text-container">
+                                <span class="larger-text">{{ societe.nom1 }}</span> <br>
+                                <span class="smaller-text">{{ societe.nom2 }}</span>
+                            </div>
+                        </td>
+                        <td style="width: 33%;">
+                            <!-- Content for the third column -->
+                            <table class="table inner-table">
+                                <thead class="thead-dark custom-table-header">
+                                    <tr>
+                                        <br>
+                                        <th scope="col">N&ordm; FACTURE</th>
+                                        <th scope="col">DATE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ num_facture}}</td>
+                                        <td>{{ date_facture }}</td>
+                                       
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="row custom-background-color2">
+                            <div class="col-md-6">
+                                <div class="text-container">
+                                    <p contenteditable="true">{{societe.ligne1}}</p>
+                                    <p contenteditable="true">{{societe.ligne2}},</p>
+                                    <p contenteditable="true">{{societe.ligne3}},</p>
+                                    <p contenteditable="true">{{societe.ligne4}}</p>
+                                    <p contenteditable="true">{{societe.ligne5}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+                <table class="table no-border">
+                    <tr>
+                        <td></td>
+                        
+                        <td style="width: 33%;">
+                            <!-- Content -->
+                            <table class="table inner-table">
+                                <thead class="thead-dark custom-table-header">
+                                    <tr><br><br>
+                                        <th scope="col">FACTURE A </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: left; border: 1px solid #dddddd; padding: 8px;">
+                                            {{ societe.achteur1 }} <br>
+                                            {{ societe.achteur2 }} <br>
+                                            {{ societe.achteur3 }} <br>
+                                            {{ societe.achteur4 }} <br>
+                                            {{ societe.achteur5 }} <br>
+                                            {{ societe.achteur6 }} <br>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table><br>
+
+                
+                <div class="row ">
+                    <div class="col-md-12">
+                        <table class="table custom-table">
+                            <thead class="thead-dark custom-table-header">
+                                <tr>
+                                    <th scope="col"><input type="text" name="col1" value=" {{facture.col1}}" class="form-label"></th>
+                                    <th scope="col"><input type="text" name="col2" value=" {{facture.col2}}" class="form-label"></th>
+                                    <th scope="col"><input type="text" name="col3" value=" {{facture.col3}}" class="form-label"></th>
+                                    <th scope="col" class="col4-small"><input type="text" name="col4" value="{{facture.col4}}" class="form-label"></th>
+                                    <th scope="col"><input type="text" name="col5" value=" {{facture.col5}}" class="form-label"></th>
+                                    <th scope="col"><input type="text" name="col6" value=" {{facture.col6}}" class="form-label"></th>
+                                    <th scope="col"><input type="text" name="col7" value=" {{facture.col7}}" class="form-label"></th>
+                                    <th scope="col"><input type="text" name="col8" value=" {{facture.col8}}" class="form-label"></th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for bon_livraison in bons_livraison %}
+                                <tr>
+                                    <td>
+                                        <div>BL N&ordm;: {{bon_livraison.no_bl}} du {{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</div>
+                                        <div >&nbsp;</div>
+                                        <div>Référence porteur: {{bon_livraison.bon_commande.client}} </div>
+                                        <div>&nbsp;</div>
+                                          <div> {{bon_livraison.bon_commande.produit_d.designation}}</div>
+                                            <div> {{bon_livraison.bon_commande.sphere_d}} ({{bon_livraison.bon_commande.cylindre_d}}) Axe {{bon_livraison.bon_commande.axe_d }}° </div>
+                                            <div >&nbsp;</div>
+                                        
+                                            <div> {{bon_livraison.bon_commande.produit_g.designation}}</div>
+                                            <div> {{bon_livraison.bon_commande.sphere_g}} ({{bon_livraison.bon_commande.cylindre_g}}) Axe {{bon_livraison.bon_commande.axe_g }}° </div>
+                                           
+                                         
+                                    </td>
+                                    <td class="col4-small"> 
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        
+                                        <div> {{bon_livraison.bon_commande.quatite_d}}</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                      
+                                            <div> {{bon_livraison.bon_commande.quatite_g}} </div>
+                                       
+                                         
+                                    </td>
+
+
+                                    <td>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        
+                                        <div>  {{bon_livraison.bon_commande.produit_d.prix}}</div> 
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>  {{bon_livraison.bon_commande.produit_g.prix}} </div>
+                                           
+                                       
+                                         
+                                    </td>
+
+                                    
+                                    <td class="col4-small">&nbsp;</td>
+                                    <td></td>
+
+
+                                    <td>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>{{bon_livraison.bon_commande.produit_d.prix}}</div> 
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+
+                                        <div>{{bon_livraison.bon_commande.produit_g.prix}} </div> 
+
+                                    </td>
+
+                                    <td>
+                                       
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                           
+                                            <div>
+                                                {% with total_price=bon_livraison.bon_commande.produit_d.prix|multiply:bon_livraison.bon_commande.quatite_d %}
+                                                    {{ total_price }}
+                                                {% endwith %}
+                                            </div> 
+                                        
+                                       
+                                            <div>&nbsp;</div>
+                                            <div>&nbsp;</div>
+                                            <div>{% with total_price=bon_livraison.bon_commande.produit_g.prix|multiply:bon_livraison.bon_commande.quatite_g %}
+                                                {{ total_price }}
+                                            {% endwith %} </div> 
+                                           
+                                    </td>
+                                    
+
+
+
+                                    <td class="col4-small">
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>0</div> 
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+
+                                        <div>0</div> 
+                                              
+                                            
+                                    </td>
+
+
+                                 
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                
+
+                 
+                <table style="width: 80%;">
+                    <tr>
+                        <td style="width: 33.33%;"></td>
+                        <td style="width: 66.67%; text-align: center;">
+                            {% if societe.nif %}
+                            {{ societe.nif }}
+                            {% else %}
+                            NIF:B062835052-N&ordm; IVA : ESB068350052
+                         
+                            {% endif %}
+                        
+                        </td>
+                        
+                    </tr>
+                </table>
+               
+
+                
+            </div>
+            <button type="submit" class="btn btn-success btn-block">VALIDER MODIFICATION</button>
+        </div>
+<form>
+
+
+

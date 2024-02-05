@@ -1,7 +1,7 @@
 
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.urls import path
-from .views import add_categorie, add_commande,hotmail,generate_facture,facture, add_product, add_user,fetch_related_products_in_liste, bl_custom_login, bl_custom_logout, categorie_list,commande_list, company, delete_commande, delete_confirmation, edit_categorie, edit_commande, edit_product, fetch_related_products, generate_pdf, list_user, products_list, profile, profile_user, test_email
+from .views import add_categorie, add_commande, edit_facture,hotmail,generate_facture,facture, add_product, add_user,fetch_related_products_in_liste, bl_custom_login, bl_custom_logout, categorie_list,commande_list, company, delete_commande, delete_confirmation, edit_categorie, edit_commande, edit_product, fetch_related_products, generate_pdf, list_user, products_list, profile, profile_user, test_email
 from django.conf import settings
 from django.conf.urls.static import static
 def is_superuser(user):
@@ -36,9 +36,7 @@ urlpatterns = [
     path('profile_user/<int:id>/', user_passes_test(is_superuser, login_url='bl_login')(profile_user), name='profile_user'),
     path('facture/', user_passes_test(is_superuser, login_url='bl_login')(facture), name='facture'),
     path('generate_facture/', user_passes_test(is_superuser, login_url='bl_login')(generate_facture), name='generate_facture'),
-    #path('generate_pdf/<int:bon_commande_id>/', EditablePDFView.as_view(), name='generate_pdf'),
-    #path('generate_pdf/<int:bl_id>/', user_passes_test(is_superuser, login_url='bl_login')(generate_pdf), name='generate_pdf'),
-    #path('generate_pdf/<int:bl_id>/', PDFView.as_view(), name='generate_pdf'),
+    path('edit_facture/', user_passes_test(is_superuser, login_url='bl_login')(edit_facture), name='edit_facture'),
     path('generate_pdf/<int:bl_id>/', user_passes_test(is_superuser, login_url='bl_login')(generate_pdf), name='page'),
     path('email/', user_passes_test(is_superuser, login_url='bl_login')(test_email), name='email'),
     path('hotmail/',hotmail,name="hotmail"),
