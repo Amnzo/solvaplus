@@ -167,7 +167,7 @@ def add_commande(request):
         next_day = timezone.now() + timezone.timedelta(days=1)
         next_valid_day = next_business_day(next_day.date())
         last_bon_livraison = Bon_Livraison.objects.last()
-        padded_id = f"{(last_bon_livraison.id * last_bon_livraison.id) + last_bon_livraison.id}" if last_bon_livraison else "1"
+        padded_id = f"{(last_bon_livraison.id * last_bon_livraison.id)*2}" if last_bon_livraison else "1"
         date_part = next_valid_day.strftime('%Y%m%d')
         no_bl = f"{date_part}{padded_id}"
         Bon_Livraison.objects.create(
@@ -300,11 +300,34 @@ def edit_commande(request,bl_id):
         societe.achteur6= request.POST.get('achteur6')
         societe.phrase= request.POST.get('phrase')
         societe.nif= request.POST.get('nif')
+        societe.code_client=request.POST.get('code_client')
 
         date_de_bl=request.POST.get('date_de_bl')
+        no_bl=request.POST.get('no_bl')
+        sphere_d=request.POST.get('sphere_d')
+        sphere_g=request.POST.get('sphere_g')
+        cylindre_d=request.POST.get('cylindre_d')
+        cylindre_g=request.POST.get('cylindre_g')
+        axe_d=request.POST.get('axe_d')
+        axe_g=request.POST.get('axe_g')
+        quatite_d=request.POST.get('quatite_d')
+        quatite_g=request.POST.get('quatite_g')
         print(date_de_bl)
+        print(quatite_d)
+        print(axe_d)
+        print(cylindre_g)
         societe.save()
         bon_livraison.date_de_bl=date_de_bl
+        bon_livraison.bon_commande.sphere_d=sphere_d
+        bon_livraison.bon_commande.sphere_g=sphere_g
+        bon_livraison.bon_commande.cylindre_d=cylindre_d
+        bon_livraison.bon_commande.cylindre_g=cylindre_g
+        bon_livraison.bon_commande.axe_d=int(float(axe_d))
+        bon_livraison.bon_commande.axe_g=int(float(axe_g))
+        bon_livraison.bon_commande.quatite_d=quatite_d
+        bon_livraison.bon_commande.quatite_g=quatite_g
+        bon_livraison.bon_commande.save()
+        bon_livraison.no_bl=request.POST.get('no_bl')
         bon_livraison.save()
 
         return redirect('commande_list')
@@ -573,20 +596,21 @@ def generate_facture(request):
         'num_facture':num_facture,
         'date_facture':date_facture
     }
-    html = render_to_string('facture/telechargement_facture.html', context)
-    config = pdfkit.configuration(wkhtmltopdf=PDFKIT_CONFIG['wkhtmltopdf'])
-    pdf = pdfkit.from_string(html, False, options={'encoding': 'UTF-8'}, configuration=config)
+    return render(request,'facture/telechargement_facture.html', context)
+    # html = render_to_string('facture/telechargement_facture.html', context)
+    # config = pdfkit.configuration(wkhtmltopdf=PDFKIT_CONFIG['wkhtmltopdf'])
+    # pdf = pdfkit.from_string(html, False, options={'encoding': 'UTF-8'}, configuration=config)
 
-        # Write the PDF content to a temporary file
-    with tempfile.NamedTemporaryFile(delete=False) as temp_file:
-            temp_file.write(pdf)
-            temp_file.seek(0)
-            file_path = temp_file.name
+    #     # Write the PDF content to a temporary file
+    # with tempfile.NamedTemporaryFile(delete=False) as temp_file:
+    #         temp_file.write(pdf)
+    #         temp_file.seek(0)
+    #         file_path = temp_file.name
 
-        # Return the PDF file as a response for download
-    response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
-    response['Content-Disposition'] = f'attachment; filename="Facture__{num_facture}.pdf"'
-    return response
+    #     # Return the PDF file as a response for download
+    # response = FileResponse(open(file_path, 'rb'), content_type='application/pdf')
+    # response['Content-Disposition'] = f'attachment; filename="Facture__{num_facture}.pdf"'
+    # return response
 
 
 #---------------------Facture-----------------------------

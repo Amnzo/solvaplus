@@ -38,6 +38,10 @@
             padding: 8px;
         }
 
+        .no-border td, .no-border th {
+        border: none;
+    }
+
         .thead-dark {
             background-color: #343a40;
             color: white;
@@ -68,6 +72,15 @@ body {
     /* Ajoutez d'autres styles d'impression ici */
 }
 
+.table td div {
+    display: block;
+}
+
+.table td .with-space {
+    margin-bottom: 8px; /* Adjust as needed */
+    
+}
+
        
     </style>
 </head>
@@ -96,7 +109,7 @@ body {
                                 <thead class="thead-dark custom-table-header">
                                     <tr>
                                         <br>
-                                        <th scope="col">N&ordm; Facture</th>
+                                        <th scope="col">N&ordm; FACTURE</th>
                                         <th scope="col">DATE</th>
                                     </tr>
                                 </thead>
@@ -129,42 +142,21 @@ body {
                 </div>
 
                 <br/>
-                <table class="table custom-table">
+                <table class="table no-border">
                     <tr>
-                        <td style="width: 33%;" class="custom-background-color"> 
-                            <table class="table inner-table">
-                                <thead class="thead-dark custom-table-header">
-                                    <tr>
-                                        <th scope="col">COMMANDE PAR :</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="text-align: center;" >
-                                            {{ societe.livre1 }} <br>
-                                            {{ societe.livre2 }} <br>
-                                            {{ societe.livre3 }} <br>
-                                            {{ societe.livre4 }} <br>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                        <td style="width: 13%;" >
-                            <!-- Content -->
-                           
-                        </td>
+                        <td></td>
+                        
                         <td style="width: 33%;">
                             <!-- Content -->
                             <table class="table inner-table">
                                 <thead class="thead-dark custom-table-header">
                                     <tr><br><br>
-                                        <th scope="col">Facturé à</th>
+                                        <th scope="col">FACTURE A </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td style="text-align: center;" >
+                                        <td style="text-align: left; border: 1px solid #dddddd; padding: 8px;">
                                             {{ societe.achteur1 }} <br>
                                             {{ societe.achteur2 }} <br>
                                             {{ societe.achteur3 }} <br>
@@ -177,7 +169,7 @@ body {
                             </table>
                         </td>
                     </tr>
-                </table><br><br>
+                </table><br>
 
                 
                 <div class="row ">
@@ -199,45 +191,117 @@ body {
                             <tbody>
                                 {% for bon_livraison in bons_livraison %}
                                 <tr>
-                                    <td>BL N&ordm;: {{bon_livraison.no_bl}} du {{ bon_livraison.date_de_bl  | date:"d-m-Y"}}<br> <br>
-                                        Référence porteur: {{bon_livraison.bon_commande.client}} <br><br>
-                                        {{bon_livraison.bon_commande.produit_d.designation}} <br>
-                                        {{bon_livraison.bon_commande.sphere_d}} ({{bon_livraison.bon_commande.cylindre_d}}) Axe {{bon_livraison.bon_commande.axe_d }}° <br> <br>
-                                        {{bon_livraison.bon_commande.produit_g.designation}}  <br>
-                                        {{bon_livraison.bon_commande.sphere_g}} ({{bon_livraison.bon_commande.cylindre_g}}) Axe {{bon_livraison.bon_commande.axe_g }}°
+                                    <td>
+                                        <div class="with-space">BL N&ordm;: {{bon_livraison.no_bl}} du {{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</div>
+                                        <div class="with-space">Référence porteur: {{bon_livraison.bon_commande.client}} </div>
+                                        
+                                        <div class="with-space">
+                                            <div> {{bon_livraison.bon_commande.produit_d.designation}}</div>
+                                            <div> {{bon_livraison.bon_commande.sphere_d}} ({{bon_livraison.bon_commande.cylindre_d}}) Axe {{bon_livraison.bon_commande.axe_d }}° </div>
+                                           
+                                        </div>
+                                        <div class="with-space">
+                                            <div> {{bon_livraison.bon_commande.produit_g.designation}}</div>
+                                            <div> {{bon_livraison.bon_commande.sphere_g}} ({{bon_livraison.bon_commande.cylindre_g}}) Axe {{bon_livraison.bon_commande.axe_g }}° </div>
+                                           
+                                        </div>  
                                     </td>
-                                    <td><br><br><br>
-                                        {{bon_livraison.bon_commande.quatite_d}} <br><br><br>  {{bon_livraison.bon_commande.quatite_g}} 
+                                    <td>
+                                        <div class="with-space">&nbsp;</div>
+                                        <div class="with-space">&nbsp;</div>
+
+                                        
+                                        <div class="with-space">
+                                            
+                                            <div>&nbsp;</div>
+                                            <div> {{bon_livraison.bon_commande.quatite_d}}</div>
+                                           
+                                        </div>
+                                        <div class="with-space">
+                                            
+                                            <div>&nbsp;</div>
+                                            <div> {{bon_livraison.bon_commande.quatite_g}} </div>
+                                           
+                                        </div>   
+                                         
                                     </td>
 
-                                     <td><br><br><br>
-                                        {{bon_livraison.bon_commande.produit_d.prix}} <br><br><br> {{bon_livraison.bon_commande.produit_g.prix}}
+
+                                    <td>
+                                        <div class="with-space">&nbsp;</div>
+                                        <div class="with-space">&nbsp;</div>
+
+                                        
+                                        <div class="with-space">
+                                            
+                                            <div>&nbsp;</div>
+                                            <div>  {{bon_livraison.bon_commande.produit_d.prix}}</div>
+                                           
+                                        </div>
+                                        <div class="with-space">
+                                            
+                                            <div>&nbsp;</div>
+                                            <div>  {{bon_livraison.bon_commande.produit_g.prix}} </div>
+                                           
+                                        </div>   
+                                         
                                     </td>
+
+                                    
                                     <td></td>
                                     <td></td>
+
+
+                                    <td>
+                                        <div class="with-space">&nbsp;</div>
+                                        <div class="with-space">&nbsp;</div> 
+                                        <div class="with-space">       
+                                            <div>&nbsp;</div>
+                                            <div>{{bon_livraison.bon_commande.produit_d.prix}}</div> 
+                                        </div>
+                                        <div class="with-space"> 
+                                            <div>&nbsp;</div>
+                                            <div>{{bon_livraison.bon_commande.produit_g.prix}} </div> 
+                                        </div>    
+                                    </td>
+
+                                    <td>
+                                        <div class="with-space">&nbsp;</div>
+                                        <div class="with-space">&nbsp;</div> 
+                                        <div class="with-space">       
+                                            <div>&nbsp;</div>
+                                            <div>
+                                                {% with total_price=bon_livraison.bon_commande.produit_d.prix|multiply:bon_livraison.bon_commande.quatite_d %}
+                                                    {{ total_price }}
+                                                {% endwith %}
+                                            </div> 
+                                        </div>
+                                        <div class="with-space"> 
+                                            <div>&nbsp;</div>
+                                            <div>{% with total_price=bon_livraison.bon_commande.produit_g.prix|multiply:bon_livraison.bon_commande.quatite_g %}
+                                                {{ total_price }}
+                                            {% endwith %} </div> 
+                                        </div>    
+                                    </td>
                                     
 
-                                <td><br><br><br>
-                                    {{bon_livraison.bon_commande.produit_d.prix}} <br><br><br> {{bon_livraison.bon_commande.produit_g.prix}}
-                                </td>
-                                <td><br><br><br>
-                                    {% with total_price=bon_livraison.bon_commande.produit_d.prix|multiply:bon_livraison.bon_commande.quatite_d %}
-                                        {{ total_price }}
-                                    {% endwith %}
-                                     <br><br><br> 
-                                     {% with total_price=bon_livraison.bon_commande.produit_g.prix|multiply:bon_livraison.bon_commande.quatite_g %}
-                                        {{ total_price }}
-                                    {% endwith %}
-                                </td>
-                                <td><br><br><br>
-                                    %0 <br><br><br> %0
-                                </td>
-                                
-                                    
 
 
+                                    <td>
+                                        <div class="with-space">&nbsp;</div>
+                                        <div class="with-space">&nbsp;</div> 
+                                        <div class="with-space">       
+                                            <div>&nbsp;</div>
+                                            <div>0</div> 
+                                        </div>
+                                        <div class="with-space"> 
+                                            <div>&nbsp;</div>
+                                            <div>0 </div> 
+                                        </div>    
+                                    </td>
 
-                                    
+
+                                 
                                 </tr>
                                 {% endfor %}
 

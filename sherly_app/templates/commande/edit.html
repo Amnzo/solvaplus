@@ -82,7 +82,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>{{ bon_livraison.no_bl}}</td>
+                            <td><input type="text" name="no_bl" value="{{bon_livraison.no_bl}}" class="form-label"></td>
+                          
                             <td>
                             <input type="date" name="date_de_bl" value="{{ bon_livraison.date_de_bl|date:'Y-m-d' }}"></td>
                         </tr>
@@ -185,7 +186,8 @@
                         <td>{{ bon_livraison.date_de_bl   | date:"d-m-Y"}}</td>
                         <td>{{ bon_livraison.bon_commande.no_cmde }}</td>
                         <td>{{ bon_livraison.bon_commande.date_de_cmd  | date:"d-m-Y"}}</td>
-                        <td>0033147853314</td>
+                        <td><input type="text" name="code_client" value="{{societe.code_client}}" class="form-label"></td>
+
 
 
                     </tr>
@@ -210,7 +212,7 @@
                                     <th scope="col">Axe</th>
                                     <th scope="col">Oeil <br>D/G</th>
                                     <th scope="col">Porteur</th>
-                                    <th scope="col">QTE</th>
+                                    <th scope="col">Qte</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -220,12 +222,12 @@
                         <td>Boite de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
                         <td></td>
                         <td></td>
-                        <td>{{bon_livraison.bon_commande.sphere_d}}</td>
-                        <td>{{bon_livraison.bon_commande.cylindre_d}}</td>
-                        <td>{{bon_livraison.bon_commande.axe_d}}</td>
-                        <td>DROITE</td>
+                        <td><input type="text" name="sphere_d" value="{{bon_livraison.bon_commande.sphere_d}}" class="form-label"></td>
+                        <td><input type="text" name="cylindre_d" value="{{bon_livraison.bon_commande.cylindre_d}}" class="form-label"></td>
+                        <td><input type="text" name="axe_d" value="{{bon_livraison.bon_commande.axe_d}}" class="form-label"></td>
+                        <td>DROIT</td>
                         <td>{{bon_livraison.bon_commande.client}}</td>
-                        <td>{{bon_livraison.bon_commande.quatite_d}}</td>
+                        <td><input type="text" name="quatite_d" value="{{bon_livraison.bon_commande.quatite_d}}" class="form-label"></td>
                     </tr>
                     <tr>
                         <td>{{ bon_livraison.bon_commande.produit_g.reference}}</td>
@@ -233,12 +235,13 @@
                         <td>Boite de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
                         <td></td>
                         <td></td>
-                        <td>{{bon_livraison.bon_commande.sphere_g}}</td>
-                        <td>{{bon_livraison.bon_commande.cylindre_g}}</td>
-                        <td>{{bon_livraison.bon_commande.axe_g}}</td>
+                        <td><input type="text" name="sphere_g" value="{{bon_livraison.bon_commande.sphere_g}}" class="form-label"></td>
+                        <td><input type="text" name="cylindre_g" value="{{bon_livraison.bon_commande.cylindre_g}}" class="form-label"></td>
+                        <td><input type="text" name="axe_g" value="{{bon_livraison.bon_commande.axe_g}}" class="form-label"></td>
                         <td>GAUCHE</td>
                         <td>{{bon_livraison.bon_commande.client}}</td>
-                        <td>{{bon_livraison.bon_commande.quatite_g}}</td>
+                        <td><input type="text" name="quatite_g" value="{{bon_livraison.bon_commande.quatite_g}}" class="form-label"></td>
+
                     </tr>
                 </tbody>
             </table>

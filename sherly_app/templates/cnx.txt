@@ -1,0 +1,18 @@
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'karimatoka$amnzo',
+        'USER': 'karimatoka',
+        'PASSWORD': 'Salmi@Ensa123',
+        'HOST': 'karimatoka.mysql.pythonanywhere-services.com',   # Or your MySQL server's hostname
+        'PORT': '3306',        # Or your MySQL server's port
+    }
+}
+
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
