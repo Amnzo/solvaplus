@@ -1,0 +1,50 @@
+{% extends 'base_vitrine.html' %}
+{% load static %}  {# Ajout du chargement des fichiers statiques #}
+{% block title %}Produits - {{ famille.famille }}{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">
+         {% if famille.famille  %}
+          Produits de la catégorie : {{ famille.famille }}
+
+
+         {% else %}
+         Produits
+
+         {% endif %}
+
+    </h2>
+
+    {% if produits %}
+        <div class="row">
+            {% for produit in produits %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <!-- Vérification de l'image -->
+                        {% if produit.image %}
+                            <p>{{ produit.image.url }}</p>  {# Debugging: print image URL #}
+                            <img src="{{ produit.image.url }}" class="card-img-top" alt="{{ produit.designation }}">
+                        {% else %}
+                            <img src="{% static 'images/default.jpg' %}" class="card-img-top" alt="Image non disponible">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ produit.designation }}</h5>
+                            <p class="card-text">{{ produit.description|truncatewords:20 }}</p>
+                            <p class="text-primary"><strong>Prix : {{ produit.prix }} DH</strong></p>
+                            <a href="{% url 'fiche_produit' produit.id %}" class="btn btn-success">Voir Détails</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">Aucun produit disponible pour cette catégorie.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary">Retour</a>
+    </div>
+</div>
+{% endblock %}

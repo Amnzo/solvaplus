@@ -16,12 +16,12 @@
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card" style="background-color: #4CAF50; color: white;">
+            <div class="card" style="background-color: #3879f3; color: white;">
                 <div class="card-header">
                     Confirmation de suppression
                 </div>
                 <div class="card-body">
-                    <form id="deleteForm" action="/delete_commande/{{ bon_commande.id }}/" method="post">
+                    <form id="deleteForm" action="/order_management/delete_commande/{{ bon_commande.id }}/" method="post">
                         {% csrf_token %}
                         <p>Êtes-vous sûr de vouloir supprimer la commande No {{ bon_commande.no_cmde }} ?</p>
                         <div class="form-check">

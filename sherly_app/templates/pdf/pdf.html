@@ -72,13 +72,12 @@ body {
                 <table>
                     <tr>
                         <td style="width: 15%;" >
-                             <img src="data:image/png;base64,{{ logo_base64 }}" alt="Company Logo" style="max-width: 100%; height: auto;">
 
-
+                            <img src="data:image/png;base64,{{ logo_base64 }}" alt="Company Logo" style="max-width: 100%; height: auto;">
                         </td>
                         <td style="width: 33%; text-align: left;" class="custom-background-color2"> <!-- Set text alignment to left -->
                             <div class="text-container">
-                                <span class="larger-text">{{ societe.nom1 }}</span> <br>
+                                <span class="larger-text">{{ societe.nom1 }} </span> <br>
                                 <span class="smaller-text">{{ societe.nom2 }}</span>
                             </div>
                         </td>
@@ -88,8 +87,8 @@ body {
                                 <thead class="thead-dark custom-table-header">
                                     <tr>
                                         <br>
-                                        <th scope="col">N&ordm; BL</th>
-                                        <th scope="col">DATE</th>
+                                        <th scope="col">{{table.t1c1}}</th>
+                                        <th scope="col">{{table.date}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -109,11 +108,15 @@ body {
                         <div class="row custom-background-color2">
                             <div class="col-md-6">
                                 <div class="text-container">
-                                    <p contenteditable="true">{{societe.ligne1}}</p>
-                                    <p contenteditable="true">{{societe.ligne2}},</p>
-                                    <p contenteditable="true">{{societe.ligne3}},</p>
-                                    <p contenteditable="true">{{societe.ligne4}}</p>
-                                    <p contenteditable="true">{{societe.ligne5}}</p>
+                                    <div class="text-container">
+                                    <div>{{societe.ligne1}}</div>
+                                    <div>{{societe.ligne2}}</div>
+                                    <div>{{societe.ligne3}}</div>
+                                    <div>{{societe.pays}}</div>
+                                    <div>{{societe.telephone}}</div>
+                                    <div>{{societe.ligne4}}</div>
+                                    <div>{{societe.ligne5}}</div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -127,7 +130,7 @@ body {
                             <table class="table inner-table">
                                 <thead class="thead-dark custom-table-header">
                                     <tr>
-                                        <th scope="col">LIVRE A</th>
+                                        <th scope="col">{{table.livre_a}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -151,7 +154,7 @@ body {
                             <table class="table inner-table">
                                 <thead class="thead-dark custom-table-header">
                                     <tr><br><br>
-                                        <th scope="col">INFORMATION  ACHETEUR</th>
+                                        <th scope="col">{{table.information_acheteur}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -176,11 +179,12 @@ body {
                         <table class="table">
                             <thead class="thead-dark custom-table-header">
                                 <tr>
-                                    <th scope="col">N&ordm; BL</th>
-                                    <th scope="col">DATE BL</th>
-                                    <th scope="col">N&ordm; CMDE</th>
-                                    <th scope="col">DATE CMDE</th>
-                                    <th scope="col">CODE CLIENT</th>
+                                    <th scope="col">{{table.t1c1}}</th>
+                                    <th scope="col">{{table.t1c2}}</th>
+                                    <th scope="col">{{table.t1c3}}</th>
+                                    <th scope="col">{{table.t1c4}}</th>
+                                     <th scope="col">{{table.t1c5}}</th>
+                                    <th scope="col">{{table.t1c6}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -189,7 +193,9 @@ body {
                                     <td>{{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</td>
                                     <td>{{ bon_livraison.bon_commande.no_cmde }}</td>
                                     <td>{{ bon_livraison.bon_commande.date_de_cmd | date:"d-m-Y"}}</td>
-                                    <td>0033147853314</td>
+                                    <td>{{bon_livraison.bon_commande.client}}</td>
+                                    <td>{{ societe.code_client}}</td>
+
                                 </tr>
                             </tbody>
                         </table>
@@ -201,44 +207,46 @@ body {
                         <table class="table">
                             <thead class="thead-dark custom-table-header">
                                 <tr>
-                                    <th scope="col">Réf</th>
-                                    <th scope="col">Désignation</th>
-                                    <th scope="col">Conditionnement</th>
-                                    <th scope="col">Diamètre </th>
-                                    <th scope="col">Rayon</th>
-                                    <th scope="col">Sphère </th>
-                                    <th scope="col">Cylindre</th>
-                                    <th scope="col">Axe</th>
-                                    <th scope="col">Oeil <br>D/G</th>
-                                    <th scope="col">Porteur</th>
-                                    <th scope="col">QTE</th>
+                                    <th scope="col">{{table.t2c1}}</th>
+                                    <th scope="col">{{table.t2c2}}</th>
+                                    <th scope="col">{{table.t2c3}}</th>
+                                    <th scope="col">{{table.t2c4}} </th>
+                                    <th scope="col">{{table.t2c5}}</th>
+                                    <th scope="col">{{table.t2c6}} </th>
+                                    <th scope="col">{{table.t2c7}}</th>
+                                    <th scope="col">{{table.t2c8}}</th>
+                                    <th scope="col">{{table.t2add}}</th>
+                                    <th scope="col">{{table.t2c9}} <br>{{table.t2c9_g_d}}</th>
+                                    <th scope="col">{{table.t2c10}}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>{{ bon_livraison.bon_commande.produit_d.reference}}</td>
                                     <td>{{ bon_livraison.bon_commande.produit_d.designation}}</td>
-                                    <td>Boite de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
+                                    <td>Caja de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
                                     <td></td>
                                     <td></td>
                                     <td>{{bon_livraison.bon_commande.sphere_d}}</td>
                                     <td>{{bon_livraison.bon_commande.cylindre_d}}</td>
                                     <td>{{bon_livraison.bon_commande.axe_d}}</td>
-                                    <td>DROITE</td>
-                                    <td>{{bon_livraison.bon_commande.client}}</td>
+                                    <td>{{bon_livraison.bon_commande.add_d}}</td>
+                                    <td>DERECHO</td>
+
                                     <td>{{bon_livraison.bon_commande.quatite_d}}</td>
                                 </tr>
                                 <tr>
                                     <td>{{ bon_livraison.bon_commande.produit_g.reference}}</td>
                                     <td>{{ bon_livraison.bon_commande.produit_g.designation}}</td>
-                                    <td>Boite de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
+                                    <td>Caja de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
                                     <td></td>
                                     <td></td>
                                     <td>{{bon_livraison.bon_commande.sphere_g}}</td>
                                     <td>{{bon_livraison.bon_commande.cylindre_g}}</td>
                                     <td>{{bon_livraison.bon_commande.axe_g}}</td>
-                                    <td>GAUCHE</td>
-                                    <td>{{bon_livraison.bon_commande.client}}</td>
+                                    <td>{{bon_livraison.bon_commande.add_g}}</td>
+                                    <td>IZQUIERDO</td>
+
                                     <td>{{bon_livraison.bon_commande.quatite_g}}</td>
                                 </tr>
                             </tbody>

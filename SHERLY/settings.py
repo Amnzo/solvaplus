@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sherly_app',
     'crispy_forms',
-    'wkhtmltopdf',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'sherly_app.middleware.session_timeout.SessionTimeoutMiddleware',
 ]
 
 ROOT_URLCONF = 'SHERLY.urls'
@@ -68,6 +68,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'sherly_app.context_processors.societer_info',  # Register your custom context processor
+                'sherly_app.context_processors.familles_context',
+                'sherly_app.context_processors.produits_context',
+
             ],
         },
     },
@@ -79,18 +82,21 @@ WSGI_APPLICATION = 'SHERLY.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'sherylstrategy$default',
-        'USER': 'sherylstrategy',
-        'PASSWORD': 'salmi@ensa123',
-        'HOST': 'sherylstrategy.mysql.pythonanywhere-services.com',   # Or your MySQL server's hostname
-        'PORT': '3306',        # Or your MySQL server's port
+        'NAME': 'solvaplus',  # Remplace par le nom de ta base de données
+        'USER': 'root',        # Ton utilisateur MySQL
+        'PASSWORD': 'salmi@ensa123',        # Laisse vide si tu n'as pas de mot de passe
+        'HOST': '127.0.0.1',   # Serveur MySQL
+        'PORT': '3306',        # Port MySQL
+
     }
 }
+
+
+
+
 
 
 
@@ -124,7 +130,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
+SESSION_IDLE_TIMEOUT = 300    # 5 min
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
@@ -140,33 +146,33 @@ LOGIN_URL = '/login/'
 
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 MEDIA_URL = '/media/'
-
 # Static files (CSS, JavaScript, images)
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'sherly_app/static')]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.office365.com'
-EMAIL_HOST_USER = 'sherylopticalstrategy@hotmail.com'
-EMAIL_HOST_PASSWORD = 'vdqlnfmsvtwsusyf'
+EMAIL_BACKEND = ''
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'aslal-salmi@hotmail.fr'
-SERVER_EMAIL = 'aslal-salmi@hotmail.fr'
+DEFAULT_FROM_EMAIL = ''
+SERVER_EMAIL = ''
 # Email
 
-#EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-#EMAIL_HOST = 'smtp.office365.com'
-#EMAIL_HOST_USER = 'aslal-salmi@hotmail.fr'
-#EMAIL_HOST_PASSWORD = 'mhphnqtwculehajq'
-#EMAIL_PORT = 587
-#EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST_USER = 'aslal-salmi@hotmail.fr'
+EMAIL_HOST_PASSWORD = 'mhphnqtwculehajq'
+EMAIL_PORT = 587
+#MAIL_USE_TLS = True
 #DEFAULT_FROM_EMAIL = 'aslal-salmi@hotmail.fr'
 #SERVER_EMAIL = 'aslal-salmi@hotmail.fr'
+#sherylopticalstrategy@hotmail.com
+#vdqlnfmsvtwsusyf
 
 
 # EMAIL_HOST_PASSWORD = ' UVQ6D-48EFA-5G6BG-MRURW-LKKA7'  # Mot de passe de votre compte Hotmail
@@ -189,3 +195,5 @@ PDFKIT_CONFIG = {
 # settings.py
 print("---------------Starting-----------------")
 # Celery Configuration
+
+

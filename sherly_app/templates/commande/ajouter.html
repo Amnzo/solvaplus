@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
-{% block title %} BL app {% endblock %}
+
 
 {% block content %}
     <div class="container mt-4">
 
         <div class="container">
             <div class="card">
-                <div class="card-header" style="background-color: #4CAF50; color: white;">
+                <div class="card-header" style="background-color: #3879f3; color: white;">
                     <h2 class="mb-0">AJOUT D'UNE COMMANDE</h2>
                 </div>
                 <div class="card-body">
@@ -47,7 +47,7 @@
                                 <select class="form-control selectpicker" id="produit_d" name="produit_d" required>
                                     <option value="" disabled selected>CHOISIR</option>
                                     {% for product in products %}
-                                        <option value="{{ product.id }}">{{ product.designation }}</option>
+                                        <option value="{{ product.id }}">{{ product.designation }} ({{product.conditionnement_count}})</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -84,7 +84,16 @@
                         </div>
                         <!-- Second row for Quantity -->
                             <div class="form-row">
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-3">
+                                <label for="sphere">ADD</label>
+                                <select class="form-control" id="add_d" name="add_d" required>
+                                    <option value="" disabled selected>CHOISIR</option>
+                                    {% for value in sphere_range %}
+                                        <option value="{{ value }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                                <div class="form-group col-md-9">
                                     <label for="quatite_d">QUANTITÉ</label>
                                     <select class="form-control" id="quatite_d" name="quatite_d" required>
                                         <option value="" disabled selected>CHOISIR</option>
@@ -118,7 +127,7 @@
                                 <select class="form-control" id="produit_g" name="produit_g" required>
                                     <option value="" disabled selected>CHOISIR</option>
                                     {% for product in products %}
-                                        <option value="{{ product.id }}">{{ product.designation }}</option>
+                                        <option value="{{ product.id }}">{{ product.designation }} ({{product.conditionnement_count}})</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -157,7 +166,18 @@
 
                         <div class="form-row">
 
-                            <div class="form-group col-md-12">
+                            <div class="form-group col-md-3">
+                                <label for="sphere">ADD</label>
+                                <select class="form-control" id="add_g" name="add_g" required>
+                                    <option value="" disabled selected>CHOISIR</option>
+                                    {% for value in sphere_range %}
+                                        <option value="{{ value }}">{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+
+                            <div class="form-group col-md-9">
                                 <label for="axe">QUANTITÉ </label>
                                 <select class="form-control" id="quatite_g" name="quatite_g" required>
                                     <option value="" disabled selected>CHOISIR</option>
@@ -172,7 +192,7 @@
                         <!-- Add more rows as needed -->
 
                         <!-- Submit button -->
-                        <button type="submit" class="btn btn-success">Valider</button>
+                        <button type="submit" class="btn btn-primary">Valider</button>
                     </form>
                 </div>
             </div>
@@ -201,9 +221,11 @@
                         text: 'Choose'
                     }));
                     $.each(data, function(index, product){
+                        var optionText = product.designation + ' (' + product.conditionnement_count + ')';
+
                         $('#produit_d').append($('<option>', {
                             value: product.id,
-                            text: product.designation
+                            text: optionText
                         }));
                     });
                 }
@@ -227,9 +249,10 @@
                         text: 'Choose'
                     }));
                     $.each(data, function(index, product){
+                        var optionText = product.designation + ' (' + product.conditionnement_count + ')';
                         $('#produit_g').append($('<option>', {
                             value: product.id,
-                            text: product.designation
+                            text: optionText
                         }));
                     });
                 }

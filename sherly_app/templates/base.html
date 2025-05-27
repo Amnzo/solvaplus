@@ -1,11 +1,16 @@
 <!-- templates/base.html -->
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 
+    <meta name="robots" content="noindex">
+
+
+
     <meta charset="UTF-8">
-    <title>{% block title %}Gestion des Crédits{% endblock %}</title>
+    <title>{% block title %}{{societe.nom1}}{% endblock %}</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -61,7 +66,7 @@
         #sidebar {
             min-width: 250px;
             max-width: 250px;
-            background: #4CAF50; /* Green color */
+            background: #3879f3; /* Green color */
             color: white;
             transition: all 0.3s;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
@@ -133,7 +138,7 @@
         }
 
         #sidebarCollapse:hover {
-            color: #0fb300;
+            color: #5987db;
         }
 
         .success {
@@ -166,21 +171,16 @@
     <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
-            <button type="button" id="sidebarCollapse" class="btn">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="sidebar-header">
-                {% if user.is_superuser %}
 
-                <a href="{% url 'company' %}" class="avatar-link">
-                    <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
-                </a>
-                {% else %}
-                <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
-                {% endif %}
-            </div>
+
             {% if user.is_superuser %}
             <ul class="list-unstyled components">
+                <li>
+                    <a href="{% url 'company' %}" title="USERS">
+
+                        <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
+                    </a>
+                </li>
                 <li>
                     <a href="{% url 'profile' %}" title="USERS">
 
@@ -222,6 +222,13 @@
             </ul>
             {% else %}
             <ul class="list-unstyled components">
+
+                <li>
+                    <a href="#" title="USERS">
+
+                        <img src="{{societe.logo.url}}" alt="Avatar" class="avatar-img">
+                    </a>
+                </li>
                 <li>
                     <a href="{% url 'commande_list' %}" title="COMMANDES">
                         <i class="fas fa-truck"></i> LISTE DES COMMANDES

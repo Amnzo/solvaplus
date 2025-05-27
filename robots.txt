@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /   # Bloque l'accès à toutes les pages sauf la racine
+Allow: /$     # Autorise l'accès à la racine

@@ -1,14 +1,526 @@
-2024-02-05 13:07:08,947 - INFO - ---------------Starting fetching data to send by email-----------------
-2024-02-05 13:07:08,947 - INFO - ---------------JOB DOOR-----------------
-2024-02-05 13:07:08,947 - INFO - ---------------INSIDE JOB-----------------
-2024-02-05 13:07:08,947 - INFO - Checking Bon Livraison for today's date...
-2024-02-05 13:07:08,948 - INFO - ---------------this is what i find ----------------
-2024-02-05 13:07:08,948 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 20240205342----19----2024-02-05 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 2024020541206----22----2024-02-05 00:00:00+00:00 >]>
-2024-02-05 13:07:08,999 - INFO - Sending email for Bon Livraison ID: 19
-2024-02-05 13:07:08,999 - INFO - Beginning email verification
-2024-02-05 13:07:09,003 - INFO - Preparing BL 20240205342 
-2024-02-05 13:07:12,026 - INFO - Email sent for bon de livraison 20240205342
-2024-02-05 13:07:12,044 - INFO - Sending email for Bon Livraison ID: 22
-2024-02-05 13:07:12,044 - INFO - Beginning email verification
-2024-02-05 13:07:12,047 - INFO - Preparing BL 2024020541206 
-2024-02-05 13:07:14,844 - INFO - Email sent for bon de livraison 2024020541206
+2024-02-10 13:42:10,960 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 13:42:10,960 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 13:42:10,961 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 13:42:10,961 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 13:42:10,962 - INFO - ---------------this is what i find ----------------
+2024-02-10 13:42:10,962 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 13:42:10,989 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 13:42:10,989 - INFO - Beginning email verification
+2024-02-10 13:42:10,990 - INFO - Preparing BL 202402124232 
+2024-02-10 13:42:15,142 - INFO - Email sent for bon de livraison 202402124232
+2024-02-10 14:45:20,373 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 14:45:20,373 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 14:45:20,373 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 14:45:20,373 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 14:45:20,374 - INFO - ---------------this is what i find ----------------
+2024-02-10 14:45:20,375 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 14:45:20,434 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 14:45:20,434 - INFO - Beginning email verification
+2024-02-10 14:45:20,440 - INFO - Preparing BL 202402124232 
+2024-02-10 14:45:25,004 - INFO - Email sent for bon de livraison 202402124232
+2024-02-10 14:47:10,740 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 14:47:10,740 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 14:47:10,741 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 14:47:10,741 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 14:47:10,742 - INFO - ---------------this is what i find ----------------
+2024-02-10 14:47:10,742 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 14:47:10,776 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 14:47:10,776 - INFO - Beginning email verification
+2024-02-10 14:47:10,777 - INFO - Preparing BL 202402124232 
+2024-02-10 14:53:08,308 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 14:53:08,309 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 14:53:08,309 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 14:53:08,309 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 14:53:08,309 - INFO - ---------------this is what i find ----------------
+2024-02-10 14:53:08,309 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 14:53:08,332 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 14:53:08,332 - INFO - Beginning email verification
+2024-02-10 14:53:08,333 - INFO - Preparing BL 202402124232 
+2024-02-10 14:59:11,242 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 14:59:11,243 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 14:59:11,243 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 14:59:11,243 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 14:59:11,244 - INFO - ---------------this is what i find ----------------
+2024-02-10 14:59:11,244 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 14:59:11,289 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 14:59:11,290 - INFO - Beginning email verification
+2024-02-10 14:59:11,293 - INFO - Preparing BL 202402124232 
+2024-02-10 15:01:21,187 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 15:01:21,193 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 15:01:21,198 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 15:01:21,198 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 15:01:21,199 - INFO - ---------------this is what i find ----------------
+2024-02-10 15:01:21,199 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 15:01:21,389 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 15:01:21,390 - INFO - Beginning email verification
+2024-02-10 15:01:21,409 - INFO - Preparing BL 202402124232 
+2024-02-10 15:01:26,281 - INFO - Email sent for bon de livraison 202402124232
+2024-02-10 15:11:10,908 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 15:11:10,909 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 15:11:10,909 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 15:11:10,909 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 15:11:10,910 - INFO - ---------------this is what i find ----------------
+2024-02-10 15:11:10,910 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 15:11:10,961 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 15:11:10,962 - INFO - Beginning email verification
+2024-02-10 15:11:10,963 - INFO - Preparing BL 202402124232 
+2024-02-10 15:14:09,583 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 15:14:09,583 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 15:14:09,583 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 15:14:09,583 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 15:14:09,584 - INFO - ---------------this is what i find ----------------
+2024-02-10 15:14:09,584 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 15:14:09,622 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 15:14:09,622 - INFO - Beginning email verification
+2024-02-10 15:14:09,623 - INFO - Preparing BL 202402124232 
+2024-02-10 15:14:12,713 - INFO - Email sent for bon de livraison 202402124232
+2024-02-10 17:34:10,279 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 17:34:10,280 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 17:34:10,280 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 17:34:10,280 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 17:34:10,281 - INFO - ---------------this is what i find ----------------
+2024-02-10 17:34:10,281 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124232----47----2024-02-10 00:00:00+00:00 >]>
+2024-02-10 17:34:10,315 - INFO - Sending email for Bon Livraison ID: 47
+2024-02-10 17:34:10,315 - INFO - Beginning email verification
+2024-02-10 17:34:10,320 - INFO - Preparing BL 202402124232 
+2024-02-10 17:34:14,027 - INFO - Email sent for bon de livraison 202402124232
+2024-02-10 17:45:22,458 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-10 17:45:22,459 - INFO - ---------------JOB DOOR-----------------
+2024-02-10 17:45:22,459 - INFO - ---------------INSIDE JOB-----------------
+2024-02-10 17:45:22,459 - INFO - Checking Bon Livraison for today's date...
+2024-02-10 17:45:22,460 - INFO - ---------------this is what i find ----------------
+2024-02-10 17:45:22,460 - INFO - <QuerySet []>
+2024-02-11 09:05:16,733 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-11 09:05:16,733 - INFO - ---------------JOB DOOR-----------------
+2024-02-11 09:05:16,733 - INFO - ---------------INSIDE JOB-----------------
+2024-02-11 09:05:16,733 - INFO - Checking Bon Livraison for today's date...
+2024-02-11 09:05:16,734 - INFO - ---------------this is what i find ----------------
+2024-02-11 09:05:16,734 - INFO - <QuerySet []>
+2024-02-12 09:05:14,767 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-12 09:05:14,767 - INFO - ---------------JOB DOOR-----------------
+2024-02-12 09:05:14,767 - INFO - ---------------INSIDE JOB-----------------
+2024-02-12 09:05:14,767 - INFO - Checking Bon Livraison for today's date...
+2024-02-12 09:05:14,768 - INFO - ---------------this is what i find ----------------
+2024-02-12 09:05:14,768 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402123872----45----2024-02-12 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402124418----48----2024-02-12 00:00:00+00:00 >]>
+2024-02-12 09:05:14,810 - INFO - Sending email for Bon Livraison ID: 45
+2024-02-12 09:05:14,810 - INFO - Beginning email verification
+2024-02-12 09:05:14,812 - INFO - Preparing BL 202402123872 
+2024-02-12 09:05:19,469 - INFO - Email sent for bon de livraison 202402123872
+2024-02-12 09:05:19,474 - INFO - Sending email for Bon Livraison ID: 48
+2024-02-12 09:05:19,474 - INFO - Beginning email verification
+2024-02-12 09:05:19,476 - INFO - Preparing BL 202402124418 
+2024-02-12 09:05:22,655 - INFO - Email sent for bon de livraison 202402124418
+2024-02-12 11:38:08,432 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-12 11:38:08,433 - INFO - ---------------JOB DOOR-----------------
+2024-02-12 11:38:08,433 - INFO - ---------------INSIDE JOB-----------------
+2024-02-12 11:38:08,433 - INFO - Checking Bon Livraison for today's date...
+2024-02-12 11:38:08,434 - INFO - ---------------this is what i find ----------------
+2024-02-12 11:38:08,434 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402134608----49----2024-02-12 00:00:00+00:00 >]>
+2024-02-12 11:38:08,461 - INFO - Sending email for Bon Livraison ID: 49
+2024-02-12 11:38:08,461 - INFO - Beginning email verification
+2024-02-12 11:38:08,462 - INFO - Preparing BL 202402134608 
+2024-02-12 11:38:10,962 - INFO - Email sent for bon de livraison 202402134608
+2024-02-12 11:40:13,722 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-12 11:40:13,723 - INFO - ---------------JOB DOOR-----------------
+2024-02-12 11:40:13,723 - INFO - ---------------INSIDE JOB-----------------
+2024-02-12 11:40:13,723 - INFO - Checking Bon Livraison for today's date...
+2024-02-12 11:40:13,729 - INFO - ---------------this is what i find ----------------
+2024-02-12 11:40:13,730 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402134608----49----2024-02-12 00:00:00+00:00 >]>
+2024-02-12 11:40:13,804 - INFO - Sending email for Bon Livraison ID: 49
+2024-02-12 11:40:13,804 - INFO - Beginning email verification
+2024-02-12 11:40:13,810 - INFO - Preparing BL 202402134608 
+2024-02-12 11:40:16,372 - INFO - Email sent for bon de livraison 202402134608
+2024-02-12 13:38:08,621 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-12 13:38:08,624 - INFO - ---------------JOB DOOR-----------------
+2024-02-12 13:38:08,624 - INFO - ---------------INSIDE JOB-----------------
+2024-02-12 13:38:08,624 - INFO - Checking Bon Livraison for today's date...
+2024-02-12 13:38:08,625 - INFO - ---------------this is what i find ----------------
+2024-02-12 13:38:08,625 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402124418----48----2024-02-12 00:00:00+00:00 >]>
+2024-02-12 13:38:08,667 - INFO - Sending email for Bon Livraison ID: 48
+2024-02-12 13:38:08,667 - INFO - Beginning email verification
+2024-02-12 13:38:08,673 - INFO - Preparing BL 202402124418 
+2024-02-12 13:38:12,672 - INFO - Email sent for bon de livraison 202402124418
+2024-02-13 13:38:12,422 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-13 13:38:12,423 - INFO - ---------------JOB DOOR-----------------
+2024-02-13 13:38:12,423 - INFO - ---------------INSIDE JOB-----------------
+2024-02-13 13:38:12,423 - INFO - Checking Bon Livraison for today's date...
+2024-02-13 13:38:12,424 - INFO - ---------------this is what i find ----------------
+2024-02-13 13:38:12,424 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402134802----50----2024-02-13 00:00:00+00:00 >]>
+2024-02-13 13:38:12,489 - INFO - Sending email for Bon Livraison ID: 50
+2024-02-13 13:38:12,489 - INFO - Beginning email verification
+2024-02-13 13:38:12,492 - INFO - Preparing BL 202402134802 
+2024-02-13 13:38:16,392 - INFO - Email sent for bon de livraison 202402134802
+2024-02-14 13:38:12,516 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-14 13:38:12,517 - INFO - ---------------JOB DOOR-----------------
+2024-02-14 13:38:12,517 - INFO - ---------------INSIDE JOB-----------------
+2024-02-14 13:38:12,517 - INFO - Checking Bon Livraison for today's date...
+2024-02-14 13:38:12,518 - INFO - ---------------this is what i find ----------------
+2024-02-14 13:38:12,518 - INFO - <QuerySet []>
+2024-02-15 13:38:10,828 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-15 13:38:10,829 - INFO - ---------------JOB DOOR-----------------
+2024-02-15 13:38:10,829 - INFO - ---------------INSIDE JOB-----------------
+2024-02-15 13:38:10,829 - INFO - Checking Bon Livraison for today's date...
+2024-02-15 13:38:10,830 - INFO - ---------------this is what i find ----------------
+2024-02-15 13:38:10,830 - INFO - <QuerySet []>
+2024-02-16 13:38:10,048 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-16 13:38:10,049 - INFO - ---------------JOB DOOR-----------------
+2024-02-16 13:38:10,049 - INFO - ---------------INSIDE JOB-----------------
+2024-02-16 13:38:10,049 - INFO - Checking Bon Livraison for today's date...
+2024-02-16 13:38:10,050 - INFO - ---------------this is what i find ----------------
+2024-02-16 13:38:10,050 - INFO - <QuerySet []>
+2024-02-17 13:38:08,055 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-17 13:38:08,055 - INFO - ---------------JOB DOOR-----------------
+2024-02-17 13:38:08,055 - INFO - ---------------INSIDE JOB-----------------
+2024-02-17 13:38:08,055 - INFO - Checking Bon Livraison for today's date...
+2024-02-17 13:38:08,056 - INFO - ---------------this is what i find ----------------
+2024-02-17 13:38:08,056 - INFO - <QuerySet []>
+2024-02-18 09:00:45,724 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-18 09:00:45,725 - INFO - ---------------JOB DOOR-----------------
+2024-02-18 09:00:45,725 - INFO - ---------------INSIDE JOB-----------------
+2024-02-18 09:00:45,725 - INFO - Checking Bon Livraison for today's date...
+2024-02-18 09:00:45,726 - INFO - ---------------this is what i find ----------------
+2024-02-18 09:00:45,726 - INFO - <QuerySet []>
+2024-02-19 09:00:43,766 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-19 09:00:43,767 - INFO - ---------------JOB DOOR-----------------
+2024-02-19 09:00:43,767 - INFO - ---------------INSIDE JOB-----------------
+2024-02-19 09:00:43,767 - INFO - Checking Bon Livraison for today's date...
+2024-02-19 09:00:43,778 - INFO - ---------------this is what i find ----------------
+2024-02-19 09:00:43,778 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402191----53----2024-02-19 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402195618----54----2024-02-19 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402196050----56----2024-02-19 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402196272----57----2024-02-19 00:00:00+00:00 >]>
+2024-02-19 09:00:43,921 - INFO - Sending email for Bon Livraison ID: 53
+2024-02-19 09:00:43,921 - INFO - Beginning email verification
+2024-02-19 09:00:43,925 - INFO - Preparing BL 202402191 
+2024-02-19 09:00:50,971 - INFO - Email sent for bon de livraison 202402191
+2024-02-19 09:00:50,981 - INFO - Sending email for Bon Livraison ID: 54
+2024-02-19 09:00:50,981 - INFO - Beginning email verification
+2024-02-19 09:00:50,985 - INFO - Preparing BL 202402195618 
+2024-02-19 09:00:55,561 - INFO - Email sent for bon de livraison 202402195618
+2024-02-19 09:00:55,572 - INFO - Sending email for Bon Livraison ID: 56
+2024-02-19 09:00:55,572 - INFO - Beginning email verification
+2024-02-19 09:00:55,575 - INFO - Preparing BL 202402196050 
+2024-02-19 09:00:59,424 - INFO - Email sent for bon de livraison 202402196050
+2024-02-19 09:00:59,432 - INFO - Sending email for Bon Livraison ID: 57
+2024-02-19 09:00:59,432 - INFO - Beginning email verification
+2024-02-19 09:00:59,435 - INFO - Preparing BL 202402196272 
+2024-02-19 09:01:03,879 - INFO - Email sent for bon de livraison 202402196272
+2024-02-20 09:00:40,743 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-20 09:00:40,744 - INFO - ---------------JOB DOOR-----------------
+2024-02-20 09:00:40,744 - INFO - ---------------INSIDE JOB-----------------
+2024-02-20 09:00:40,744 - INFO - Checking Bon Livraison for today's date...
+2024-02-20 09:00:40,745 - INFO - ---------------this is what i find ----------------
+2024-02-20 09:00:40,745 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402206498----58----2024-02-20 00:00:00+00:00 >]>
+2024-02-20 09:00:41,096 - INFO - Sending email for Bon Livraison ID: 58
+2024-02-20 09:00:41,096 - INFO - Beginning email verification
+2024-02-20 09:00:41,099 - INFO - Preparing BL 202402206498 
+2024-02-20 09:00:47,758 - INFO - Email sent for bon de livraison 202402206498
+2024-02-20 13:54:09,337 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-20 13:54:09,338 - INFO - ---------------JOB DOOR-----------------
+2024-02-20 13:54:09,338 - INFO - ---------------INSIDE JOB-----------------
+2024-02-20 13:54:09,338 - INFO - Checking Bon Livraison for today's date...
+2024-02-20 13:54:09,338 - INFO - ---------------this is what i find ----------------
+2024-02-20 13:54:09,339 - INFO - <QuerySet []>
+2024-02-20 13:56:09,143 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-20 13:56:09,144 - INFO - ---------------JOB DOOR-----------------
+2024-02-20 13:56:09,144 - INFO - ---------------INSIDE JOB-----------------
+2024-02-20 13:56:09,144 - INFO - Checking Bon Livraison for today's date...
+2024-02-20 13:56:09,145 - INFO - ---------------this is what i find ----------------
+2024-02-20 13:56:09,145 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402216728----59----2024-02-20 00:00:00+00:00 >]>
+2024-02-20 13:56:09,169 - INFO - Sending email for Bon Livraison ID: 59
+2024-02-20 13:56:09,169 - INFO - Beginning email verification
+2024-02-20 13:56:09,170 - INFO - Preparing BL 202402216728 
+2024-02-20 13:56:12,154 - INFO - Email sent for bon de livraison 202402216728
+2024-02-22 09:00:42,588 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-22 09:00:42,606 - INFO - ---------------JOB DOOR-----------------
+2024-02-22 09:00:42,606 - INFO - ---------------INSIDE JOB-----------------
+2024-02-22 09:00:42,606 - INFO - Checking Bon Livraison for today's date...
+2024-02-22 09:00:42,610 - INFO - ---------------this is what i find ----------------
+2024-02-22 09:00:42,610 - INFO - <QuerySet []>
+2024-02-22 15:04:08,886 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-22 15:04:08,887 - INFO - ---------------JOB DOOR-----------------
+2024-02-22 15:04:08,918 - INFO - ---------------INSIDE JOB-----------------
+2024-02-22 15:04:08,918 - INFO - Checking Bon Livraison for today's date...
+2024-02-22 15:04:08,919 - INFO - ---------------this is what i find ----------------
+2024-02-22 15:04:08,919 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402236962----60----2024-02-22 00:00:00+00:00 >]>
+2024-02-22 15:04:08,950 - INFO - Sending email for Bon Livraison ID: 60
+2024-02-22 15:04:08,950 - INFO - Beginning email verification
+2024-02-22 15:04:08,951 - INFO - Preparing BL 202402236962 
+2024-02-22 15:13:07,677 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-22 15:13:07,677 - INFO - ---------------JOB DOOR-----------------
+2024-02-22 19:53:09,522 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-22 19:53:09,522 - INFO - ---------------JOB DOOR-----------------
+2024-02-22 19:53:09,523 - INFO - ---------------INSIDE JOB-----------------
+2024-02-22 19:53:09,523 - INFO - Checking Bon Livraison for today's date...
+2024-02-22 19:53:09,523 - INFO - ---------------this is what i find ----------------
+2024-02-22 19:53:09,523 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402236962----60----2024-02-22 00:00:00+00:00 >]>
+2024-02-22 19:53:09,565 - INFO - Sending email for Bon Livraison ID: 60
+2024-02-22 19:53:09,565 - INFO - Beginning email verification
+2024-02-22 19:53:09,567 - INFO - Preparing BL 202402236962 
+2024-02-22 19:57:08,117 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-22 19:57:08,118 - INFO - ---------------JOB DOOR-----------------
+2024-02-22 19:57:08,118 - INFO - ---------------INSIDE JOB-----------------
+2024-02-22 19:57:08,118 - INFO - Checking Bon Livraison for today's date...
+2024-02-22 19:57:08,118 - INFO - ---------------this is what i find ----------------
+2024-02-22 19:57:08,119 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402236962----60----2024-02-22 00:00:00+00:00 >]>
+2024-02-22 19:57:08,142 - INFO - Sending email for Bon Livraison ID: 60
+2024-02-22 19:57:08,142 - INFO - Beginning email verification
+2024-02-22 19:57:08,144 - INFO - Preparing BL 202402236962 
+2024-02-22 20:01:21,436 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-22 20:01:21,457 - INFO - ---------------JOB DOOR-----------------
+2024-02-22 20:01:21,457 - INFO - ---------------INSIDE JOB-----------------
+2024-02-22 20:01:21,457 - INFO - Checking Bon Livraison for today's date...
+2024-02-22 20:01:21,458 - INFO - ---------------this is what i find ----------------
+2024-02-22 20:01:21,458 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402236962----60----2024-02-22 00:00:00+00:00 >]>
+2024-02-22 20:01:21,573 - INFO - Sending email for Bon Livraison ID: 60
+2024-02-22 20:01:21,573 - INFO - Beginning email verification
+2024-02-22 20:01:21,577 - INFO - Preparing BL 202402236962 
+2024-02-22 20:12:06,712 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-22 20:12:06,714 - INFO - ---------------JOB DOOR-----------------
+2024-02-22 20:12:06,714 - INFO - ---------------INSIDE JOB-----------------
+2024-02-22 20:12:06,714 - INFO - Checking Bon Livraison for today's date...
+2024-02-22 20:12:06,715 - INFO - ---------------this is what i find ----------------
+2024-02-22 20:12:06,715 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402236962----60----2024-02-22 00:00:00+00:00 >]>
+2024-02-22 20:12:06,748 - INFO - Sending email for Bon Livraison ID: 60
+2024-02-22 20:12:06,748 - INFO - Beginning email verification
+2024-02-22 20:12:06,751 - INFO - Preparing BL 202402236962 
+2024-02-22 20:12:09,534 - INFO - Email sent for bon de livraison 202402236962
+2024-02-22 20:15:20,379 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-22 20:15:20,397 - INFO - ---------------JOB DOOR-----------------
+2024-02-22 20:15:20,398 - INFO - ---------------INSIDE JOB-----------------
+2024-02-22 20:15:20,398 - INFO - Checking Bon Livraison for today's date...
+2024-02-22 20:15:20,399 - INFO - ---------------this is what i find ----------------
+2024-02-22 20:15:20,399 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402191----53----2024-02-22 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402206498----58----2024-02-22 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402236962----60----2024-02-22 00:00:00+00:00 >]>
+2024-02-22 20:15:20,517 - INFO - Sending email for Bon Livraison ID: 53
+2024-02-22 20:15:20,517 - INFO - Beginning email verification
+2024-02-22 20:15:20,520 - INFO - Preparing BL 202402191 
+2024-02-22 20:15:25,559 - INFO - Email sent for bon de livraison 202402191
+2024-02-22 20:15:25,568 - INFO - Sending email for Bon Livraison ID: 58
+2024-02-22 20:15:25,569 - INFO - Beginning email verification
+2024-02-22 20:15:25,571 - INFO - Preparing BL 202402206498 
+2024-02-22 20:15:30,051 - INFO - Email sent for bon de livraison 202402206498
+2024-02-22 20:15:30,069 - INFO - Sending email for Bon Livraison ID: 60
+2024-02-22 20:15:30,070 - INFO - Beginning email verification
+2024-02-22 20:15:30,073 - INFO - Preparing BL 202402236962 
+2024-02-22 20:15:32,644 - INFO - Email sent for bon de livraison 202402236962
+2024-02-23 09:00:44,321 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-23 09:00:44,329 - INFO - ---------------JOB DOOR-----------------
+2024-02-23 09:00:44,330 - INFO - ---------------INSIDE JOB-----------------
+2024-02-23 09:00:44,330 - INFO - Checking Bon Livraison for today's date...
+2024-02-23 09:00:44,330 - INFO - ---------------this is what i find ----------------
+2024-02-23 09:00:44,331 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402237200----61----2024-02-23 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402237442----62----2024-02-23 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402237688----63----2024-02-23 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402237938----64----2024-02-23 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402238192----65----2024-02-23 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402238450----66----2024-02-23 00:00:00+00:00 >]>
+2024-02-23 09:00:44,535 - INFO - Sending email for Bon Livraison ID: 61
+2024-02-23 09:00:44,535 - INFO - Beginning email verification
+2024-02-23 09:00:44,539 - INFO - Preparing BL 202402237200 
+2024-02-23 09:00:51,593 - INFO - Email sent for bon de livraison 202402237200
+2024-02-23 09:00:51,601 - INFO - Sending email for Bon Livraison ID: 62
+2024-02-23 09:00:51,601 - INFO - Beginning email verification
+2024-02-23 09:00:51,603 - INFO - Preparing BL 202402237442 
+2024-02-23 09:00:56,327 - INFO - Email sent for bon de livraison 202402237442
+2024-02-23 09:00:56,334 - INFO - Sending email for Bon Livraison ID: 63
+2024-02-23 09:00:56,335 - INFO - Beginning email verification
+2024-02-23 09:00:56,338 - INFO - Preparing BL 202402237688 
+2024-02-23 09:00:59,942 - INFO - Email sent for bon de livraison 202402237688
+2024-02-23 09:00:59,950 - INFO - Sending email for Bon Livraison ID: 64
+2024-02-23 09:00:59,950 - INFO - Beginning email verification
+2024-02-23 09:00:59,952 - INFO - Preparing BL 202402237938 
+2024-02-23 09:01:04,126 - INFO - Email sent for bon de livraison 202402237938
+2024-02-23 09:01:04,133 - INFO - Sending email for Bon Livraison ID: 65
+2024-02-23 09:01:04,133 - INFO - Beginning email verification
+2024-02-23 09:01:04,135 - INFO - Preparing BL 202402238192 
+2024-02-23 09:01:07,404 - INFO - Email sent for bon de livraison 202402238192
+2024-02-23 09:01:07,413 - INFO - Sending email for Bon Livraison ID: 66
+2024-02-23 09:01:07,413 - INFO - Beginning email verification
+2024-02-23 09:01:07,419 - INFO - Preparing BL 202402238450 
+2024-02-23 09:01:12,249 - INFO - Email sent for bon de livraison 202402238450
+2024-02-23 16:43:07,935 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-23 16:43:07,935 - INFO - ---------------JOB DOOR-----------------
+2024-02-23 16:43:07,936 - INFO - ---------------INSIDE JOB-----------------
+2024-02-23 16:43:07,936 - INFO - Checking Bon Livraison for today's date...
+2024-02-23 16:43:07,936 - INFO - ---------------this is what i find ----------------
+2024-02-23 16:43:07,936 - INFO - <QuerySet []>
+2024-02-23 16:45:20,090 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-23 16:45:20,090 - INFO - ---------------JOB DOOR-----------------
+2024-02-23 16:45:20,090 - INFO - ---------------INSIDE JOB-----------------
+2024-02-23 16:45:20,090 - INFO - Checking Bon Livraison for today's date...
+2024-02-23 16:45:20,091 - INFO - ---------------this is what i find ----------------
+2024-02-23 16:45:20,091 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402238450----66----2024-02-23 00:00:00+00:00 >]>
+2024-02-23 16:45:20,171 - INFO - Sending email for Bon Livraison ID: 66
+2024-02-23 16:45:20,171 - INFO - Beginning email verification
+2024-02-23 16:45:20,177 - INFO - Preparing BL 202402238450 
+2024-02-23 16:49:08,071 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-23 16:49:08,072 - INFO - ---------------JOB DOOR-----------------
+2024-02-23 16:49:08,072 - INFO - ---------------INSIDE JOB-----------------
+2024-02-23 16:49:08,072 - INFO - Checking Bon Livraison for today's date...
+2024-02-23 16:49:08,073 - INFO - ---------------this is what i find ----------------
+2024-02-23 16:49:08,073 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402238450----66----2024-02-23 00:00:00+00:00 >]>
+2024-02-23 16:49:08,127 - INFO - Sending email for Bon Livraison ID: 66
+2024-02-23 16:49:08,127 - INFO - Beginning email verification
+2024-02-23 16:49:08,131 - INFO - Preparing BL 202402238450 
+2024-02-23 17:19:07,866 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-23 17:19:07,866 - INFO - ---------------JOB DOOR-----------------
+2024-02-23 17:19:07,866 - INFO - ---------------INSIDE JOB-----------------
+2024-02-23 17:19:07,866 - INFO - Checking Bon Livraison for today's date...
+2024-02-23 17:19:07,867 - INFO - ---------------this is what i find ----------------
+2024-02-23 17:19:07,867 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402238450----66----2024-02-23 00:00:00+00:00 >]>
+2024-02-23 17:19:07,889 - INFO - Sending email for Bon Livraison ID: 66
+2024-02-23 17:19:07,889 - INFO - Beginning email verification
+2024-02-23 17:19:07,890 - INFO - Preparing BL 202402238450 
+2024-02-23 17:19:10,756 - INFO - Email sent for bon de livraison 202402238450
+2024-02-23 18:21:21,576 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-23 18:21:21,576 - INFO - ---------------JOB DOOR-----------------
+2024-02-23 18:21:21,576 - INFO - ---------------INSIDE JOB-----------------
+2024-02-23 18:21:21,576 - INFO - Checking Bon Livraison for today's date...
+2024-02-23 18:21:21,577 - INFO - ---------------this is what i find ----------------
+2024-02-23 18:21:21,577 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402261----67----2024-02-23 00:00:00+00:00 >]>
+2024-02-23 18:21:21,602 - INFO - Sending email for Bon Livraison ID: 67
+2024-02-23 18:21:21,602 - INFO - Beginning email verification
+2024-02-23 18:21:21,603 - INFO - Preparing BL 202402261 
+2024-02-23 18:25:14,042 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-23 18:25:14,042 - INFO - ---------------JOB DOOR-----------------
+2024-02-23 18:25:14,042 - INFO - ---------------INSIDE JOB-----------------
+2024-02-23 18:25:14,043 - INFO - Checking Bon Livraison for today's date...
+2024-02-23 18:25:14,043 - INFO - ---------------this is what i find ----------------
+2024-02-23 18:25:14,043 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402261----67----2024-02-23 00:00:00+00:00 >]>
+2024-02-23 18:25:14,091 - INFO - Sending email for Bon Livraison ID: 67
+2024-02-23 18:25:14,091 - INFO - Beginning email verification
+2024-02-23 18:25:14,095 - INFO - Preparing BL 202402261 
+2024-02-23 18:25:16,901 - INFO - Email sent for bon de livraison 202402261
+2024-02-24 09:00:46,991 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-24 09:00:47,013 - INFO - ---------------JOB DOOR-----------------
+2024-02-24 09:00:47,014 - INFO - ---------------INSIDE JOB-----------------
+2024-02-24 09:00:47,014 - INFO - Checking Bon Livraison for today's date...
+2024-02-24 09:00:47,022 - INFO - ---------------this is what i find ----------------
+2024-02-24 09:00:47,022 - INFO - <QuerySet []>
+2024-02-25 09:00:42,797 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-25 09:00:42,798 - INFO - ---------------JOB DOOR-----------------
+2024-02-25 09:00:42,798 - INFO - ---------------INSIDE JOB-----------------
+2024-02-25 09:00:42,798 - INFO - Checking Bon Livraison for today's date...
+2024-02-25 09:00:42,799 - INFO - ---------------this is what i find ----------------
+2024-02-25 09:00:42,799 - INFO - <QuerySet []>
+2024-02-26 09:00:43,746 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-26 09:00:43,747 - INFO - ---------------JOB DOOR-----------------
+2024-02-26 09:00:43,749 - INFO - ---------------INSIDE JOB-----------------
+2024-02-26 09:00:43,749 - INFO - Checking Bon Livraison for today's date...
+2024-02-26 09:00:43,750 - INFO - ---------------this is what i find ----------------
+2024-02-26 09:00:43,750 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402261----68----2024-02-26 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402269248----69----2024-02-26 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402269522----70----2024-02-26 00:00:00+00:00 >]>
+2024-02-26 09:00:43,993 - INFO - Sending email for Bon Livraison ID: 68
+2024-02-26 09:00:43,994 - INFO - Beginning email verification
+2024-02-26 09:00:43,997 - INFO - Preparing BL 202402261 
+2024-02-26 09:00:52,412 - INFO - Email sent for bon de livraison 202402261
+2024-02-26 09:00:52,426 - INFO - Sending email for Bon Livraison ID: 69
+2024-02-26 09:00:52,427 - INFO - Beginning email verification
+2024-02-26 09:00:52,429 - INFO - Preparing BL 202402269248 
+2024-02-26 09:00:58,379 - INFO - Email sent for bon de livraison 202402269248
+2024-02-26 09:00:58,384 - INFO - Sending email for Bon Livraison ID: 70
+2024-02-26 09:00:58,384 - INFO - Beginning email verification
+2024-02-26 09:00:58,386 - INFO - Preparing BL 202402269522 
+2024-02-26 09:01:03,679 - INFO - Email sent for bon de livraison 202402269522
+2024-02-26 15:40:12,833 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-26 15:40:12,834 - INFO - ---------------JOB DOOR-----------------
+2024-02-26 15:40:12,834 - INFO - ---------------INSIDE JOB-----------------
+2024-02-26 15:40:12,834 - INFO - Checking Bon Livraison for today's date...
+2024-02-26 15:40:12,835 - INFO - ---------------this is what i find ----------------
+2024-02-26 15:40:12,835 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402261----68----2024-02-26 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402269248----69----2024-02-26 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 202402269522----70----2024-02-26 00:00:00+00:00 >]>
+2024-02-26 15:40:12,928 - INFO - Sending email for Bon Livraison ID: 68
+2024-02-26 15:40:12,928 - INFO - Beginning email verification
+2024-02-26 15:40:12,929 - INFO - Preparing BL 202402261 
+2024-02-26 15:40:17,492 - INFO - Email sent for bon de livraison 202402261
+2024-02-26 15:40:17,497 - INFO - Sending email for Bon Livraison ID: 69
+2024-02-26 15:40:17,497 - INFO - Beginning email verification
+2024-02-26 15:40:17,502 - INFO - Preparing BL 202402269248 
+2024-02-26 15:40:20,414 - INFO - Email sent for bon de livraison 202402269248
+2024-02-26 15:40:20,425 - INFO - Sending email for Bon Livraison ID: 70
+2024-02-26 15:40:20,425 - INFO - Beginning email verification
+2024-02-26 15:40:20,432 - INFO - Preparing BL 202402269522 
+2024-02-26 15:40:23,508 - INFO - Email sent for bon de livraison 202402269522
+2024-02-27 09:00:46,475 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-27 09:00:46,481 - INFO - ---------------JOB DOOR-----------------
+2024-02-27 09:00:46,481 - INFO - ---------------INSIDE JOB-----------------
+2024-02-27 09:00:46,482 - INFO - Checking Bon Livraison for today's date...
+2024-02-27 09:00:46,482 - INFO - ---------------this is what i find ----------------
+2024-02-27 09:00:46,482 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 202402279800----75----2024-02-27 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 2024022711250----76----2024-02-27 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 2024022711552----77----2024-02-27 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 2024022711858----78----2024-02-27 00:00:00+00:00 >]>
+2024-02-27 09:00:46,790 - INFO - Sending email for Bon Livraison ID: 75
+2024-02-27 09:00:46,790 - INFO - Beginning email verification
+2024-02-27 09:00:46,798 - INFO - Preparing BL 202402279800 
+2024-02-27 09:00:55,097 - INFO - Email sent for bon de livraison 202402279800
+2024-02-27 09:00:55,107 - INFO - Sending email for Bon Livraison ID: 76
+2024-02-27 09:00:55,107 - INFO - Beginning email verification
+2024-02-27 09:00:55,111 - INFO - Preparing BL 2024022711250 
+2024-02-27 09:01:00,455 - INFO - Email sent for bon de livraison 2024022711250
+2024-02-27 09:01:00,475 - INFO - Sending email for Bon Livraison ID: 77
+2024-02-27 09:01:00,475 - INFO - Beginning email verification
+2024-02-27 09:01:00,480 - INFO - Preparing BL 2024022711552 
+2024-02-27 09:01:04,677 - INFO - Email sent for bon de livraison 2024022711552
+2024-02-27 09:01:04,701 - INFO - Sending email for Bon Livraison ID: 78
+2024-02-27 09:01:04,701 - INFO - Beginning email verification
+2024-02-27 09:01:04,705 - INFO - Preparing BL 2024022711858 
+2024-02-27 09:01:10,365 - INFO - Email sent for bon de livraison 2024022711858
+2024-02-27 11:02:11,107 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-27 11:02:11,108 - INFO - ---------------JOB DOOR-----------------
+2024-02-27 11:02:11,108 - INFO - ---------------INSIDE JOB-----------------
+2024-02-27 11:02:11,108 - INFO - Checking Bon Livraison for today's date...
+2024-02-27 11:02:11,109 - INFO - ---------------this is what i find ----------------
+2024-02-27 11:06:12,196 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-27 11:06:12,198 - INFO - ---------------JOB DOOR-----------------
+2024-02-27 11:06:12,199 - INFO - ---------------INSIDE JOB-----------------
+2024-02-27 11:06:12,199 - INFO - Checking Bon Livraison for today's date...
+2024-02-27 11:06:12,200 - INFO - ---------------this is what i find ----------------
+2024-02-27 11:06:12,200 - INFO - <QuerySet []>
+2024-02-27 11:19:08,532 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-27 11:19:08,532 - INFO - ---------------JOB DOOR-----------------
+2024-02-27 11:19:08,532 - INFO - ---------------INSIDE JOB-----------------
+2024-02-27 11:19:08,532 - INFO - Checking Bon Livraison for today's date...
+2024-02-27 11:19:08,533 - INFO - ---------------this is what i find ----------------
+2024-02-27 11:19:08,533 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 2024022812800----81----2024-02-27 00:00:00+00:00 >]>
+2024-02-27 11:19:08,604 - INFO - Sending email for Bon Livraison ID: 81
+2024-02-27 11:19:08,604 - INFO - Beginning email verification
+2024-02-27 11:19:08,607 - INFO - Preparing BL 2024022812800 
+2024-02-27 11:19:11,171 - INFO - Email sent for bon de livraison 2024022812800
+2024-02-28 09:00:43,861 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-28 09:00:43,863 - INFO - ---------------JOB DOOR-----------------
+2024-02-28 09:00:43,863 - INFO - ---------------INSIDE JOB-----------------
+2024-02-28 09:00:43,864 - INFO - Checking Bon Livraison for today's date...
+2024-02-28 09:00:43,865 - INFO - ---------------this is what i find ----------------
+2024-02-28 09:00:43,865 - INFO - <QuerySet [<Bon_Livraison: Bon_Livraison for 2024022812168----85----2024-02-28 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 2024022814450----86----2024-02-28 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 2024022815138----89----2024-02-28 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 2024022815842----90----2024-02-28 00:00:00+00:00 >, <Bon_Livraison: Bon_Livraison for 2024022816562----92----2024-02-28 00:00:00+00:00 >]>
+2024-02-28 09:00:44,145 - INFO - Sending email for Bon Livraison ID: 85
+2024-02-28 09:00:44,145 - INFO - Beginning email verification
+2024-02-28 09:00:44,155 - INFO - Preparing BL 2024022812168 
+2024-02-28 09:00:52,320 - INFO - Email sent for bon de livraison 2024022812168
+2024-02-28 09:00:52,332 - INFO - Sending email for Bon Livraison ID: 86
+2024-02-28 09:00:52,332 - INFO - Beginning email verification
+2024-02-28 09:00:52,335 - INFO - Preparing BL 2024022814450 
+2024-02-28 09:00:56,354 - INFO - Email sent for bon de livraison 2024022814450
+2024-02-28 09:00:56,368 - INFO - Sending email for Bon Livraison ID: 89
+2024-02-28 09:00:56,369 - INFO - Beginning email verification
+2024-02-28 09:00:56,374 - INFO - Preparing BL 2024022815138 
+2024-02-28 09:01:01,002 - INFO - Email sent for bon de livraison 2024022815138
+2024-02-28 09:01:01,009 - INFO - Sending email for Bon Livraison ID: 90
+2024-02-28 09:01:01,009 - INFO - Beginning email verification
+2024-02-28 09:01:01,011 - INFO - Preparing BL 2024022815842 
+2024-02-28 09:01:07,722 - INFO - Email sent for bon de livraison 2024022815842
+2024-02-28 09:01:07,733 - INFO - Sending email for Bon Livraison ID: 92
+2024-02-28 09:01:07,733 - INFO - Beginning email verification
+2024-02-28 09:01:07,735 - INFO - Preparing BL 2024022816562 
+2024-02-28 09:01:14,843 - INFO - Email sent for bon de livraison 2024022816562
+2024-02-29 09:00:38,653 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-02-29 09:00:38,669 - INFO - ---------------JOB DOOR-----------------
+2024-02-29 09:00:38,669 - INFO - ---------------INSIDE JOB-----------------
+2024-02-29 09:00:38,670 - INFO - Checking Bon Livraison for today's date...
+2024-02-29 09:00:38,675 - INFO - ---------------this is what i find ----------------
+2024-02-29 09:00:38,675 - INFO - <QuerySet []>
+2024-03-01 09:00:44,574 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-03-01 09:00:44,582 - INFO - ---------------JOB DOOR-----------------
+2024-03-01 09:00:44,582 - INFO - ---------------INSIDE JOB-----------------
+2024-03-01 09:00:44,582 - INFO - Checking Bon Livraison for today's date...
+2024-03-01 09:00:44,583 - INFO - ---------------this is what i find ----------------
+2024-03-01 09:00:44,583 - INFO - <QuerySet []>
+2024-03-02 09:00:41,822 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-03-02 09:00:41,823 - INFO - ---------------JOB DOOR-----------------
+2024-03-02 09:00:41,823 - INFO - ---------------INSIDE JOB-----------------
+2024-03-02 09:00:41,823 - INFO - Checking Bon Livraison for today's date...
+2024-03-02 09:00:41,824 - INFO - ---------------this is what i find ----------------
+2024-03-02 09:00:41,824 - INFO - <QuerySet []>
+2024-03-03 09:00:43,276 - INFO - ---------------Starting fetching data to send by email-----------------
+2024-03-03 09:00:43,279 - INFO - ---------------JOB DOOR-----------------
+2024-03-03 09:00:43,279 - INFO - ---------------INSIDE JOB-----------------
+2024-03-03 09:00:43,279 - INFO - Checking Bon Livraison for today's date...
+2024-03-03 09:00:43,280 - INFO - ---------------this is what i find ----------------
+2024-03-03 09:00:43,280 - INFO - <QuerySet []>

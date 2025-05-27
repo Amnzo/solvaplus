@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} BL app {% endblock %}
+
 
 {% block content %}
 <style>
@@ -10,8 +10,12 @@
 <div class="container mt-4">
     <div class="container">
         <div class="card">
-            <div class="card-header" style="background-color: #4CAF50; color: white;">
-                <h2 class="mb-0">MODIFICATION SOCIÉTÉ - INFORMATIONS</h2>
+            <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #3879f3; color: white;">
+                <h2 class="mb-0">MODIFICATION SOCIÉTÉ - INFORMATIONS </h2>
+
+                    <a href="{% url 'parametrage' %}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-cog"></i>PARAMÈTRES DE MESSAGERIE
+                </a>
             </div>
             <div class="card-body">
                 <form method="post" enctype="multipart/form-data" id="companyForm">
@@ -35,18 +39,22 @@
                         <div class="col-md-4">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" id="{{ form.nom1.id_for_label }}" name="{{ form.nom1.name }}" value="{{ form.nom1.value }}" required oninput="this.value = this.value.toUpperCase()">
+                                    <input type="text" class="form-control" id="{{ form.nom1.id_for_label }}" name="{{ form.nom1.name }}" value="{{ form.nom1.value }}" >
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <input type="text" class="form-control" id="{{ form.nom2.id_for_label }}" name="{{ form.nom2.name }}" value="{{ form.nom2.value }}" required oninput="this.value = this.value.toUpperCase()">
+
+                                    <input type="text" class="form-control" id="{{ form.nom2.id_for_label }}" name="{{ form.nom2.name }}" value="{{ form.nom2.value }}" >
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label for="{{ form.designation.id_for_label }}" class="form-label"> CODE CLIENT:</label>
-                            <input type="number" class="form-control" id="{{ form.code_client.id_for_label }}" name="{{ form.code_client.name }}" value={{form.code_client.value}} required oninput="this.value = this.value.toUpperCase()">
+
+
+
+                            <input type="number" class="form-control" id="{{ form.code_client.id_for_label }}" name="{{ form.code_client.name }}" value={{form.code_client.value}} required >
                         </div>
                     </div>
                     <div class="row">
@@ -54,14 +62,19 @@
                             <label for="{{ form.logo.id_for_label }}" class="form-label d-block">Change Logo:</label>
                             <input type="file" class="form-control" id="{{ form.logo.id_for_label }}" name="{{ form.logo.name }}" onchange="previewLogo()">
                         </div>
-                        <div class="col-md-2"></div>
+                        <div class="col-md-2">TVA :<input type="text" class="form-control" id="{{ form.tva.id_for_label }}" name="{{ form.tva.name }}" value="{{ form.tva.value }}" required ></div>
+
                         <div class="col-md-5">
-                            BOITE D'ENVOI :  <input type="text" class="form-control" id="{{ form.boite_envoi.id_for_label }}" name="{{ form.boite_envoi.name }}" value="{{ form.boite_envoi.value }}" required >
+                           MOT DE PASSE PDF:  <input type="text" class="form-control" id="{{ form.pdf_pwd.id_for_label }}" name="{{ form.pdf_pwd.name }}" value="{{ form.pdf_pwd.value }}" required >
                         </div>
+                        <div class="col-md-1">
+                            <input type="hidden" class="form-control" id="{{ form.boite_envoi.id_for_label }}" name="{{ form.boite_envoi.name }}" value="{{ form.boite_envoi.value }}" required >
+                        </div>
+
                     </div><br>
                     <div class="row">
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="{{ form.ligne1.id_for_label }}" name="{{ form.ligne1.name }}" value="{{ form.ligne1.value }}" required oninput="this.value = this.value.toUpperCase()">
+                            <input type="text" class="form-control" id="{{ form.ligne1.id_for_label }}" name="{{ form.ligne1.name }}" value="{{ form.ligne1.value }}" >
                         </div>
                         <div class="col-md-2"></div>
                         <div class="col-md-5">
@@ -69,30 +82,43 @@
                         </div>
 
                     </div>
+
                     <div class="row">
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="{{ form.ligne2.id_for_label }}" name="{{ form.ligne2.name }}" value="{{ form.ligne2.value }}" required oninput="this.value = this.value.toUpperCase()">
+                            <input type="text" class="form-control" id="{{ form.ligne2.id_for_label }}" name="{{ form.ligne2.name }}" value="{{ form.ligne2.value }}" >
                         </div>
 
 
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="{{ form.ligne3.id_for_label }}" name="{{ form.ligne3.name }}" value="{{ form.ligne3.value }}" required oninput="this.value = this.value.toUpperCase()">
+                            <input type="text" class="form-control" id="{{ form.ligne3.id_for_label }}" name="{{ form.ligne3.name }}" value="{{ form.ligne3.value }}" >
                         </div>
 
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="{{ form.ligne4.id_for_label }}" name="{{ form.ligne4.name }}" value="{{ form.ligne4.value }}" required oninput="this.value = this.value.toUpperCase()">
+                            <input type="text" class="form-control" id="{{ form.pays.id_for_label }}" name="{{ form.pays.name }}" value="{{ form.pays.value }}" >
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="{{ form.telephone.id_for_label }}" name="{{ form.telephone.name }}" value="{{ form.telephone.value }}" >
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="text" class="form-control" id="{{ form.ligne4.id_for_label }}" name="{{ form.ligne4.name }}" value="{{ form.ligne4.value }}" >
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <input type="text" class="form-control" id="{{ form.ligne5.id_for_label }}" name="{{ form.ligne5.name }}" value="{{ form.ligne5.value }}" required oninput="this.value = this.value.toUpperCase()">
+                            <input type="text" class="form-control" id="{{ form.ligne5.id_for_label }}" name="{{ form.ligne5.name }}" value="{{ form.ligne5.value }}" >
                         </div>
                     </div><br>
-                    <button type="submit" class="btn btn-primary">VALIDER CHANGEMENT</button>
+                    <button type="submit" class="btn btn-primary ">VALIDER CHANGEMENT</button>
                 </form>
             </div>
         </div>

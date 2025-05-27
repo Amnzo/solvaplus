@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+
+{% block extra_css %}
+    <!-- Add this to your head section -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+{% endblock %}
+
+{% block content %}
+<style>
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+</style>
+    <div class="container mt-4">
+
+
+        <div class="container">
+
+
+
+            <div class="card">
+                <div class="card-header" style="background-color: #3879f3; color: white;">
+                    <h2 class="mb-0">CONSULTATION SUR PERIODE DONNEE</h2>
+                </div>
+                <div class="card-body">
+                    <form id="searchForm" class="mb-4" method="post" action="">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="startDate" class="sr-only">Date de début :</label>
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input type="text" class="form-control" id="startDate" name="startDate" placeholder="Date de début" value="{{ start_date|date:'d-m-Y'  }}" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="endDate" class="sr-only">Date de fin :</label>
+                                <div class="input-group date" data-provide="datepicker">
+                                    <input type="text" class="form-control" id="endDate" name="endDate" placeholder="Date de fin" value="{{ end_date|date:'d-m-Y'  }}" required>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </form>
+
+                                            {% if nombre_bons > 0 %}
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>DATE </th>
+                                        <th>PERIODE CONCERNE</th>
+                                        <th>NOMBRES DE BL </th>
+                                        <th>ACTION</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ displayed_day }}</td>
+                                        <td>DE [{{ start_date|date:'d-m-Y' }}] A [{{ end_date|date:'d-m-Y' }}]</td>
+                                        <td>{{ nombre_bons }}</td>
+                                        <td>
+                                            <a href="{% url 'generate_facture' %}?bon_ids={{ bon_ids }}&num_facture={{ numero_facture }}&date_facture={{ displayed_day }}" class="text-primary"><i class="bi bi-download"></i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        {% endif %}
+
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block extra_js %}
+    <!-- Add this to your head section -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Initialize datepicker
+            $('.date').datepicker({
+                format: 'dd-mm-yyyy',
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            // Use the submit event on the form
+            $('#searchForm').on('submit', function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                var startDate = $('#startDate').val();
+                var endDate = $('#endDate').val();
+
+                // Manually submit the form
+                this.submit();
+            });
+        });
+    </script>
+{% endblock %}
+

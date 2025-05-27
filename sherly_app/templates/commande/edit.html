@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %} BL app {% endblock %}
+
 
 {% block content %}
 <style>
@@ -48,7 +48,8 @@
     }
 
 </style>
-<form method="post">
+<form method="post"  id="myForm">
+
     {% csrf_token %}
     <div class="container custom-container">
         <!-- First row with logo and two text columns -->
@@ -76,14 +77,15 @@
                 <table class="table">
                     <thead class="thead-dark custom-table-header">
                         <tr>
-                            <th scope="col">N<sup>o</sup> BL</th>
-                            <th scope="col">DATE</th>
+                            <th scope="col">{{table.t1c1}}</th>
+                            <th scope="col"><input type="text" name="date" value="{{table.date}}" class="form-label"></th>
+
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td><input type="text" name="no_bl" value="{{bon_livraison.no_bl}}" class="form-label"></td>
-                          
+
                             <td>
                             <input type="date" name="date_de_bl" value="{{ bon_livraison.date_de_bl|date:'Y-m-d' }}"></td>
                         </tr>
@@ -98,11 +100,13 @@
 
                     <div class="col-md-6">
                         <div class="text-container">
-                            <p >{{societe.ligne1}}</p>
-                            <p >{{societe.ligne2}}</p>
-                            <p >{{societe.ligne3}}</p>
-                            <p >{{societe.ligne4}}</p>
-                            <p >{{societe.ligne5}}</p>
+                           <div>{{societe.ligne1}}</div>
+                                    <div>{{societe.ligne2}}</div>
+                                    <div>{{societe.ligne3}}</div>
+                                    <div>{{societe.pays}}</div>
+                                    <div>{{societe.telephone}}</div>
+                                    <div>{{societe.ligne4}}</div>
+                                    <div>{{societe.ligne5}}</div>
                         </div>
                     </div>
                 </div>
@@ -117,7 +121,8 @@
                     <table class="table" >
                         <thead class="thead-dark custom-table-header">
                             <tr>
-                                <th scope="col">LIVRE A</th>
+
+                                 <th scope="col"><input type="text" name="livre_a" value="{{ table.livre_a }}" class="form-label"></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -143,7 +148,7 @@
             <table class="table">
                 <thead class="thead-dark custom-table-header">
                     <tr>
-                        <th scope="col">INFORMATION  ACHETEUR</th>
+                         <th scope="col"><input type="text" name="information_acheteur" value="{{ table.information_acheteur}}" class="form-label"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -173,19 +178,22 @@
             <table class="table">
                 <thead class="thead-dark custom-table-header">
                     <tr>
-                        <th scope="col">N<sup>o</sup> BL</th>
-                        <th scope="col">DATE BL</th>
-                        <th scope="col">N<sup>o</sup> CMDE</th>
-                        <th scope="col">DATE CMDE</th>
-                        <th scope="col">CODE CLIENT</th>
+                    <th scope="col"><input type="text" name="t1c1" value="{{ table.t1c1|default_if_none:''|striptags }}" class="form-label"></th>
+                    <th scope="col"><input type="text" name="t1c2" value="{{ table.t1c2|default_if_none:''|striptags }}" class="form-label"></th>
+                        <th scope="col"><input type="text" name="t1c3" value="{{ table.t1c3|default_if_none:''|striptags }}" class="form-label"></th>
+                        <th scope="col"><input type="text" name="t1c4" value="{{ table.t1c4|default_if_none:''|striptags }}" class="form-label"></th>
+                        <th scope="col"><input type="text" name="t1c5" value="{{ table.t1c5|default_if_none:''|striptags }}" class="form-label"></th>
+                        <th scope="col"><input type="text" name="t1c6" value="{{ table.t1c6|default_if_none:''|striptags }}" class="form-label"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{ bon_livraison.no_bl}}</td>
                         <td>{{ bon_livraison.date_de_bl   | date:"d-m-Y"}}</td>
-                        <td>{{ bon_livraison.bon_commande.no_cmde }}</td>
-                        <td>{{ bon_livraison.bon_commande.date_de_cmd  | date:"d-m-Y"}}</td>
+                        <td><input type="text" name="no_cmde" value="{{ bon_livraison.bon_commande.no_cmde }}" class="form-label"></td>
+                        <td><input type="date" name="date_de_cmd" value="{{ bon_livraison.bon_commande.date_de_cmd|date:'Y-m-d' }}"></td>
+                         <td><input type="text" name="client" value="{{bon_livraison.bon_commande.client}}" class="form-label" required oninput="this.value = this.value.toUpperCase()"></td>
+
                         <td><input type="text" name="code_client" value="{{societe.code_client}}" class="form-label"></td>
 
 
@@ -202,44 +210,49 @@
             <table class="table">
                 <thead class="thead-dark custom-table-header">
                     <tr>
-                        <th scope="col">Référence</th>
-                                    <th scope="col">Désignation</th>
-                                    <th scope="col">Conditionnement</th>
-                                    <th scope="col">Diamètre </th>
-                                    <th scope="col">Rayon</th>
-                                    <th scope="col">Sphère </th>
-                                    <th scope="col">Cylindre</th>
-                                    <th scope="col">Axe</th>
-                                    <th scope="col">Oeil <br>D/G</th>
-                                    <th scope="col">Porteur</th>
-                                    <th scope="col">Qte</th>
+        <th scope="col"><input type="text" name="t2c1" value="{{ table.t2c1|default_if_none:''|striptags }}" class="form-label"></th>
+        <th scope="col"><input type="text" name="t2c2" value="{{ table.t2c2|default_if_none:''|striptags }}" class="form-label"></th>
+        <th scope="col"><input type="text" name="t2c3" value="{{ table.t2c3|default_if_none:''|striptags }}" class="form-label"></th>
+        <th scope="col" class="col4-small"><input type="text" name="t2c4" value="{{ table.t2c4|default_if_none:''|striptags }}" class="form-label"></th>
+        <th scope="col"><input type="text" name="t2c5" value="{{ table.t2c5|default_if_none:''|striptags }}" class="form-label"></th>
+        <th scope="col"><input type="text" name="t2c6" value="{{ table.t2c6|default_if_none:''|striptags }}" class="form-label"></th>
+        <th scope="col"><input type="text" name="t2c7" value="{{ table.t2c7|default_if_none:''|striptags }}" class="form-label"></th>
+        <th scope="col"><input type="text" name="t2c8" value="{{ table.t2c8|default_if_none:''|striptags }}" class="form-label"></th>
+        <th scope="col"><input type="text" name="t2add" value="{{ table.t2add|default_if_none:''|striptags }}" class="form-label"></th>
+
+        <th scope="col"><input type="text" name="t2c9" value="{{ table.t2c9|default_if_none:''|striptags }}" class="form-label"><br>
+        <input type="text" name="t2c9_g_d" value="{{ table.t2c9_g_d|default_if_none:''|striptags }}" class="form-label">
+        </th>
+         <th scope="col"><input type="text" name="t2c10" value="{{ table.t2c10|default_if_none:''|striptags }}" class="form-label"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>{{ bon_livraison.bon_commande.produit_d.reference}}</td>
                         <td>{{ bon_livraison.bon_commande.produit_d.designation}}</td>
-                        <td>Boite de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
+                        <td>Caja de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
                         <td></td>
                         <td></td>
                         <td><input type="text" name="sphere_d" value="{{bon_livraison.bon_commande.sphere_d}}" class="form-label"></td>
                         <td><input type="text" name="cylindre_d" value="{{bon_livraison.bon_commande.cylindre_d}}" class="form-label"></td>
                         <td><input type="text" name="axe_d" value="{{bon_livraison.bon_commande.axe_d}}" class="form-label"></td>
-                        <td>DROIT</td>
-                        <td>{{bon_livraison.bon_commande.client}}</td>
+                        <td><input type="text" name="add_d" value="{{bon_livraison.bon_commande.add_d}}" class="form-label"></td>
+                        <td>DERECHO</td>
+
                         <td><input type="text" name="quatite_d" value="{{bon_livraison.bon_commande.quatite_d}}" class="form-label"></td>
                     </tr>
                     <tr>
                         <td>{{ bon_livraison.bon_commande.produit_g.reference}}</td>
                         <td>{{ bon_livraison.bon_commande.produit_g.designation}}</td>
-                        <td>Boite de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
+                        <td>Caja de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
                         <td></td>
                         <td></td>
                         <td><input type="text" name="sphere_g" value="{{bon_livraison.bon_commande.sphere_g}}" class="form-label"></td>
                         <td><input type="text" name="cylindre_g" value="{{bon_livraison.bon_commande.cylindre_g}}" class="form-label"></td>
                         <td><input type="text" name="axe_g" value="{{bon_livraison.bon_commande.axe_g}}" class="form-label"></td>
-                        <td>GAUCHE</td>
-                        <td>{{bon_livraison.bon_commande.client}}</td>
+                        <td><input type="text" name="add_g" value="{{bon_livraison.bon_commande.add_g}}" class="form-label"></td>
+                        <td>IZQUIERDO</td>
+
                         <td><input type="text" name="quatite_g" value="{{bon_livraison.bon_commande.quatite_g}}" class="form-label"></td>
 
                     </tr>
@@ -268,11 +281,35 @@
     </div>
 
 
-    <button type="submit" class="btn btn-success btn-block">VALIDER MODIFICATION</button>
+    <button type="submit" class="btn btn-primary btn-block">VALIDER MODIFICATION</button>
 
     </div>
 
 <form>
+
+{% endblock %}
+{% block extra_js %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('#myForm input, #myForm textarea').forEach(function(element) {
+            element.addEventListener("keydown", function(event) {
+                // Vérifier si la touche pressée est la touche Entrée
+                if (event.key === 'Enter') {
+                    // Empêcher la soumission du formulaire
+                    event.preventDefault();
+                }
+            });
+        });
+
+        document.getElementById("submitButton").addEventListener("click", function() {
+            // Soumettre le formulaire lorsque l'utilisateur clique sur votre bouton spécial
+            document.getElementById("myForm").submit();
+        });
+    });
+</script>
+
+
 
 {% endblock %}
 

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<style>
+
+</style>
+
+<div class="container mt-4">
+    <div class="container">
+        <div class="card">
+
+
+            <div class="card-header d-flex align-items-center justify-content-between" style="background-color: #3879f3; color: white;">
+                <h2 class="mb-0">PARAMÈTRAGE DE MESSAGERIE</h2>
+
+            </div>
+            <div class="card-body">
+
+
+
+                <form method="post">
+                    {% csrf_token %}
+                    {% if form.errors %}
+                    <div class="alert alert-danger">
+                        <strong>Erreur:</strong> Veuillez corriger les erreurs ci-dessous.
+                        <ul>
+                            {% for field, error_list in form.errors.items %}
+                            {% for error in error_list %}
+                            <li>{{ error }}</li>
+                            {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    <!-- Row 1 -->
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="famille">BOITE D'ENVOI </label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="email" name="email" value="{{ parametrage.EMAIL_HOST_USER }}" required >
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="famille">MOT DE PASSE GENERE</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="password" name="password" value="{{ parametrage.EMAIL_HOST_PASSWORD }}" required >
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+                    <button type="submit" class="btn btn-primary btn-block">MODIFIER</button>
+                </form>
+
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

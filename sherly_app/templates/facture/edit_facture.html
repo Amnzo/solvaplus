@@ -1,0 +1,404 @@
+
+
+{% load custom_filters %}
+
+
+<style>
+
+.roww {
+  display: flex;
+  flex: 1;
+}
+
+.columnn {
+  display: flex; /* Use flexbox for column items */
+  flex-direction: column; /* Arrange items vertically */
+  flex-grow: 1;
+}
+
+.contentt {
+  border: 1px solid;
+  padding: 10px;
+  background-color: #888;
+  flex-grow: 1; /* Ensure content fills available space */
+}
+
+.separatorr {
+  width: 5%; /* Adjust width for separator */
+}
+    .text-container p {
+        margin-bottom: 0;
+    }
+
+
+    .custom-table-header th {
+        font-size: 14px; /* Adjust the font size as needed */
+    }
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    .table th, .table td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    .thead-dark {
+        background-color: #343a40;
+        color: white;
+    }
+    .no-border td, .no-border th {
+        border: none;
+    }
+
+
+    .form-label {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+}
+
+    .custom-border {
+        border: 2px solid #0e0d0d; /* Adjust the border properties as needed */
+        padding: 10px; /* Add padding inside the border if desired */
+    }
+
+    .custom-table td,
+    .custom-table th {
+        font-size: 16px; /* Adjust the font size as needed */
+    }
+
+    .custom-table .col4-small,
+    .custom-table .col4-small input.form-label {
+        width: 70px;/* Adjust the font size as needed */
+    }
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    max-width: 500px; /* Adjust the max-width as needed */
+    margin: auto; /* Center the card horizontally */
+}
+
+.card-header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+    padding: 5px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+
+
+</style>
+<form method="post" id="myForm">
+    {% csrf_token %}
+
+    <div class="center-container">
+        <div class="cadre">
+            <div class="container custom-container">
+                <!-- First row with logo and two text columns -->
+
+                    <input type="hidden" name="invoice_id" value="{{ invoice.id }}" class="form-label">
+                <table>
+                    <tr>
+                        <td style="width: 15%;" >
+
+                            <img src="data:image/png;base64,{{ logo_base64 }}" alt="Company Logo" style="max-width: 100%; height: auto;">
+                        </td>
+                        <td style="width: 33%; text-align: left;" class="custom-background-color2"> <!-- Set text alignment to left -->
+                            <div class="text-container">
+                                <span class="larger-text">{{ societe.nom1 }}</span> <br>
+                                <span class="smaller-text">{{ societe.nom2 }}</span>
+                            </div>
+                        </td>
+                        <td style="width: 33%;">
+                            <!-- Content for the third column -->
+                            <table class="table inner-table">
+                                <thead class="thead-dark custom-table-header">
+                                    <tr>
+                                        <br>
+                                        <th scope="col">
+                                         <input type="text" name="n_facture" value="{{facture.n_facture|default_if_none:''|striptags }}" class="form-label">
+                                        </th>
+                                        <th scope="col"><input type="text" name="date" value="{{facture.date|default_if_none:''|striptags }}" class="form-label"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" name="num_facture" value="{{num_facture }}" class="form-label"></td>
+                                        <td>{{ date_facture }}</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="row custom-background-color2">
+                            <div class="col-md-6">
+                                <div class="text-container">
+                                    <div>{{societe.ligne1}}</div>
+                                    <div>{{societe.ligne2}}</div>
+                                    <div>{{societe.ligne3}}</div>
+                                    <div>{{societe.pays}}</div>
+                                    <div>{{societe.telephone}}</div>
+                                    <div>{{societe.ligne4}}</div>
+                                    <div>{{societe.ligne5}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <br/>
+                <table class="table no-border">
+                    <tr>
+                        <td></td>
+
+                        <td style="width: 33%;">
+                            <!-- Content -->
+                            <table class="table inner-table">
+                                <thead class="thead-dark custom-table-header">
+                                    <tr><br><br>
+                                        <th scope="col"><input type="text" name="facture_a" value="{{facture.facture_a|default_if_none:''|striptags }}" class="form-label"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: left; border: 1px solid #dddddd; padding: 8px;">
+
+
+                                <input type="text" name="facture1" value="{{ facture.facture1 }}" class="form-label"><br>
+                                <input type="text" name="facture2" value="{{ facture.facture2 }}" class="form-label"><br>
+                                <input type="text" name="facture3" value="{{ facture.facture3 }}" class="form-label"><br>
+                                <input type="text" name="facture4" value="{{ facture.facture4 }}" class="form-label"><br>
+                                <input type="text" name="facture5" value="{{ facture.facture5 }}" class="form-label"><br>
+                                <input type="text" name="facture6" value="{{ facture.facture6 }}" class="form-label"><br>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                </table><br>
+
+
+                <div class="row ">
+                    <div class="col-md-12">
+                        <table class="table custom-table">
+                            <thead class="thead-dark custom-table-header">
+                                <tr>
+                                    <th scope="col"><input type="text" name="col1" value="{{ facture.col1|default_if_none:''|striptags }}" class="form-label"></th>
+<th scope="col"><input type="text" name="col2" value="{{ facture.col2|default_if_none:''|striptags }}" class="form-label"></th>
+<th scope="col"><input type="text" name="col3" value="{{ facture.col3|default_if_none:''|striptags }}" class="form-label"></th>
+<th scope="col" class="col4-small"><input type="text" name="col4" value="{{ facture.col4|default_if_none:''|striptags }}" class="form-label"></th>
+<th scope="col"><input type="text" name="col5" value="{{ facture.col5|default_if_none:''|striptags }}" class="form-label"></th>
+<th scope="col"><input type="text" name="col6" value="{{ facture.col6|default_if_none:''|striptags }}" class="form-label"></th>
+<th scope="col"><input type="text" name="col7" value="{{ facture.col7|default_if_none:''|striptags }}" class="form-label"></th>
+<th scope="col"><input type="text" name="col8" value="{{ facture.col8|default_if_none:''|striptags }}" class="form-label"></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for bon_livraison in bons_livraison %}
+                                <tr>
+                                    <td>
+                                        <div>ENTREGA N&ordm;: {{bon_livraison.no_bl}} del {{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</div>
+                                        <div >&nbsp;</div>
+                                        <div>Referencia del paciente : {{bon_livraison.bon_commande.client}} </div>
+                                        <div>&nbsp;</div>
+                                          <div> {{bon_livraison.bon_commande.produit_d.designation}}</div>
+                                            <div> {{bon_livraison.bon_commande.sphere_d}} ({{bon_livraison.bon_commande.cylindre_d}}) Eje {{bon_livraison.bon_commande.axe_d }}° ({{bon_livraison.bon_commande.add_d}}) </div>
+                                            <div >&nbsp;</div>
+
+                                            <div> {{bon_livraison.bon_commande.produit_g.designation}}</div>
+                                            <div> {{bon_livraison.bon_commande.sphere_g}} ({{bon_livraison.bon_commande.cylindre_g}}) Eje {{bon_livraison.bon_commande.axe_g }}° ({{bon_livraison.bon_commande.add_g}}) </div>
+
+
+                                    </td>
+                                    <td class="col4-small">
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+
+                                        <div> {{bon_livraison.bon_commande.quatite_d}}</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+
+                                            <div> {{bon_livraison.bon_commande.quatite_g}} </div>
+
+
+                                    </td>
+
+
+                                    <td>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+
+                                        <div>  {{bon_livraison.bon_commande.produit_d.prix}}</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>  {{bon_livraison.bon_commande.produit_g.prix}} </div>
+
+
+
+                                    </td>
+
+
+                                    <td class="col4-small">&nbsp;</td>
+                                    <td></td>
+
+
+                                    <td>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>{{bon_livraison.bon_commande.produit_d.prix}}</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+
+                                        <div>{{bon_livraison.bon_commande.produit_g.prix}} </div>
+
+                                    </td>
+
+                                    <td>
+
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+
+                                            <div>
+                                                {% with total_price=bon_livraison.bon_commande.produit_d.prix|multiply:bon_livraison.bon_commande.quatite_d %}
+                                                    {{ total_price }}
+                                                {% endwith %}
+                                            </div>
+
+
+                                            <div>&nbsp;</div>
+                                            <div>&nbsp;</div>
+                                            <div>{% with total_price=bon_livraison.bon_commande.produit_g.prix|multiply:bon_livraison.bon_commande.quatite_g %}
+                                                {{ total_price }}
+                                            {% endwith %} </div>
+
+                                    </td>
+
+
+
+
+                                    <td class="col4-small">
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>{{societe.tva}}</div>
+                                        <div>&nbsp;</div>
+                                        <div>&nbsp;</div>
+                                        <div>{{societe.tva}}</div>
+
+
+                                    </td>
+
+
+
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+
+                                    <div class="card">
+                        <div class="card-header">
+                            <input type="text" name="notice" value="{{facture.notice|default_if_none:''|striptags }}" class="form-label">
+
+                        </div>
+                        <div class="card-body">
+                                <textarea type="text" name="remarque" class="form-label" style="width: 100%; height: 150px;">{{ facture.remarque }}</textarea>
+                        </div>
+                    </div>
+
+
+
+
+
+                <table style="width: 80%;">
+                    <tr>
+                        <td style="width: 33.33%;"></td>
+                        <td style="width: 66.67%; text-align: center;">
+                            {% if societe.nif %}
+                            {{ societe.nif }}
+                            {% else %}
+                            NIF:B062835052-N&ordm; IVA : ESB068350052
+
+                            {% endif %}
+
+                        </td>
+
+                    </tr>
+                </table>
+
+
+
+            </div>
+
+            <button type="submit" style="background-color: #28a745; color: white; border: none; border-radius: 5px; padding: 10px 20px; cursor: pointer;">
+                Valider Modification
+            </button>
+
+        </div>
+<form>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('#myForm input, #myForm textarea').forEach(function(element) {
+            element.addEventListener("keydown", function(event) {
+                // Vérifier si la touche pressée est la touche Entrée
+                if (event.key === 'Enter') {
+                    // Empêcher la soumission du formulaire
+                    event.preventDefault();
+                }
+            });
+        });
+
+        document.getElementById("submitButton").addEventListener("click", function() {
+            // Soumettre le formulaire lorsque l'utilisateur clique sur votre bouton spécial
+            document.getElementById("myForm").submit();
+        });
+    });
+</script>
+
+
+
+
+
+
+
+

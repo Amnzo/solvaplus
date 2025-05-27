@@ -17,9 +17,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 
+
+from .views import maintenance_page, vitrine, \
+    fiche_produit, produits_par_famille  # Assurez-vous de remplacer 'project' par le nom de votre projet
+from django.conf import settings
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('sherly_app.urls')),
+    #path('', maintenance_page, name='maintenance'),  # Route pour la page de maintenance
+    path('', vitrine, name='vitrine'),  # Route pour la page de maintenance
+    path('produit/<int:produit_id>/', fiche_produit, name='fiche_produit'),
+    path('famille/<int:famille_id>/', produits_par_famille, name='produits_par_famille'),
+    path('order_management/', include('sherly_app.urls')),  # Route pour gérer les fonctionnalités de l'application
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

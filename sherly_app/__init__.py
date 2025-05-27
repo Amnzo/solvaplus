@@ -1,4 +1,5 @@
 # yourapp/__init__.py
+
 from django.apps import AppConfig
 
 default_app_config = 'yourapp.apps.YourAppConfig'

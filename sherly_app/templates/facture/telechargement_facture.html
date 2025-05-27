@@ -4,14 +4,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
     <style>
+
+
+
+
         /* Define custom styles */
         .custom-container {
             max-width: 1200px;
             margin: 0 auto;
         }
 
-    
+
 
         .text-container p {
             margin-bottom: 0;
@@ -34,7 +40,7 @@
         .table th, .table td {
             border: 1px solid #dddddd;
             text-align: left;
-           
+
             padding: 8px;
         }
 
@@ -47,8 +53,8 @@
             color: white;
         }
 
-       
-        
+
+
 
         .cadre {
             border: 2px solid black; /* Define border properties */
@@ -78,19 +84,180 @@ body {
 
 .table td .with-space {
     margin-bottom: 8px; /* Adjust as needed */
-    
+
 }
 
-       
+     /* Define a class to style the cell contents in the second column */
+    .second-column-content {
+        display: flex;
+        align-items: baseline; /* Aligns items to their baseline */
+    }
+
+    /* Optional: Add padding or margins to align the text vertically */
+    .second-column-content > div {
+        margin-bottom: 5px; /* Adjust as needed */
+    }
+
+.containerr {
+    display: flex;
+    justify-content: space-between;
+}
+
+.roww {
+    display: flex;
+    flex: 1;
+}
+
+.columnn {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.contentt {
+    border: 1px solid;
+    padding: 10px;
+    background-color: #f0f0f0;
+    flex-grow: 1;
+}
+
+.separatorr {
+    width: 5%;
+    border-right: 1px solid white;
+
+    height: auto;
+}
+
+.last-column {
+    flex-grow: 1;
+}
+
+.card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    padding: 10px;
+    max-width: 500px;
+    margin: auto;
+}
+
+.card-header {
+    background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc;
+    border-radius: 5px 5px 0 0;
+    padding: 5px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 10px;
+    overflow: auto;
+}
+
+.remarque {
+    white-space: pre-wrap;
+}
+
+.total-card {
+    background-color: #f9f9f9;
+}
+
+.total-body {
+    padding: 10px;
+}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            width: 85%;
+            margin: 40px auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .header img {
+            max-width: 120px;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            color: #0056b3;
+            border-bottom: 3px solid #0056b3;
+            padding-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        th {
+            background: #007bff;
+            color: white;
+            font-weight: 600;
+        }
+
+        td {
+            background: #f8f9fc;
+        }
+
+        .footer {
+            text-align: center;
+            background: #0056b3;
+            color: white;
+            padding: 20px;
+            border-radius: 0 0 12px 12px;
+            margin-top: 40px;
+        }
     </style>
 </head>
-<body><br><br><br>
-  
+<body>
+
     <div class="center-container">
         <div class="cadre">
             <div class="container custom-container">
                 <!-- First row with logo and two text columns -->
-              
+
                 <table>
                     <tr>
                         <td style="width: 15%;" >
@@ -109,15 +276,16 @@ body {
                                 <thead class="thead-dark custom-table-header">
                                     <tr>
                                         <br>
-                                        <th scope="col">N&ordm; FACTURE</th>
-                                        <th scope="col">DATE</th>
+                                        <th scope="col">{{facture.n_facture}}</th>
+                                        <th scope="col">{{facture.date}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>{{ num_facture}}</td>
                                         <td>{{ date_facture }}</td>
-                                       
+
+
                                     </tr>
                                 </tbody>
                             </table>
@@ -130,11 +298,14 @@ body {
                         <div class="row custom-background-color2">
                             <div class="col-md-6">
                                 <div class="text-container">
-                                    <p contenteditable="true">{{societe.ligne1}}</p>
-                                    <p contenteditable="true">{{societe.ligne2}},</p>
-                                    <p contenteditable="true">{{societe.ligne3}},</p>
-                                    <p contenteditable="true">{{societe.ligne4}}</p>
-                                    <p contenteditable="true">{{societe.ligne5}}</p>
+                                    <div class="text-container">
+                                    <div>{{societe.ligne1}}</div>
+                                    <div>{{societe.ligne2}}</div>
+                                    <div>{{societe.ligne3}}</div>
+                                    <div>{{societe.pays}}</div>
+                                    <div>{{societe.telephone}}</div>
+                                    <div>{{societe.ligne4}}</div>
+                                    <div>{{societe.ligne5}}</div>
                                 </div>
                             </div>
                         </div>
@@ -145,24 +316,24 @@ body {
                 <table class="table no-border">
                     <tr>
                         <td></td>
-                        
+
                         <td style="width: 33%;">
                             <!-- Content -->
                             <table class="table inner-table">
                                 <thead class="thead-dark custom-table-header">
                                     <tr><br><br>
-                                        <th scope="col">FACTURE A </th>
+                                        <th scope="col">{{facture.facture_a}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td style="text-align: left; border: 1px solid #dddddd; padding: 8px;">
-                                            {{ societe.achteur1 }} <br>
-                                            {{ societe.achteur2 }} <br>
-                                            {{ societe.achteur3 }} <br>
-                                            {{ societe.achteur4 }} <br>
-                                            {{ societe.achteur5 }} <br>
-                                            {{ societe.achteur6 }} <br>
+                                            {{ facture.facture1 }} <br>
+                                            {{ facture.facture2 }} <br>
+                                            {{ facture.facture3 }} <br>
+                                            {{ facture.facture4 }} <br>
+                                            {{ facture.facture5 }} <br>
+                                            {{ facture.facture6 }} <br>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -171,152 +342,137 @@ body {
                     </tr>
                 </table><br>
 
-                
+
                 <div class="row ">
                     <div class="col-md-12">
-                        <table class="table">
-                            <thead class="thead-dark custom-table-header">
-                                <tr>
-                                    <th scope="col">Désignation</th>
-                                    <th scope="col">Qet</th>
-                                    <th scope="col">P.U.tarif</th>
-                                    <th scope="col">% Rem </th>
-                                    <th scope="col">Montant Remise</th>
-                                    <th scope="col">P.U.net Ht </th>
-                                    <th scope="col">Facture en EUR</th>
-                                    <th scope="col">%TVA</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for bon_livraison in bons_livraison %}
-                                <tr>
-                                    <td>
-                                        <div class="with-space">BL N&ordm;: {{bon_livraison.no_bl}} du {{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</div>
-                                        <div class="with-space">Référence porteur: {{bon_livraison.bon_commande.client}} </div>
-                                        
-                                        <div class="with-space">
-                                            <div> {{bon_livraison.bon_commande.produit_d.designation}}</div>
-                                            <div> {{bon_livraison.bon_commande.sphere_d}} ({{bon_livraison.bon_commande.cylindre_d}}) Axe {{bon_livraison.bon_commande.axe_d }}° </div>
-                                           
-                                        </div>
-                                        <div class="with-space">
-                                            <div> {{bon_livraison.bon_commande.produit_g.designation}}</div>
-                                            <div> {{bon_livraison.bon_commande.sphere_g}} ({{bon_livraison.bon_commande.cylindre_g}}) Axe {{bon_livraison.bon_commande.axe_g }}° </div>
-                                           
-                                        </div>  
-                                    </td>
-                                    <td>
-                                        <div class="with-space">&nbsp;</div>
-                                        <div class="with-space">&nbsp;</div>
 
-                                        
-                                        <div class="with-space">
-                                            
-                                            <div>&nbsp;</div>
-                                            <div> {{bon_livraison.bon_commande.quatite_d}}</div>
-                                           
-                                        </div>
-                                        <div class="with-space">
-                                            
-                                            <div>&nbsp;</div>
-                                            <div> {{bon_livraison.bon_commande.quatite_g}} </div>
-                                           
-                                        </div>   
-                                         
-                                    </td>
+     <table class="table">
+    <thead class="thead-dark custom-table-header">
+        <tr>
+            <th scope="col">{{facture.col1}}</th>
+            <th scope="col">{{facture.col2}}</th>
+            <th scope="col">{{facture.col3}}</th>
+            <th scope="col">{{facture.col4}}</th>
+            <th scope="col">{{facture.col5}}</th>
+            <th scope="col">{{facture.col6}}</th>
+            <th scope="col">{{facture.col7}}</th>
+            <th scope="col">{{facture.col8}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for bon_livraison in bons_livraison %}
+        <tr class="avoid-page-break">
+            <td>
+                <div class="with-space">ENTREGA N&ordm;: {{bon_livraison.no_bl}} del {{ bon_livraison.date_de_bl  | date:"d-m-Y"}}</div>
+                <div class="with-space">Referencia del paciente: {{bon_livraison.bon_commande.client}} </div>
 
-
-                                    <td>
-                                        <div class="with-space">&nbsp;</div>
-                                        <div class="with-space">&nbsp;</div>
-
-                                        
-                                        <div class="with-space">
-                                            
-                                            <div>&nbsp;</div>
-                                            <div>  {{bon_livraison.bon_commande.produit_d.prix}}</div>
-                                           
-                                        </div>
-                                        <div class="with-space">
-                                            
-                                            <div>&nbsp;</div>
-                                            <div>  {{bon_livraison.bon_commande.produit_g.prix}} </div>
-                                           
-                                        </div>   
-                                         
-                                    </td>
-
-                                    
-                                    <td></td>
-                                    <td></td>
-
-
-                                    <td>
-                                        <div class="with-space">&nbsp;</div>
-                                        <div class="with-space">&nbsp;</div> 
-                                        <div class="with-space">       
-                                            <div>&nbsp;</div>
-                                            <div>{{bon_livraison.bon_commande.produit_d.prix}}</div> 
-                                        </div>
-                                        <div class="with-space"> 
-                                            <div>&nbsp;</div>
-                                            <div>{{bon_livraison.bon_commande.produit_g.prix}} </div> 
-                                        </div>    
-                                    </td>
-
-                                    <td>
-                                        <div class="with-space">&nbsp;</div>
-                                        <div class="with-space">&nbsp;</div> 
-                                        <div class="with-space">       
-                                            <div>&nbsp;</div>
-                                            <div>
-                                                {% with total_price=bon_livraison.bon_commande.produit_d.prix|multiply:bon_livraison.bon_commande.quatite_d %}
-                                                    {{ total_price }}
-                                                {% endwith %}
-                                            </div> 
-                                        </div>
-                                        <div class="with-space"> 
-                                            <div>&nbsp;</div>
-                                            <div>{% with total_price=bon_livraison.bon_commande.produit_g.prix|multiply:bon_livraison.bon_commande.quatite_g %}
-                                                {{ total_price }}
-                                            {% endwith %} </div> 
-                                        </div>    
-                                    </td>
-                                    
-
-
-
-                                    <td>
-                                        <div class="with-space">&nbsp;</div>
-                                        <div class="with-space">&nbsp;</div> 
-                                        <div class="with-space">       
-                                            <div>&nbsp;</div>
-                                            <div>0</div> 
-                                        </div>
-                                        <div class="with-space"> 
-                                            <div>&nbsp;</div>
-                                            <div>0 </div> 
-                                        </div>    
-                                    </td>
-
-
-                                 
-                                </tr>
-                                {% endfor %}
-
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="with-space">
+                    <div class="youpi"> {{bon_livraison.bon_commande.produit_d.designation}}</div>
+                    <div> {{bon_livraison.bon_commande.sphere_d}} ({{bon_livraison.bon_commande.cylindre_d}}) Eje {{bon_livraison.bon_commande.axe_d }}° Adi {{bon_livraison.bon_commande.add_d}} </div>
                 </div>
-
-                <br><br>
-                <div class="row">
-                    <div class="col-md-12">
-                      
-                    </div>
+                <div class="with-space">
+                    <div class="youpi">{{bon_livraison.bon_commande.produit_g.designation}}</div>
+                    <div> {{bon_livraison.bon_commande.sphere_g}} ({{bon_livraison.bon_commande.cylindre_g}}) Eje {{bon_livraison.bon_commande.axe_g }}° Adi {{bon_livraison.bon_commande.add_g}} </div>
                 </div>
-                <br><br><br><br><br>
+            </td>
+            <td>
+                <div class="second-column-content">
+                    <div>&nbsp;</div>
+                    <div>{{bon_livraison.bon_commande.quatite_d}}</div>
+                    <div>&nbsp;</div>
+                    <div>{{bon_livraison.bon_commande.quatite_g}}</div>
+                </div>
+            </td>
+            <td>
+                <div class="second-column-content">
+                    <div>&nbsp;</div>
+                    <div>{{bon_livraison.bon_commande.produit_d.prix}}</div>
+                    <div>&nbsp;</div>
+                    <div>{{bon_livraison.bon_commande.produit_g.prix}}</div>
+                </div>
+            </td>
+            <td></td>
+            <td></td>
+            <td>
+                <div class="second-column-content">
+                    <div>&nbsp;</div>
+                    <div>{{bon_livraison.bon_commande.produit_d.prix}}</div>
+                    <div>&nbsp;</div>
+                    <div>{{bon_livraison.bon_commande.produit_g.prix}}</div>
+                </div>
+            </td>
+            <td>
+                <div class="second-column-content">
+                    <div>&nbsp;</div>
+                    <div>{{bon_livraison.bon_commande.produit_d.prix|multiply:bon_livraison.bon_commande.quatite_d}}</div>
+                    <div>&nbsp;</div>
+                    <div>{{bon_livraison.bon_commande.produit_g.prix|multiply:bon_livraison.bon_commande.quatite_g}}</div>
+                </div>
+            </td>
+            <td>
+                <div class="second-column-content">
+                    <div>&nbsp;</div>
+                    <div>{{societe.tva}}</div>
+                    <div>&nbsp;</div>
+                    <div>{{societe.tva}}</div>
+                </div>
+            </td>
+        </tr>
+        {% endfor %}
+        <!-- Add the footer row for total -->
+
+
+
+
+
+    </tbody>
+</table>
+                    </div>
+
+                    <br>
+
+
+
+<div class="containerr">
+    <div class="roww">
+        <!-- First Column -->
+        <div class="columnn">
+            <div class="card">
+                <div class="card-header">
+                    {{facture.notice}}
+                </div>
+                <div class="card-body remarque">
+
+                  <br>{{facture.remarque }}
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Separator -->
+        <div class="separatorr"></div>
+
+        <!-- Second Column -->
+        <div class="columnn last-column">
+            <div class="card total-card">
+                <div class="card-header">
+                    TOTAL
+                </div>
+                <div class="card-body total-body">
+                    <p>SUBTOTAL: {{ total_ }}€</p>
+                    <p>IVA {{societe.tva}}%: {{ tva }}€</p>
+                    <p>TOTAL: {{ total_ttc }}€</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+                <br>
 
                 <table style="width: 80%;">
                     <tr>
@@ -326,15 +482,21 @@ body {
                             {{ societe.nif }}
                             {% else %}
                             NIF:B062835052-N&ordm; IVA : ESB068350052
-                         
+
                             {% endif %}
-                        
+
                         </td>
-                        
+
                     </tr>
                 </table>
             </div>
         </div>
     </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var cardBody = document.querySelector(".card-body.remarque");
+            cardBody.textContent = cardBody.textContent.trim();
+        });
+    </script>
 </body>
 </html>

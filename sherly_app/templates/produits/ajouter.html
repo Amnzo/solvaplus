@@ -1,69 +1,68 @@
 {% extends 'base.html' %}
 
-{% block title %} BL app {% endblock %}
+
 
 {% block content %}
     <div class="container mt-4">
 
         <div class="container">
             <div class="card">
-                <div class="card-header" style="background-color: #4CAF50; color: white;">
+                <div class="card-header" style="background-color: #3879f3; color: white;">
                     <h2 class="mb-0">AJOUT D'UN PRODUIT</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post">
-                        {% csrf_token %}
+                   <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
-                                                <div class="form-group">
-                            <label for="categorie1">CATEGORIE </label>
-                            <select class="form-control" id="famille" name="famille" required>
-                                <option value="" disabled selected>CHOISIR</option>
-                                {% for value in familles %}
-                                    <option value="{{ value.id }}">{{ value.famille }}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
+    <div class="form-group">
+        <label for="categorie1">CATEGORIE </label>
+        <select class="form-control" id="famille" name="famille" required>
+            <option value="" disabled selected>CHOISIR</option>
+            {% for value in familles %}
+                <option value="{{ value.id }}">{{ value.famille }}</option>
+            {% endfor %}
+        </select>
+    </div>
 
-                        <!-- Bootstrap form styling -->
-                        <div class="form-group">
-                            <label > DÉSIGNATION</label>
-                            <input type="text" class="form-control" id="designation" name="designation" required oninput="this.value = this.value.toUpperCase()">
+    <div class="form-group">
+        <label> DÉSIGNATION</label>
+        <input type="text" class="form-control" id="designation" name="designation" required oninput="this.value = this.value.toUpperCase()">
+    </div>
 
-                        </div>
+    <div class="form-group">
+        <label>PRIX</label>
+        <input type="number" step="any" class="form-control" id="prix" name="prix" required pattern="^[0-9]+(\.[0-9]+)?$">
+        {{ form.prix.errors }}
+    </div>
 
+    <div class="form-group">
+        <label>CONDITIONNEMENT:</label>
+        <input type="number" class="form-control" id="conditionnement" name="conditionnement" required>
+        {{ form.conditionnement_count.errors }}
+    </div>
 
+    <!-- Input pour l'image -->
+    <div class="form-group">
+        <label for="image">Image du Produit</label>
+        <input type="file" class="form-control" id="image" name="image">
+        {{ form.image.errors }}
+    </div>
 
-                        <div class="form-group">
-                            <label>PRIX</label>
-                            <input type="number" step="any" class="form-control" id="prix" name="prix"  required pattern="^[0-9]+(\.[0-9]+)?$">
-                            {{ form.prix.errors }}
-                        </div>
+    <div class="form-row">
+        <div class="form-group col-md-0">
+            <label for="is_active">ACTIVE</label>
+            <div class="input-group">
+                <input type="checkbox" class="form-control" id="is_active" name="is_active">
+            </div>
+        </div>
+    </div>
 
+    <div class="text-center mt-3">
+        <button type="submit" class="btn btn-primary">Valider</button>
+    </div>
 
+</form>
 
-                        <div class="form-group">
-                            <label >CONDITIONNEMENT:</label>
-                            <input type="number" class="form-control" id="conditionnement" name="conditionnement"  required>
-                            {{ form.conditionnement_count.errors }}
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group col-md-0">
-                                <label for="is_active">ACTIVE</label>
-                                <div class="input-group">
-                                    <input type="checkbox" class="form-control" id="is_active" name="is_active" >
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="text-center mt-3">
-                            <button type="submit" class="btn btn-success">Valider</button>
-                        </div>
-
-                    </form>
                 </div>
             </div>
         </div>
