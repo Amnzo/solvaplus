@@ -1,0 +1,264 @@
+/* Variables CSS */
+:root {
+    --primary-color: #4a90e2;
+    --secondary-color: #ff6f61;
+    --background-color: #f4f7fa;
+    --text-color: #333;
+    --sidebar-bg: rgba(74, 144, 226, 0.9);
+    --hover-bg: rgba(255, 111, 97, 0.2);
+}
+
+/* Reset et base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+/* Composants communs */
+.card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 16px 16px 0 0 !important;
+    margin-bottom: 1rem;
+}
+
+.card-header h2, .card-header h3 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+.card-header h2 {
+    font-size: 1.75rem;
+}
+
+.card-header .actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.card-header .actions .btn {
+    padding: 8px 16px;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: var(--hover-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+    background-color: white;
+    border: 1px solid #ddd;
+    color: var(--text-color);
+    padding: 12px 24px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #f8f9fa;
+    border-color: #ccc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Boutons d'action dans les tables */
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.btn-sm i {
+    margin-right: 4px;
+}
+
+.btn-sm:hover {
+    transform: scale(1.05);
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+}
+
+.text-primary:hover {
+    color: var(--hover-bg) !important;
+    transform: translateY(-2px);
+}
+
+.text-success {
+    color: #28a745 !important;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+}
+
+.text-success:hover {
+    color: #218838 !important;
+    transform: translateY(-2px);
+}
+
+.text-warning {
+    color: #ffc107 !important;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    margin-right: 1rem;
+}
+
+.text-warning:hover {
+    color: #e6a23c !important;
+    transform: translateY(-2px);
+}
+
+.text-danger {
+    color: #dc3545 !important;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.text-danger:hover {
+    color: #c82333 !important;
+    transform: translateY(-2px);
+}
+
+/* Style des icônes Bootstrap Icons */
+.bi {
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.bi:hover {
+    transform: scale(1.2);
+}
+
+/* Style des badges de statut */
+.badge {
+    padding: 0.5em 0.8em;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.badge-success {
+    background-color: #28a745;
+}
+
+.badge-warning {
+    background-color: #ffc107;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+}
+
+.badge-primary {
+    background-color: var(--primary-color);
+}
+
+/* Formulaires */
+.form-control {
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+/* Alertes */
+.alert {
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+/* Tables */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.table th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+}
+
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+.table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.table .btn {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+}
+
+.table .btn-sm {
+    padding: 4px 8px;
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

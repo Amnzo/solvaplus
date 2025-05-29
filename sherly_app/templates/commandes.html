@@ -1,0 +1,87 @@
+{% extends 'base_internal.html' %}
+
+{% block page_title %}Liste des Commandes{% endblock %}
+
+{% block page_actions %}
+    <div class="actions">
+        <a href="{% url 'nouvelle_commande' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Nouvelle Commande
+        </a>
+        <button class="btn btn-secondary">
+            <i class="fas fa-filter"></i> Filtrer
+        </button>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="card">
+        <div class="card-header">
+            <h2>LISTE DES COMMANDES</h2>
+            <div class="actions">
+                <a href="{% url 'export_commandes' %}" class="btn btn-secondary">
+                    <i class="fas fa-file-export"></i> Exporter
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>N° Commande</th>
+                            <th>Date</th>
+                            <th>Client</th>
+                            <th>Total</th>
+                            <th>Statut</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for commande in commandes %}
+                        <tr>
+                            <td>#{{ commande.id }}</td>
+                            <td>{{ commande.date_commande|date:"d/m/Y" }}</td>
+                            <td>{{ commande.client.nom }} {{ commande.client.prenom }}</td>
+                            <td>{{ commande.total|floatformat:2 }} €</td>
+                            <td>
+                                <span class="badge bg-{{ commande.get_statut_badge }}">
+                                    {{ commande.get_statut_display }}
+                                </span>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="{% url 'detail_commande' commande.id %}" class="btn btn-sm btn-primary" title="Voir">
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                    <a href="{% url 'modifier_commande' commande.id %}" class="btn btn-sm btn-secondary" title="Modifier">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'pdf_commande' commande.id %}" class="btn btn-sm btn-success" title="PDF">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </a>
+                                    <a href="{% url 'imprimer_commande' commande.id %}" class="btn btn-sm btn-info" title="Imprimer">
+                                        <i class="fas fa-print"></i>
+                                    </a>
+                                    <button class="btn btn-sm btn-danger" onclick="confirmDelete({{ commande.id }})" title="Supprimer">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function confirmDelete(commandeId) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')) {
+            window.location.href = '{% url "supprimer_commande" 0 %}'.replace('0', commandeId);
+        }
+    }
+</script>
+{% endblock %}

@@ -126,11 +126,19 @@
                                     <td>{{item.bon_livraison.no_bl}}</td>
                                     <td>{{item.user.username}}</td>
                                     {% if user.is_superuser %}
-                                    <td>
-                                        <a href="{% url 'page' bl_id=item.bon_livraison.id  %}" class="text-primary"><i class="bi bi-download"></i></a>
-
-                                        <a href="{% url 'delete_confirmation' id=item.id %}" class="text-danger" ><i class="bi bi-trash"></i></a>
-                                        <a href="{% url 'edit_commande' bl_id=item.bon_livraison.id %}" class="text-warning"><i class="bi bi-pencil"></i></a>
+                                   
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <button class="btn btn-sm btn-primary" onclick="window.location.href='{% url 'page' bl_id=item.bon_livraison.id %}'">
+                                                <i class="bi bi-download"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-warning" onclick="window.location.href='{% url 'edit_commande' bl_id=item.bon_livraison.id %}'">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <button class="btn btn-sm btn-danger" onclick="confirmDelete({{ item.id }})">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
                                     </td>
                                     {% endif %}
 
@@ -138,6 +146,14 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                    <script>
+                        function confirmDelete(id) {
+                            if (confirm('Êtes-vous sûr de vouloir supprimer cette commande ?')) {
+                                window.location.href = '{% url "delete_confirmation" 0 %}'.replace('0', id);
+                            }
+                        }
+                    </script>
+
                     <div class="pagination">
                         <div class="pagination-inner">
                             {% if bl_data.has_previous %}
