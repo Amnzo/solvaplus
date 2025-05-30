@@ -1,78 +1,103 @@
-import random
-
-from django.http import HttpResponse
-from django.shortcuts import render
-
-from sherly_app.models import Produit,Famille
 from django.shortcuts import render, get_object_or_404
-
+from django.db.models import Avg, Count
+from django.core.mail import send_mail
+from sherly_app.models import Produit, Famille, Societe
 
 def vitrine(request):
-
-    produits = Produit.objects.filter(is_active=True)
-    return render(request, 'vitrine/index.html', {'produits': produits})
+    societe = Societe.objects.first()
+    familles = Famille.objects.all()
+    produits = Produit.objects.filter(is_active=True).order_by('-id')[:6]
+    return render(request, 'vitrine/home.html', {
+        'societe': societe,
+        'familles': familles,
+        'produits': produits
+    })
 
 def produits_par_famille(request, famille_id):
+    societe = Societe.objects.first()
     famille = get_object_or_404(Famille, id=famille_id)
-    produits = Produit.objects.filter(famille=famille)  # Filtrer les produits
-
-    return render(request, 'vitrine/index.html', {'produits': produits ,"famille":famille})
-
+    produits = Produit.objects.filter(famille=famille, is_active=True)
+    
+    # Paginer les produits
+    paginator = Paginator(produits, 12)  # 12 produits par page
+    page = request.GET.get('page')
+    produits = paginator.get_page(page)
+    
+    return render(request, 'vitrine/produits.html', {
+        'societe': societe,
+        'famille': famille,
+        'produits': produits
+    })
 
 def fiche_produit(request, produit_id):
     produit = get_object_or_404(Produit, id=produit_id)
-    produits_similaires = list(Produit.objects.filter(famille=produit.famille).exclude(id=produit.id))
-    print(produits_similaires)
-
-
-    #return(produit)
-    #return render(request, '', {'produit': produit,'produits_similaires': produits_similaires})
+    produits_similaires = Produit.objects.filter(famille=produit.famille).exclude(id=produit.id)[:4]
+    societe = Societe.objects.first()
+    
     return render(request, 'vitrine/fiche_produit.html', {
+        'societe': societe,
         'produit': produit,
         'produits_similaires': produits_similaires
     })
 
+def categories(request):
+    societe = Societe.objects.first()
+    familles = Famille.objects.annotate(
+        nb_produits=Count('produit'),
+        prix_moyen=Avg('produit__prix')
+    ).order_by('famille')
+    
+    return render(request, 'vitrine/categories.html', {
+        'societe': societe,
+        'familles': familles
+    })
 
+def about(request):
+    societe = Societe.objects.first()
+    return render(request, 'vitrine/about.html', {
+        'societe': societe
+    })
 
-def maintenance_page(request):
-    message = """
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Page de maintenance</title>
-        <style>
-            body {
-                font-family: Arial, sans-serif;
-                background-color: #f4f4f4;
-                margin: 0;
-                padding: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100vh;
-                text-align: center;
-            }
-            .maintenance-message {
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            }
-            .icon {
-                width: 100px; /* Taille de l'image */
-                margin-bottom: 20px; /* Espace sous l'image */
-            }
-        </style>
-    </head>
-    <body>
-        <div class="maintenance-message">
-            <img src="https://cdn-icons-png.flaticon.com/512/4411/4411553.png" alt="Icône de maintenance" class="icon">
-            <h1>Sitio en mantenimiento</h1>
-            <p>El sitio web está temporalmente en mantenimiento. Estaremos de vuelta pronto. Gracias por su paciencia.</p>
-        </div>
-    </body>
-    </html>
-    """
-    return HttpResponse(message)
+def contact(request):
+    societe = Societe.objects.first()
+    if request.method == 'POST':
+        # Traiter le formulaire de contact
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        
+        # Envoyer l'email
+        subject = f'Contact depuis le site - {name}'
+        body = f'Nom: {name}\nEmail: {email}\nMessage: {message}'
+        
+        try:
+            send_mail(
+                subject,
+                body,
+                email,
+                ['contact@solvaplus.com'],
+                fail_silently=False,
+            )
+            message = 'Message envoyé avec succès !'
+        except:
+            message = 'Une erreur est survenue lors de l\'envoi du message.'
+        
+        return render(request, 'vitrine/contact.html', {
+            'societe': societe,
+            'message': message
+        })
+    
+    return render(request, 'vitrine/contact.html', {
+        'societe': societe
+    })
+
+def ajouter_panier(request, produit_id):
+    produit = get_object_or_404(Produit, id=produit_id)
+    # Logique pour ajouter au panier
+    # Pour l'instant, on redirige vers la page du produit avec un message
+    message = 'Produit ajouté au panier avec succès !'
+    
+    return render(request, 'vitrine/fiche_produit.html', {
+        'produit': produit,
+        'message': message
+    })

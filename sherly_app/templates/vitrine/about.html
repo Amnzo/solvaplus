@@ -1,0 +1,64 @@
+{% extends 'vitrine/base.html' %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">À propos de {{ societe.nom1 }}</h1>
+        
+        <div class="row">
+            <!-- Historique -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Notre Histoire</h3>
+                        <p class="card-text">{{ societe.description }}</p>
+                        <p class="card-text"><strong>Année de création :</strong> {{ societe.annee_creation }}</p>
+                        <p class="card-text"><strong>Spécialité :</strong> {{ societe.specialite }}</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Valeurs -->
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">Nos Valeurs</h3>
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-check-circle text-primary me-2"></i>Qualité</li>
+                            <li><i class="bi bi-check-circle text-primary me-2"></i>Fiabilité</li>
+                            <li><i class="bi bi-check-circle text-primary me-2"></i>Service</li>
+                            <li><i class="bi bi-check-circle text-primary me-2"></i>Innovation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Équipe -->
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Notre Équipe</h3>
+                        <p class="card-text">Une équipe d'experts passionnés et dévoués à votre service.</p>
+                        <!-- Ajouter ici les membres de l'équipe si nécessaire -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Missions -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Nos Missions</h3>
+                        <p class="card-text">{{ societe.mission }}</p>
+                        <div class="mt-4">
+                            <a href="{% url 'contact' %}" class="btn btn-primary">
+                                <i class="bi bi-envelope me-2"></i>Contactez-nous
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

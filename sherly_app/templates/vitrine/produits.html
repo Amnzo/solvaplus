@@ -1,0 +1,273 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ famille.nom }} - {{ societe.nom1 }}</title>
+
+    <!-- Bootstrap & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #ff6f61;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background: none;
+            padding: 1rem 0;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            padding: 4rem 0;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 2rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn-primary {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+        }
+
+        .btn-outline-primary {
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Pagination */
+        .pagination {
+            margin: 2rem 0;
+        }
+
+        .page-link {
+            color: var(--primary-color);
+        }
+
+        .page-item.active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .products-grid {
+                padding: 2rem 0;
+            }
+
+            .product-image {
+                height: 250px;
+            }
+
+            .product-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'vitrine_home' %}">{{ societe.nom1 }}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'vitrine_home' %}">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'vitrine_categories' %}">Produits</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'vitrine_about' %}">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'vitrine_contact' %}">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<nav aria-label="breadcrumb" class="mt-5">
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'vitrine_home' %}">Accueil</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'vitrine_categories' %}">Produits</a></li>
+            <li class="breadcrumb-item active" aria-current="page">{{ famille.nom }}</li>
+        </ol>
+    </div>
+</nav>
+
+<!-- Products Grid -->
+<section class="products-grid">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="text-center mb-4">{{ famille.nom }}</h2>
+                <p class="text-muted text-center mb-5">{{ famille.description }}</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for produit in produits %}
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|mul:100 }}">
+                <div class="product-card">
+                    {% if produit.image %}
+                        <img src="{{ produit.image.url }}" class="product-image" alt="{{ produit.nom }}">
+                    {% else %}
+                        <div class="product-placeholder">
+                            <i class="bi bi-box product-icon"></i>
+                        </div>
+                    {% endif %}
+                    <div class="product-info">
+                        <h3 class="product-title">{{ produit.nom }}</h3>
+                        <p class="product-description">{{ produit.description|truncatewords:20 }}</p>
+                        <div class="product-price">{{ produit.prix }} MAD</div>
+                        <div class="product-actions">
+                            <a href="{% url 'vitrine_produit_detail' produit.id %}" class="btn btn-primary">
+                                <i class="bi bi-eye me-2"></i>Détails
+                            </a>
+                            {% if produit.stock > 0 %}
+                            <a href="{% url 'vitrine_ajouter_panier' produit.id %}" class="btn btn-outline-primary">
+                                <i class="bi bi-cart-plus me-2"></i>Ajouter au panier
+                            </a>
+                            {% else %}
+                            <button class="btn btn-outline-secondary" disabled>
+                                <i class="bi bi-cart-x me-2"></i>Hors stock
+                            </button>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Pagination -->
+<div class="container">
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if produits.has_previous %}
+            <li class="page-item">
+                <a class="page-link" href="?page=1">Premier</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ produits.previous_page_number }}">Précédent</a>
+            </li>
+            {% endif %}
+
+            {% for num in produits.paginator.page_range %}
+            <li class="page-item {% if produits.number == num %}active{% endif %}">
+                <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+            {% endfor %}
+
+            {% if produits.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="?page={{ produits.next_page_number }}">Suivant</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="?page={{ produits.paginator.num_pages }}">Dernier</a>
+            </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 800,
+        once: true
+    });
+</script>
+</body>
+</html>

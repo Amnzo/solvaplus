@@ -1,0 +1,28 @@
+{% extends 'vitrine/base.html' %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Nos Catégories</h1>
+        
+        <div class="row">
+            {% for famille in familles %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ famille.famille }}</h3>
+                        <p class="card-text">
+                            <strong>Produits :</strong> {{ famille.nb_produits }}<br>
+                            <strong>Prix moyen :</strong> {{ famille.prix_moyen|default:0 }} MAD
+                        </p>
+                        <a href="{% url 'produits_par_famille' famille.id %}" class="btn btn-primary w-100">
+                            <i class="bi bi-arrow-right-circle me-2"></i>Voir les produits
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

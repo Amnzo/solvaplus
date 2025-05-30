@@ -1,0 +1,100 @@
+{% extends 'vitrine/base.html' %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Contactez-nous</h1>
+        
+        <div class="row">
+            <!-- Informations de contact -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Nos Coordonnées</h3>
+                        <div class="contact-info">
+                            <div class="mb-3">
+                                <i class="bi bi-geo-alt-fill me-3"></i>
+                                <h4>Adresse</h4>
+                                <p>{{ societe.adresse }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <i class="bi bi-telephone-fill me-3"></i>
+                                <h4>Téléphone</h4>
+                                <p>{{ societe.telephone }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <i class="bi bi-envelope-fill me-3"></i>
+                                <h4>Email</h4>
+                                <p>{{ societe.email }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <i class="bi bi-clock-fill me-3"></i>
+                                <h4>Horaires</h4>
+                                <p>{{ societe.horaires }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulaire de contact -->
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Formulaire de contact</h3>
+                        <form method="post" action="{% url 'contact' %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Nom complet</label>
+                                <input type="text" class="form-control" id="name" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" name="email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="bi bi-send me-2"></i>Envoyer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Réseaux sociaux -->
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="card-title">Suivez-nous</h3>
+                        <div class="social-links d-flex justify-content-center gap-3">
+                            {% if societe.facebook %}
+                                <a href="{{ societe.facebook }}" class="text-primary" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            {% endif %}
+                            {% if societe.instagram %}
+                                <a href="{{ societe.instagram }}" class="text-danger" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            {% endif %}
+                            {% if societe.twitter %}
+                                <a href="{{ societe.twitter }}" class="text-info" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                            {% endif %}
+                            {% if societe.linkedin %}
+                                <a href="{{ societe.linkedin }}" class="text-primary" target="_blank">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

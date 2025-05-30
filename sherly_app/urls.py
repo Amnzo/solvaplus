@@ -53,8 +53,15 @@ urlpatterns = [
     path('bl_logout/', bl_custom_logout, name='bl_logout'),
     #path('repartir-bl/', repartir_bl_view, name='repartir_bl'),
     #path('apply-balanced-discount/', apply_balanced_discount, name='apply_balanced_discount'),
+    #------------Vitrine-------------------,
+    path('vitrine/', login_required(categorie_list, login_url='bl_login'), name='vitrine_home'),
+    path('vitrine/categories/', login_required(categorie_list, login_url='bl_login'), name='vitrine_categories'),
+    path('vitrine/produits/<int:famille_id>/', login_required(categorie_list, login_url='bl_login'), name='vitrine_produits_par_famille'),
+    path('vitrine/about/', login_required(categorie_list, login_url='bl_login'), name='vitrine_about'),
+    path('vitrine/contact/', login_required(categorie_list, login_url='bl_login'), name='vitrine_contact'),
+    path('vitrine/produit/<int:produit_id>/', login_required(categorie_list, login_url='bl_login'), name='vitrine_produit_detail'),
+    path('vitrine/ajouter-panier/<int:produit_id>/', login_required(categorie_list, login_url='bl_login'), name='vitrine_ajouter_panier'),
 ]
-
 
 
 if settings.DEBUG:
