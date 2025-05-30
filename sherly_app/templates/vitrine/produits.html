@@ -194,7 +194,7 @@
         </div>
         <div class="row g-4">
             {% for produit in produits %}
-            <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|mul:100 }}">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="{{ forloop.counter0|add:100 }}">
                 <div class="product-card">
                     {% if produit.image %}
                         <img src="{{ produit.image.url }}" class="product-image" alt="{{ produit.nom }}">
