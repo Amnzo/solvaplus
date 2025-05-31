@@ -1,208 +1,189 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bon de Livraison - {{ societe.nom1 }}</title>
-
-    <!-- Google Fonts - Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Comprobante de Entrega - {{ societe.nom1 }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
     <style>
         body {
-           font-family: 'Roboto', sans-serif;
-
-            background-color: #f8f9fc;
+            font-family: 'Inter', sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 40px;
+            background: #f4f7fa;
             color: #333;
         }
 
-        .container {
-            width: 95%;
-            margin: 40px auto;
-            background: #fff;
+        .document {
+            background: white;
+            max-width: 900px;
+            margin: auto;
             padding: 40px;
             border-radius: 12px;
-            box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
 
         .header {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-            border-radius: 12px 12px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid #0288d1;
+            padding-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        .header img {
-            max-width: 120px;
-            margin-bottom: 15px;
+        .logo img {
+            height: 80px;
         }
 
-        .header h1 {
+        .title {
+            text-align: right;
+        }
+
+        .title h1 {
             font-size: 28px;
-            font-weight: 600;
+            color: #0288d1;
             margin: 0;
         }
 
-        .section {
-            margin-top: 30px;
+        .two-columns {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
         }
 
-        .section h2 {
-            font-size: 22px;
-            color: #0056b3;
-            border-bottom: 3px solid #0056b3;
-            padding-bottom: 8px;
-            font-weight: 600;
+        .box {
+            width: 48%;
+            background: #eef6f8;
+            padding: 20px;
+            border-radius: 10px;
         }
 
-        .table-container {
-            overflow-x: auto;
-            margin-top: 15px;
+        .box h2 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #0277bd;
         }
 
-        table {
+        .box p {
+            margin: 4px 0;
+        }
+
+        .product-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 10px;
+            margin-top: 20px;
         }
 
-        th, td {
-            padding: 14px;
-            text-align: left;
-            border: 1px solid #ddd;
-            font-size: 20;
-        }
-
-        th {
-            background: #007bff;
+        .product-table thead {
+            background-color: #0288d1;
             color: white;
-            font-weight: 600;
         }
 
-        td {
-            background: #f8f9fc;
+        .product-table th, .product-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .product-table tbody tr:nth-child(even) {
+            background-color: #f2f8fa;
         }
 
         .footer {
+            margin-top: 50px;
             text-align: center;
-            background: #0056b3;
-            color: white;
-            padding: 20px;
-            border-radius: 0 0 12px 12px;
-            margin-top: 40px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        .footer a {
+            color: #0288d1;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <img src="data:image/png;base64,{{ logo_base64 }}" alt="Company Logo">
-            <h1>{{ societe.nom1 }} - Factura de Entrega</h1>
-            <p>Detalles del bono de entrega e información del cliente</p>
-
-
-
+<div class="document">
+    <div class="header">
+        <div class="logo">
+            <img src="data:image/png;base64,{{ logo_base64 }}" alt="Logo">
         </div>
-        <div class="section">
-           <h2>Información del Bon de Entrega</h2>
-            <div class="table-container">
-                <table>
-                    <tr><th>{{ table.date }}</th></tr>
-                    <tr><td>{{ bon_livraison.date_de_bl | date:"d-m-Y" }}</td></tr>
-                </table>
-            </div>
+        <div class="title">
+            <h1>Comprobante de Entrega</h1>
+            <p>N° {{ bon_livraison.no_bl }}</p>
+            <p>Fecha: {{ bon_livraison.date_de_bl|date:"d-m-Y" }}</p>
         </div>
-
-        <div class="section">
-
-            <div class="table-container">
-                <table>
-                    <tr><th>{{ table.t1c1 }}</th></tr>
-                    <tr><td>{{ bon_livraison.no_bl }}</td></tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Información del Comprador</h2>
-            <div class="table-container">
-                <table>
-                    <tr><th>{{ table.information_acheteur }}</th></tr>
-                    <tr><td>
-                        <strong>{{ societe.achteur1 }}</strong><br>
-
-                        {{ societe.achteur2 }}<br>
-                        {{ societe.achteur3 }}<br>
-                        {{ societe.achteur4 }}<br>
-                        {{ societe.achteur5 }}
-                    </td></tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2>Detalles de los Productos</h2>
-
-            <div class="table-container">
-                                            <table class="table">
-                            <thead class="thead-dark custom-table-header">
-                                <tr>
-                                    <th scope="col">{{table.t2c1}}</th>
-                                    <th scope="col">{{table.t2c2}}</th>
-                                     <th scope="col">{{table.t2c10}}</th>
-                                    <th scope="col">{{table.t2c3}}</th>
-                                    <th scope="col">{{table.t2c6}} </th>
-                                    <th scope="col">{{table.t2c7}}</th>
-                                    <th scope="col">{{table.t2c8}}</th>
-                                    <th scope="col">{{table.t2add}}</th>
-                                    <th scope="col">{{table.t2c9}} <br>{{table.t2c9_g_d}}</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                 {% if bon_livraison.bon_commande.categorie_d and bon_livraison.bon_commande.produit_d %}
-                                <tr>
-                                    <td>{{ bon_livraison.bon_commande.produit_d.reference}}</td>
-                                    <td>{{ bon_livraison.bon_commande.produit_d.designation}}</td>
-                                     <td>{{bon_livraison.bon_commande.quatite_d}}</td>
-                                    <td>Caja de {{ bon_livraison.bon_commande.produit_d.conditionnement_count}}</td>
-                                    <td>{{bon_livraison.bon_commande.sphere_d}}</td>
-                                    <td>{{bon_livraison.bon_commande.cylindre_d}}</td>
-                                    <td>{{bon_livraison.bon_commande.axe_d}}</td>
-                                     <td>{{bon_livraison.bon_commande.add_d}}</td>
-                                    <td>DERECHO</td>
-
-
-                                </tr>
-                                {% endif %}
-                                 {% if bon_livraison.bon_commande.categorie_g and bon_livraison.bon_commande.produit_g %}
-                                <tr>
-                                    <td>{{ bon_livraison.bon_commande.produit_g.reference}}</td>
-                                    <td>{{ bon_livraison.bon_commande.produit_g.designation}}</td>
-                                      <td>{{bon_livraison.bon_commande.quatite_g}}</td>
-                                    <td>Caja de {{ bon_livraison.bon_commande.produit_g.conditionnement_count}}</td>
-                                    <td>{{bon_livraison.bon_commande.sphere_g}}</td>
-                                    <td>{{bon_livraison.bon_commande.cylindre_g}}</td>
-                                    <td>{{bon_livraison.bon_commande.axe_g}}</td>
-                                     <td>{{bon_livraison.bon_commande.add_g}}</td>
-                                    <td>IZQUIERDO</td>
-
-
-                                </tr>
-                                 {% endif %}
-                            </tbody>
-                        </table>
-            </div>
-        </div>
-
-        <div class="footer">
-            <p>&copy; {{ societe.nom1 }} - Todos los derechos reservados.</p>
-            <p>¿Necesitas ayuda? Contáctanos en <a href="mailto:{{ societe.email }}">{{ societe.email }}</a></p>
-        </div>
-
     </div>
+
+    <div class="two-columns">
+        <div class="box">
+            <h2>📌 Datos del Cliente</h2>
+            <p><strong>{{ societe.achteur1 }}</strong></p>
+            <p>{{ societe.achteur2 }}</p>
+            <p>{{ societe.achteur3 }}</p>
+            <p>{{ societe.achteur4 }}</p>
+            <p>{{ societe.achteur5 }}</p>
+        </div>
+
+        <div class="box">
+            <h2>📦 Información del Pedido</h2>
+            <p><strong>Documento:</strong> {{ bon_livraison.no_bl }}</p>
+            <p><strong>Fecha de Entrega:</strong> {{ bon_livraison.date_de_bl|date:"d-m-Y" }}</p>
+        </div>
+    </div>
+
+    <h2 style="color:#0288d1; font-size: 20px; margin-bottom: 10px;">🧾 Detalles de los Productos</h2>
+
+    <table class="product-table">
+        <thead>
+        <tr>
+            <th>Referencia</th>
+            <th>Descripción</th>
+            <th>Cantidad</th>
+            <th>Empaque</th>
+            <th>Esfera</th>
+            <th>Cilindro</th>
+            <th>Eje</th>
+            <th>Adición</th>
+            <th>Ojo</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if bon_livraison.bon_commande.categorie_d and bon_livraison.bon_commande.produit_d %}
+        <tr>
+            <td>{{ bon_livraison.bon_commande.produit_d.reference }}</td>
+            <td>{{ bon_livraison.bon_commande.produit_d.designation }}</td>
+            <td>{{ bon_livraison.bon_commande.quatite_d }}</td>
+            <td>Caja de {{ bon_livraison.bon_commande.produit_d.conditionnement_count }}</td>
+            <td>{{ bon_livraison.bon_commande.sphere_d }}</td>
+            <td>{{ bon_livraison.bon_commande.cylindre_d }}</td>
+            <td>{{ bon_livraison.bon_commande.axe_d }}</td>
+            <td>{{ bon_livraison.bon_commande.add_d }}</td>
+            <td>Ojo Derecho</td>
+        </tr>
+        {% endif %}
+
+        {% if bon_livraison.bon_commande.categorie_g and bon_livraison.bon_commande.produit_g %}
+        <tr>
+            <td>{{ bon_livraison.bon_commande.produit_g.reference }}</td>
+            <td>{{ bon_livraison.bon_commande.produit_g.designation }}</td>
+            <td>{{ bon_livraison.bon_commande.quatite_g }}</td>
+            <td>Caja de {{ bon_livraison.bon_commande.produit_g.conditionnement_count }}</td>
+            <td>{{ bon_livraison.bon_commande.sphere_g }}</td>
+            <td>{{ bon_livraison.bon_commande.cylindre_g }}</td>
+            <td>{{ bon_livraison.bon_commande.axe_g }}</td>
+            <td>{{ bon_livraison.bon_commande.add_g }}</td>
+            <td>Ojo Izquierdo</td>
+        </tr>
+        {% endif %}
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>&copy; {{ societe.nom1 }} - Todos los derechos reservados.</p>
+        <p>Contacto: <a href="mailto:{{ societe.email }}">{{ societe.email }}</a></p>
+    </div>
+</div>
 </body>
 </html>
