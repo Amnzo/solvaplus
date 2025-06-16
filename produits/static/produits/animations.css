@@ -1,0 +1,125 @@
+/* Animations générales */
+.fade-in {
+    animation: fadeIn 1s ease-out;
+}
+
+.slide-up {
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Menu */
+.navbar {
+    transition: all 0.3s ease;
+}
+
+.navbar.scroll-down {
+    transform: translateY(-100%);
+}
+
+.navbar.scroll-up {
+    transform: translateY(0);
+}
+
+/* Cartes produits */
+.product-card {
+    transition: all 0.3s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px) scale(1.02);
+}
+
+/* Images */
+.card-img-top {
+    transition: transform 0.3s ease;
+}
+
+/* Prix */
+.price {
+    transition: transform 0.3s ease;
+}
+
+/* Boutons */
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+/* Icônes */
+.fas {
+    transition: transform 0.3s ease;
+}
+
+/* Héros */
+.hero {
+    transition: background-position 0.5s ease;
+}
+
+/* Catégories */
+.category-card {
+    transition: all 0.3s ease;
+}
+
+/* Animations de chargement */
+.animate-on-load {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 1s ease;
+}
+
+.animate-on-load.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Effet de parallaxe */
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Animations pour les liens */
+.nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: white;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}

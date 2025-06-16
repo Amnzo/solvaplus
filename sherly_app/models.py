@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 import random
 import string
+from django.utils.translation import gettext_lazy as _
 class Societe(models.Model):
     nom1 = models.CharField(max_length=255, blank=True, null=True,default='SHERLY & STRATEGY SL')
     nom2 = models.CharField(max_length=255, blank=True, null=True,default='Division Optical')
@@ -42,6 +43,7 @@ class Societe(models.Model):
 class Famille(models.Model):
     famille = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)  # Boolean field for activation status
+    image = models.ImageField(_('Image'), upload_to='familles/', blank=True)
     # Other fields for the Family model can be added here
 
     def __str__(self):

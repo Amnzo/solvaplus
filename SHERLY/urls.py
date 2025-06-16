@@ -18,18 +18,14 @@ from django.contrib import admin
 from django.urls import path,include
 
 
-from .views import vitrine, fiche_produit, produits_par_famille, categories, about, contact, ajouter_panier
+
 from django.conf import settings
 from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', vitrine, name='vitrine'),
-    path('produit/<int:produit_id>/', fiche_produit, name='fiche_produit'),
-    path('famille/<int:famille_id>/', produits_par_famille, name='produits_par_famille'),
-    path('categories/', categories, name='categories'),
-    path('about/', about, name='about'),
-    path('contact/', contact, name='contact'),
-    path('ajouter-au-panier/<int:produit_id>/', ajouter_panier, name='ajouter_panier'),
+    #path('', vitrine, name='vitrine'),
+    path('', include('produits.urls')),
+
     path('order_management/', include('sherly_app.urls')),  # Route pour gérer les fonctionnalités de l'application
 ]
 if settings.DEBUG:
