@@ -1,0 +1,208 @@
+@keyframes flash-slide-in {
+    0% { transform: translateX(-100%); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes flash-slide-up {
+    0% { transform: translateY(100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes flash-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes flash-float-left {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-20px); }
+}
+
+@keyframes flash-float-right {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(20px); }
+}
+
+@keyframes flash-scale {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes flash-tada {
+    0% { transform: scale(1); }
+    10% { transform: scale(0.9) rotate(-3deg); }
+    20% { transform: scale(1.1) rotate(3deg); }
+    30% { transform: scale(0.9) rotate(-3deg); }
+    40% { transform: scale(1.1) rotate(3deg); }
+    50% { transform: scale(1) rotate(0); }
+}
+
+@keyframes flash-wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(10deg); }
+    75% { transform: rotate(-10deg); }
+}
+
+.flash-slide-in {
+    animation: flash-slide-in 1s ease-out forwards;
+}
+
+.flash-slide-up {
+    animation: flash-slide-up 1s ease-out forwards;
+}
+
+.flash-float {
+    animation: flash-float 2s ease-in-out infinite;
+}
+
+.flash-float-left {
+    animation: flash-float-left 2s ease-in-out infinite;
+}
+
+.flash-float-right {
+    animation: flash-float-right 2s ease-in-out infinite;
+}
+
+.flash-scale {
+    animation: flash-scale 0.8s ease-out forwards;
+}
+
+.flash-tada {
+    animation: flash-tada 1s ease-out infinite;
+}
+
+.flash-wave {
+    animation: flash-wave 1s ease-in-out infinite;
+}
+
+/* Effets de survol */
+.hover-grow {
+    transition: transform 0.3s ease;
+}
+
+.hover-grow:hover {
+    transform: scale(1.05);
+}
+
+.hover-fade {
+    transition: opacity 0.3s ease;
+}
+
+.hover-fade:hover {
+    opacity: 0.9;
+}
+
+/* Animations pour les cartes de catégories */
+@keyframes category-card-reveal {
+    0% {
+        opacity: 0;
+        transform: translateY(50px) rotateX(90deg);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0);
+    }
+}
+
+@keyframes category-card-hover {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    50% {
+        transform: scale(1.05) rotate(2deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.category-card {
+    animation: category-card-reveal 1s ease-out forwards;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.category-card:hover {
+    animation: category-card-hover 0.5s ease infinite;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.category-card img {
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover img {
+    transform: scale(1.05);
+}
+
+.category-card .card-body {
+    transition: all 0.3s ease;
+}
+
+.category-card:hover .card-body {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-5px);
+}
+
+.category-card .card-title {
+    transition: color 0.3s ease;
+}
+
+.category-card:hover .card-title {
+    color: #007bff;
+}
+
+.category-card .card-text {
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .card-text {
+    transform: translateY(-3px);
+}
+
+.category-card .btn {
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+.category-card:hover .btn {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Effets de focus */
+.form-control:focus {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    border-color: #007bff;
+}
+
+/* Effets de scroll */
+.scroll-fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.scroll-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Effets de click */
+.click-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.click-ripple::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 0.5s ease-out;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.click-ripple:active::after {
+    transform: scale(3.5);
+}
