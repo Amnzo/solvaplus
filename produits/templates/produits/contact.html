@@ -1,14 +1,41 @@
 {% extends 'produits/base.html' %}
 
-{% block title %}Contact{% endblock %}
+{% block title %}Service Client{% endblock %}
+
+{% block extra_css %}
+<style>
+    .contact-card {
+        transition: transform 0.3s ease;
+    }
+    .contact-card:hover {
+        transform: translateY(-10px);
+    }
+    .contact-info-item {
+        transition: transform 0.3s ease;
+    }
+    .contact-info-item:hover {
+        transform: translateY(-10px);
+    }
+    .contact-form input:focus, .contact-form textarea:focus {
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+    }
+    .contact-info-item i {
+        transition: transform 0.3s ease;
+    }
+    .contact-info-item:hover i {
+        transform: scale(1.2);
+    }
+</style>
+{% endblock %}
 
 {% block content %}
-<section class="contact-section py-5">
+<section class="contact-section py-5 bg-gradient-primary">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="contact-card p-4 bg-white shadow rounded">
-                    <h2 class="text-center mb-4">Contactez-nous</h2>
+                    <h2 class="text-center mb-4 text-white">Service Client 24/7 <i class="fas fa-headset text-white"></i></h2>
+                    <p class="text-center text-white mb-4">Notre équipe est là pour vous aider !</p>
                     <form action="" method="post" class="contact-form">
                         {% csrf_token %}
                         <div class="mb-3">
@@ -34,21 +61,21 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 text-center">
-                <div class="contact-info-item p-4 bg-white shadow rounded">
+                <div class="contact-info-item p-4 bg-white shadow-lg rounded-lg hover-shadow-lg">
                     <i class="fas fa-phone fa-3x mb-3 text-primary"></i>
                     <h4>Téléphone</h4>
                     <p>+33 1 23 45 67 89</p>
                 </div>
             </div>
             <div class="col-md-4 text-center">
-                <div class="contact-info-item p-4 bg-white shadow rounded">
+                <div class="contact-info-item p-4 bg-white shadow-lg rounded-lg hover-shadow-lg">
                     <i class="fas fa-envelope fa-3x mb-3 text-primary"></i>
                     <h4>Email</h4>
                     <p>contact@lentillesaprixnet.com</p>
                 </div>
             </div>
             <div class="col-md-4 text-center">
-                <div class="contact-info-item p-4 bg-white shadow rounded">
+                <div class="contact-info-item p-4 bg-white shadow-lg rounded-lg hover-shadow-lg">
                     <i class="fas fa-map-marker-alt fa-3x mb-3 text-primary"></i>
                     <h4>Adresse</h4>
                     <p>123 Rue du Commerce, 75000 Paris</p>

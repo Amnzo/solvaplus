@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="{% static 'produits/style_modern.css' %}">
     <link rel="stylesheet" href="{% static 'produits/animations.css' %}">
     <link rel="stylesheet" href="{% static 'produits/slider.css' %}">
+    <link rel="stylesheet" href="{% static 'produits/flash-animations.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -33,6 +34,9 @@
                         <a class="nav-link" href="{% url 'produits:liste_produits' famille.id %}">{{ famille.famille }}</a>
                     </li>
                     {% endfor %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'produits:contact' %}">Service Client <i class="fas fa-headset"></i></a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -56,6 +60,10 @@
     <script src="{% static 'produits/script_modern.js' %}"></script>
     <script src="{% static 'produits/interactions.js' %}"></script>
     <script src="{% static 'produits/slider.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+    <script src="{% static 'produits/chat.js' %}"></script>
+    <script src="{% static 'produits/flash-effects.js' %}"></script>
     {% block extra_js %}{% endblock %}
 </body>
 </html>
