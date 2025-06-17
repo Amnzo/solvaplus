@@ -18,6 +18,27 @@
         object-fit: cover;
         width: 100%;
     }
+
+    .stars {
+    font-size: 1.2rem;
+    color: #00b67a;
+}
+
+.avatar {
+    font-size: 1.2rem;
+    background-color: #ccc;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: scale(1.03);
+}
+
 </style>
 
 
@@ -124,4 +145,106 @@
         {% endfor %}
     </div>
 </section>
+<section class="container mt-5 py-5">
+  <h2 class="text-center mb-5">Les avis de nos clients</h2>
+  <div class="row justify-content-center">
+    <!-- Avis 1 -->
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm">
+        <div class="d-flex align-items-center mb-2">
+          <div class="avatar bg-secondary text-white rounded-circle me-3">CG</div>
+          <div>
+            <strong>Christian Gaudillat</strong><br>
+            <span class="text-muted small">Client depuis 2023</span>
+          </div>
+        </div>
+        <div class="stars text-success mb-2">★★★★★ 5/5</div>
+        <p class="mb-1">Un service client remarquable, toujours à l’écoute.</p>
+        <p class="text-muted small">Il y a 1 mois</p>
+      </div>
+    </div>
+
+    <!-- Avis 2 -->
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm">
+        <div class="d-flex align-items-center mb-2">
+          <div class="avatar bg-secondary text-white rounded-circle me-3">HK</div>
+          <div>
+            <strong>Helene K.</strong><br>
+            <span class="text-muted small">Professionnelle</span>
+          </div>
+        </div>
+        <div class="stars text-success mb-2">★★★★★ 5/5</div>
+        <p class="mb-1">Très bons conseils et grande réactivité. Merci !</p>
+        <p class="text-muted small">Il y a 1 mois</p>
+      </div>
+    </div>
+
+    <!-- Avis 3 -->
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm">
+        <div class="d-flex align-items-center mb-2">
+          <div class="avatar bg-secondary text-white rounded-circle me-3">ID</div>
+          <div>
+            <strong>Isabelle D.</strong><br>
+            <span class="text-muted small">Particulier</span>
+          </div>
+        </div>
+        <div class="stars text-success mb-2">★★★★★ 5/5</div>
+        <p class="mb-1">Une équipe disponible et efficace pour répondre à mes questions.</p>
+        <p class="text-muted small">Il y a 3 mois</p>
+      </div>
+    </div>
+
+    <!-- Avis 4 -->
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm">
+        <div class="d-flex align-items-center mb-2">
+          <div class="avatar bg-secondary text-white rounded-circle me-3">PM</div>
+          <div>
+            <strong>Paul M.</strong><br>
+            <span class="text-muted small">Client fidèle</span>
+          </div>
+        </div>
+        <div class="stars text-success mb-2">★★★★★ 5/5</div>
+        <p class="mb-1">Le suivi est sérieux et personnalisé. Très professionnel.</p>
+        <p class="text-muted small">Il y a 2 semaines</p>
+      </div>
+    </div>
+
+    <!-- Avis 5 -->
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm">
+        <div class="d-flex align-items-center mb-2">
+          <div class="avatar bg-secondary text-white rounded-circle me-3">LT</div>
+          <div>
+            <strong>Lucie T.</strong><br>
+            <span class="text-muted small">Consultante</span>
+          </div>
+        </div>
+        <div class="stars text-success mb-2">★★★★★ 5/5</div>
+        <p class="mb-1">On sent une vraie volonté d’accompagner et de comprendre nos besoins.</p>
+        <p class="text-muted small">Il y a 3 semaines</p>
+      </div>
+    </div>
+
+    <!-- Avis 6 -->
+    <div class="col-md-4 mb-4">
+      <div class="card p-3 shadow-sm">
+        <div class="d-flex align-items-center mb-2">
+          <div class="avatar bg-secondary text-white rounded-circle me-3">AR</div>
+          <div>
+            <strong>Ahmed R.</strong><br>
+            <span class="text-muted small">Partenaire</span>
+          </div>
+        </div>
+        <div class="stars text-success mb-2">★★★★★ 5/5</div>
+        <p class="mb-1">Rapidité et efficacité au top. Bravo à toute l’équipe.</p>
+        <p class="text-muted small">Il y a 5 jours</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 {% endblock %}
