@@ -12,7 +12,13 @@
     <script src="{% static 'produits/main.js' %}"></script>
     <script src="{% static 'produits/modern-slider.js' %}"></script>
 
-
+<style>
+    .category-card img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+</style>
 
 
 <!-- Nouveau Slider Moderne -->
@@ -61,16 +67,17 @@
 </section>
 
 <!-- Section Categories -->
+<!-- Section Categories -->
 <section class="container mt-5">
     <h2 class="text-center mb-4">Nos catégories</h2>
     <div class="row">
         {% for famille in familles %}
         <div class="col-md-4 mb-4">
-            <div class="category-card">
+            <div class="card category-card h-100">
                 {% if famille.image %}
                 <img src="{{ famille.image.url }}" class="card-img-top" alt="{{ famille.nom }}">
                 {% else %}
-                <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center category-card" style="height: 200px;">
+                <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
                     <i class="fas fa-box-open fa-3x"></i>
                 </div>
                 {% endif %}
@@ -84,6 +91,9 @@
         {% endfor %}
     </div>
 </section>
+
+
+
 
 <!-- Section Produits Vedette -->
 <section class="container mt-5 py-5">
