@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class Famille(models.Model):
     nom = models.CharField(_('Nom'), max_length=100)
-    description = models.TextField(_('Description'), blank=True)
+    description = models.TextField("Description", blank=True, null=True)
     image = models.ImageField(_('Image'), upload_to='familles/', blank=True)
     date_creation = models.DateTimeField(_('Date de création'), default=timezone.now)
 

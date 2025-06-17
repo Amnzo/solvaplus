@@ -119,33 +119,36 @@
 </section>
 
 <!-- Section Categories -->
-<!-- Section Categories -->
-<section class="container mt-5">
-    <h2 class="text-center mb-4">Nos catégories</h2>
-    <div class="row">
+<section class="container mt-5 py-5">
+    <h2 class="text-center mb-5">Nos catégories</h2>
+    <p class="text-center text-muted mb-5">Découvrez notre sélection exclusive de lentilles de contact</p>
+    <div class="row g-4">
         {% for famille in familles %}
-        <div class="col-md-4 mb-4">
-            <div class="card category-card h-100">
-                {% if famille.image %}
-                <img src="{{ famille.image.url }}" class="card-img-top" alt="{{ famille.nom }}">
-                {% else %}
-                <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 200px;">
-                    <i class="fas fa-box-open fa-3x"></i>
+        <div class="col-md-4">
+            <div class="card category-card h-100 shadow-sm border-0">
+                <div class="card-img-top position-relative overflow-hidden" style="height: 250px;">
+                    {% if famille.image %}
+                    <img src="{{ famille.image.url }}" class="img-fluid rounded-top" alt="{{ famille.famille }}" style="object-fit: cover; height: 100%; width: 100%;">
+                    {% else %}
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center h-100">
+                        <i class="fas fa-box-open fa-3x"></i>
+                    </div>
+                    {% endif %}
+                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient opacity-50"></div>
                 </div>
-                {% endif %}
-                <div class="card-body">
-                    <h5 class="card-title">{{ famille.famille }}</h5>
-                    <p class="card-text">{{ famille.description|truncatewords:15 }}</p>
-                    <a href="{% url 'produits:liste_produits' famille.id %}" class="btn btn-primary">Voir les produits</a>
+                <div class="card-body p-4">
+                    <h5 class="card-title mb-3">{{ famille.famille }}</h5>
+                    <p class="card-text text-muted mb-4">{{ famille.description|truncatewords:25 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'produits:liste_produits' famille.id %}" class="btn btn-primary btn-sm">Voir les produits</a>
+                        <span class="badge bg-success">{{ famille.nombre_produits }} produits</span>
+                    </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </section>
-
-
-
 
 <!-- Section Produits Vedette -->
 <section class="container mt-5 py-5">

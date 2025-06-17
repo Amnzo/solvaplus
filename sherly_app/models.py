@@ -40,8 +40,10 @@ class Societe(models.Model):
         return f"{self.id}"
 
 # Create your models here.
+from ckeditor.fields import RichTextField
 class Famille(models.Model):
     famille = models.CharField(max_length=255)
+    description = RichTextField(blank=True, null=True)  # champ riche texte + image
     is_active = models.BooleanField(default=True)  # Boolean field for activation status
     image = models.ImageField(_('Image'), upload_to='familles/', blank=True)
     # Other fields for the Family model can be added here

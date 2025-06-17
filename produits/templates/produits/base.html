@@ -5,35 +5,155 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Boutique{% endblock %}</title>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static 'produits/style_modern.css' %}">
     <link rel="stylesheet" href="{% static 'produits/animations.css' %}">
     <link rel="stylesheet" href="{% static 'produits/slider.css' %}">
     <link rel="stylesheet" href="{% static 'produits/flash-animations.css' %}">
+    <style>
+        .dropdown-menu {
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+.dropdown-menu h6 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-menu img {
+    border-radius: 8px;
+    max-width: 100%;
+}
+
+
+
+/* Pour lisser le dropdown */
+.hover-dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+
+/* Évite que le menu se ferme brutalement */
+.dropdown-menu {
+    transition: all 0.3s ease-in-out;
+    border-radius: 12px;
+}
+
+/* Hover dropdown visible */
+.hover-dropdown:hover > .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+/* Animation manuelle */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gradient button */
+.btn-gradient-blue {
+    background: linear-gradient(135deg, #1e88e5, #42a5f5);
+    color: white;
+    border: none;
+}
+.btn-gradient-blue:hover {
+    background: linear-gradient(135deg, #1565c0, #1e88e5);
+    color: #fff;
+}
+
+
+</style>
+
+  
+
     {% block extra_css %}{% endblock %}
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container">
-            <a class="navbar-brand" href="/">Boutique</a>
+            <a class="navbar-brand fw-bold" href="/">Boutique</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
+    
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Accueil</a>
                     </li>
+    
                     {% for famille in familles %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'produits:liste_produits' famille.id %}">{{ famille.famille }}</a>
-                    </li>
-                    {% endfor %}
+                        <li class="nav-item dropdown position-relative hover-dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{ famille.id }}" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                                {{ famille.famille }} <i class="fas fa-chevron-down ms-1"></i>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-flash p-5 shadow-lg rounded-4 animate__animated" 
+                                aria-labelledby="navbarDropdown{{ famille.id }}" 
+                                style="min-width: 850px; max-width: 950px;">
+
+                                <div class="row g-4 align-items-center">
+                                    <!-- Contenu texte -->
+                                    <div class="col-md-7">
+                                        <h5 class="text-primary fw-bold mb-3" style="font-size: 1.4rem;">
+                                            {{ famille.famille }}
+                                        </h5>
+
+                                        <p class="text-muted mb-2" style="font-size: 1rem;">
+                                            {{ famille.description|default:"Une catégorie soigneusement sélectionnée pour vous offrir le meilleur des produits. Alliant qualité, design et performance."|safe }}
+                                        </p>
+
+
+                                        <p class="text-muted small">
+                                            Idéal pour les professionnels et les particuliers exigeants. Explorez les nouveautés et faites le bon choix !
+                                        </p>
+
+                                        <a href="{% url 'produits:liste_produits' famille.id %}" 
+                                        class="btn btn-gradient-blue mt-3 rounded-pill px-4 py-2 shadow-sm">
+                                        <i class="fas fa-search me-2"></i> Découvrir cette catégorie
+                                        </a>
+                                    </div>
+
+                                    <!-- Image à droite -->
+                                    <div class="col-md-5 text-end">
+                                        {% if famille.image %}
+                                        <img src="{{ famille.image.url }}" alt="{{ famille.famille }}" 
+                                            class="img-fluid rounded-4 border shadow-sm" 
+                                            style="max-height: 200px; object-fit: cover; width: 100%;">
+                                        {% else %}
+                                        <div class="bg-light d-flex align-items-center justify-content-center border rounded-4" 
+                                            style="height: 200px;">
+                                            <i class="fas fa-box-open fa-3x text-muted"></i>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+
+                    
+    
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'produits:contact' %}">Service Client <i class="fas fa-headset"></i></a>
                     </li>
@@ -41,29 +161,31 @@
             </div>
         </div>
     </nav>
+    
 
-    <!-- Contenu principal -->
-    <div class="container mt-4">
-        {% block content %}{% endblock %}
+<!-- Contenu principal -->
+<main class="container mt-4">
+    {% block content %}{% endblock %}
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark text-light mt-5 py-3">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2025 Boutique. Tous droits réservés.</p>
     </div>
+</footer>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-light mt-5 py-3">
-        <div class="container text-center">
-            <p>&copy; 2025 Boutique. Tous droits réservés.</p>
-        </div>
-    </footer>
+<!-- JS Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="{% static 'produits/script_modern.js' %}"></script>
-    <script src="{% static 'produits/interactions.js' %}"></script>
-    <script src="{% static 'produits/slider.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
-    <script src="{% static 'produits/chat.js' %}"></script>
-    <script src="{% static 'produits/flash-effects.js' %}"></script>
-    {% block extra_js %}{% endblock %}
+<!-- Custom JS -->
+<script src="{% static 'produits/script_modern.js' %}"></script>
+<script src="{% static 'produits/interactions.js' %}"></script>
+<script src="{% static 'produits/slider.js' %}"></script>
+<script src="{% static 'produits/chat.js' %}"></script>
+<script src="{% static 'produits/flash-effects.js' %}"></script>
+
+{% block extra_js %}{% endblock %}
 </body>
 </html>

@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'sherly_app',
     'crispy_forms',
-    'produits'
+    'produits',
+    'ckeditor'
 ]
 
 MIDDLEWARE = [
