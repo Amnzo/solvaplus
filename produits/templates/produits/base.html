@@ -110,7 +110,7 @@
 
                             <div class="dropdown-menu dropdown-flash p-5 shadow-lg rounded-4 animate__animated" 
                                 aria-labelledby="navbarDropdown{{ famille.id }}" 
-                                style="min-width: 850px; max-width: 950px;">
+                                style="min-width: 850px; max-width: 950px; position: fixed; top: 60px; left: 50%; transform: translateX(-50%); z-index: 1000;">
 
                                 <div class="row g-4 align-items-center">
                                     <!-- Contenu texte -->
@@ -122,7 +122,6 @@
                                         <p class="text-muted mb-2" style="font-size: 1rem;">
                                             {{ famille.description|default:"Une catégorie soigneusement sélectionnée pour vous offrir le meilleur des produits. Alliant qualité, design et performance."|safe }}
                                         </p>
-
 
                                         <p class="text-muted small">
                                             Idéal pour les professionnels et les particuliers exigeants. Explorez les nouveautés et faites le bon choix !

@@ -84,30 +84,30 @@ WSGI_APPLICATION = 'SHERLY.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'solvaplus',  # Remplace par le nom de ta base de données
-#         'USER': 'root',        # Ton utilisateur MySQL
-#         'PASSWORD': 'salmi@ensa123',        # Laisse vide si tu n'as pas de mot de passe
-#         'HOST': '127.0.0.1',   # Serveur MySQL
-#         'PORT': '3306',        # Port MySQL
-#
-#     }
-# }
-
-#
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Solvaplus$default',  # Remplace par le nom de ta base de données
-        'USER': 'Solvaplus',        # Ton utilisateur MySQL
-        'PASSWORD': 'Salmi@Ensa123',        # Laisse vide si tu n'as pas de mot de passe
-        'HOST': 'Solvaplus.mysql.pythonanywhere-services.com',   # Serveur MySQL
+        'NAME': 'solvaplus',  # Remplace par le nom de ta base de données
+        'USER': 'root',        # Ton utilisateur MySQL
+        'PASSWORD': 'salmi@ensa123',        # Laisse vide si tu n'as pas de mot de passe
+        'HOST': '127.0.0.1',   # Serveur MySQL
         'PORT': '3306',        # Port MySQL
 
     }
 }
+
+#
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'Solvaplus$default',  # Remplace par le nom de ta base de données
+#         'USER': 'Solvaplus',        # Ton utilisateur MySQL
+#         'PASSWORD': 'Salmi@Ensa123',        # Laisse vide si tu n'as pas de mot de passe
+#         'HOST': 'Solvaplus.mysql.pythonanywhere-services.com',   # Serveur MySQL
+#         'PORT': '3306',        # Port MySQL
+#
+#     }
+# }
 
 
 
