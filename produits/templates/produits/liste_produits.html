@@ -3,24 +3,55 @@
 {% block title %}{{ famille.nom }} - Produits{% endblock %}
 
 {% block content %}
-<h2 class="mb-4">{{ famille.nom }}</h2>
-<div class="row">
-    {% for produit in produits %}
-    <div class="col-md-4 mb-4">
-        <div class="card h-100">
-            <img src="{{ produit.image.url }}" class="card-img-top" alt="{{ produit.nom }}">
-            <div class="card-body">
-                <h5 class="card-title">{{ produit.nom }}</h5>
-                <p class="card-text">{{ produit.description|truncatewords:20 }}</p>
-                <p class="card-text"><strong>{{ produit.prix }} €</strong></p>
-                <a href="{% url 'produits:detail_produit' produit.id %}" class="btn btn-primary">Voir plus</a>
-            </div>
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="text-center mb-4">{{ famille.nom }}</h2>
+            <p class="text-center text-muted mb-4">{{ famille.description|truncatewords:50|safe }}</p>
         </div>
     </div>
-    {% empty %}
-    <div class="col-12">
-        <p class="alert alert-info">Aucun produit disponible dans cette catégorie.</p>
+
+    <div class="row">
+        {% for produit in produits %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-lg hover-shadow">
+                <!-- Image avec effet de flou -->
+                <div class="card-img-top position-relative" style="height: 300px; overflow: hidden;">
+                    {% if produit.image %}
+                    <img src="{{ produit.image.url }}" class="w-100" alt="{{ produit.reference }}" style="height: 100%; object-fit: cover;">
+                    {% else %}
+                    <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 100%;">
+                        <i class="fas fa-box-open fa-3x"></i>
+                    </div>
+                    {% endif %}
+                    <!-- Effet de flou sur l'image -->
+                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-overlay"></div>
+                </div>
+                <!-- Corps de la carte -->
+                <div class="card-body p-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <span class="badge bg-success me-2">Nouveau</span>
+                        <span class="text-muted small">{{ produit.date_creation|date:'d/m/Y' }}</span>
+                    </div>
+                    <h5 class="card-title mb-2 fw-bold">{{ produit.reference }}</h5>
+                    <p class="card-text mb-3">{{ produit.designation|truncatewords:20 }}</p>
+                    <!-- Bouton avec effet de gradient -->
+                    <div class="d-grid">
+                        <a href="{% url 'produits:detail_produit' produit.id %}" class="btn btn-gradient-blue py-2">
+                            <i class="fas fa-search me-2"></i> Découvrir
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <div class="alert alert-info rounded-4">
+                <i class="fas fa-box-open me-2"></i>
+                Aucun produit disponible dans cette catégorie.
+            </div>
+        </div>
+        {% endfor %}
     </div>
-    {% endfor %}
 </div>
 {% endblock %}

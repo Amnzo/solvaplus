@@ -490,24 +490,30 @@ def products_list(request):
 
     return render(request, 'produits/liste.html', {'products': products,'famille_list':famille_list})
 
-def edit_product(request,id):
+
+
+def edit_product(request, id):
     product = Produit.objects.get(pk=id)
     if request.method == 'POST':
         form_data = request.POST.dict()
-        famille= Famille.objects.get(pk=form_data.get('famille'))
-        product.designation=form_data.get('designation')
-        if request.POST.get('is_active')=="on":
-            product.is_active=True
-        else :
-            product.is_active=False
-        product.famille=famille
-        product.prix=form_data.get('prix')
-        product.conditionnement_count=form_data.get('conditionnement')
+        famille = Famille.objects.get(pk=form_data.get('famille'))
+        product.designation = form_data.get('designation')
+        product.is_active = request.POST.get('is_active') == "on"
+        product.famille = famille
+        product.prix = form_data.get('prix')
+        product.conditionnement_count = form_data.get('conditionnement')
+
+        # Gestion de l'image
+        if 'image' in request.FILES:
+            product.image = request.FILES['image']
+
         product.save()
-        messages.success(request, 'Produit Modifié avec succes')
+        messages.success(request, 'Produit modifié avec succès')
         return redirect('product_list')
+
     familles = Famille.objects.all()
-    return render(request,'produits/edit_product.html',{'familles':familles,'product':product})
+    return render(request, 'produits/edit_product.html', {'familles': familles, 'product': product})
+
 
 
 
