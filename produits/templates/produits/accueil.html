@@ -46,43 +46,40 @@
 <section class="modern-slider py-5">
     <div class="container">
         <div class="slider-container">
-            <!-- Slides principaux -->
             <div class="slides">
-                <div class="slide active">
-                    <img src="{% static 'produits/images/slider/Flux_Dev_A_clean_modern_website_banner_for_an_online_contact_l_1.jpg' %}" alt="Lentilles de contact 1" class="slide-img">
+                {% for image in images %}
+                <div class="slide {% if forloop.first %}active{% endif %}">
+                    <img src="{{ image.url }}" alt="{{ image.name }}" class="slide-img">
                     <div class="slide-content">
-                        <h2>Notre Vision : La Perfection</h2>
-                        <p>"Votre vision mérite le meilleur. Des lentilles de contact qui transcendent les attentes"</p>
+                        {% if forloop.counter == 1 %}
+                            <h2>Voir clair, c’est vivre mieux</h2>
+                        {% elif forloop.counter == 2 %}
+                            <h2>Lunettes innovantes pour un style unique</h2>
+                        {% elif forloop.counter == 3 %}
+                            <h2>Votre confort, notre priorité</h2>
+                        {% elif forloop.counter == 4 %}
+                            <h2>La technologie au service de vos yeux</h2>
+                        {% elif forloop.counter == 5 %}
+                            <h2>Des lentilles de contact haute performance</h2>
+                        {% else %}
+                            <h2>Pour une vision parfaite au quotidien</h2>
+                        {% endif %}
                         <a href="#" class="btn btn-primary btn-lg">Découvrir notre gamme</a>
                     </div>
                 </div>
-                <div class="slide">
-                    <img src="{% static 'produits/images/slider/Flux_Dev_A_photorealistic_image_of_a_beautiful_confident_woman_1.jpg' %}" alt="Lentilles de contact 2" class="slide-img">
-                    <div class="slide-content">
-                        <h2>La Technologie au Service de Votre Vision</h2>
-                        <p>"Innovation constante pour une vision optimale"</p>
-                        <a href="#" class="btn btn-primary btn-lg">En savoir plus</a>
-                    </div>
-                </div>
-                <div class="slide">
-                    <img src="{% static 'produits/images/slider/image3.jpg' %}" alt="Lentilles de contact 3" class="slide-img">
-                    <div class="slide-content">
-                        <h2>Qualité Sans Compromis</h2>
-                        <p>"Des lentilles conçues pour votre confort et votre sécurité"</p>
-                        <a href="#" class="btn btn-primary btn-lg">Découvrir</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
-            
-            <!-- Points de navigation -->
+
             <div class="slider-nav">
-                <span class="nav-btn active"></span>
-                <span class="nav-btn"></span>
-                <span class="nav-btn"></span>
+                {% for image in images %}
+                <span class="nav-btn {% if forloop.first %}active{% endif %}"></span>
+                {% endfor %}
             </div>
         </div>
     </div>
 </section>
+
+
 
 <!-- Section Pourquoi nous choisir -->
 <section class="container mt-5 py-5 bg-light">
