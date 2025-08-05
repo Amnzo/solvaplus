@@ -1,84 +1,105 @@
 {% extends 'produits/base.html' %}
 
-{% block title %}Service Client{% endblock %}
+{% block title %}Contáctenos{% endblock %}
 
 {% block extra_css %}
 <style>
+    .contact-section {
+        background: linear-gradient(135deg, #1e88e5, #42a5f5);
+        padding: 80px 0;
+    }
     .contact-card {
-        transition: transform 0.3s ease;
+        background: rgba(255, 255, 255, 0.95);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .contact-card:hover {
         transform: translateY(-10px);
-    }
-    .contact-info-item {
-        transition: transform 0.3s ease;
-    }
-    .contact-info-item:hover {
-        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
     }
     .contact-form input:focus, .contact-form textarea:focus {
-        box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+        border-color: #1e88e5;
+        box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.2);
     }
-    .contact-info-item i {
-        transition: transform 0.3s ease;
+    .form-control {
+        border-radius: 10px;
+        padding: 15px;
+        border: 1px solid #ddd;
     }
-    .contact-info-item:hover i {
-        transform: scale(1.2);
+    .form-control:focus {
+        border-color: #1e88e5;
+        box-shadow: 0 0 0 3px rgba(30, 136, 229, 0.1);
+    }
+    .btn-primary {
+        background: #1e88e5;
+        border: none;
+        padding: 15px 40px;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+        background: #1565c0;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(30, 136, 229, 0.3);
+    }
+    .contact-header {
+        margin-bottom: 40px;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    .contact-header h2 {
+        color: #212529;
+        font-weight: 700;
+        margin-bottom: 15px;
+        font-size: 2.2rem;
+    }
+    .contact-header p {
+        color: #495057;
+        font-size: 1.1rem;
+        line-height: 1.6;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<section class="contact-section py-5 bg-gradient-primary">
+<section class="contact-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="contact-card p-4 bg-white shadow rounded">
-                    <h2 class="text-center mb-4 text-white">Service Client 24/7 <i class="fas fa-headset text-white"></i></h2>
-                    <p class="text-center text-white mb-4">Notre équipe est là pour vous aider !</p>
+                <div class="contact-card p-5">
+                    <div class="contact-header text-center">
+                        <h2>Contáctenos</h2>
+                        <p>Estamos aquí para responder todas sus preguntas</p>
+                    </div>
                     <form action="" method="post" class="contact-form">
                         {% csrf_token %}
-                        <div class="mb-3">
-                            <input type="text" class="form-control" placeholder="Votre nom" required>
+                        <div class="mb-4">
+                            <input type="text" class="form-control" placeholder="Su nombre" required>
                         </div>
-                        <div class="mb-3">
-                            <input type="email" class="form-control" placeholder="Votre email" required>
+                        <div class="mb-4">
+                            <input type="email" class="form-control" placeholder="Su email" required>
                         </div>
-                        <div class="mb-3">
-                            <textarea class="form-control" rows="5" placeholder="Votre message" required></textarea>
+                        <div class="mb-4">
+                            <textarea class="form-control" rows="5" placeholder="Su mensaje" required></textarea>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg">Envoyer</button>
+                            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="contact-info py-5 bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <div class="contact-info-item p-4 bg-white shadow-lg rounded-lg hover-shadow-lg">
-                    <i class="fas fa-phone fa-3x mb-3 text-primary"></i>
-                    <h4>Téléphone</h4>
-                    <p>+33 1 23 45 67 89</p>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="contact-info-item p-4 bg-white shadow-lg rounded-lg hover-shadow-lg">
-                    <i class="fas fa-envelope fa-3x mb-3 text-primary"></i>
-                    <h4>Email</h4>
-                    <p>contact@lentillesaprixnet.com</p>
-                </div>
-            </div>
-            <div class="col-md-4 text-center">
-                <div class="contact-info-item p-4 bg-white shadow-lg rounded-lg hover-shadow-lg">
-                    <i class="fas fa-map-marker-alt fa-3x mb-3 text-primary"></i>
-                    <h4>Adresse</h4>
-                    <p>123 Rue du Commerce, 75000 Paris</p>
+                    <div class="row mt-4">
+                        <div class="col-md-6 mx-auto">
+                            <div class="contact-info-item p-4 bg-white shadow-lg rounded-lg hover-shadow-lg">
+                                <i class="fas fa-envelope fa-3x mb-3 text-primary"></i>
+                                <h4>Correo electrónico</h4>
+                                <p>contact@lentillesaprixnet.com</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

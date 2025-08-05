@@ -81,40 +81,6 @@
 
 
 
-<!-- Section Pourquoi nous choisir -->
-<section class="container mt-5 py-5 bg-light">
-    <h2 class="text-center mb-5">Pourquoi nous choisir ?</h2>
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="fas fa-star fa-3x text-primary mb-3"></i>
-                    <h3 class="card-title mb-3">Qualité Premium</h3>
-                    <p class="card-text">Des lentilles de contact de la plus haute qualité, testées et approuvées par les plus grands experts en optique.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="fas fa-clock fa-3x text-primary mb-3"></i>
-                    <h3 class="card-title mb-3">Service Rapide</h3>
-                    <p class="card-text">Livraison express et service client réactif pour répondre à vos besoins en temps voulu.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100 border-0 shadow-sm">
-                <div class="card-body text-center">
-                    <i class="fas fa-heart fa-3x text-primary mb-3"></i>
-                    <h3 class="card-title mb-3">Satisfaction Garantie</h3>
-                    <p class="card-text">Votre satisfaction est notre priorité absolue. Service client dédié et suivi personnalisé.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Section Categories -->
 <section class="container mt-5 py-5">
     <h2 class="text-center mb-5">Nos catégories</h2>
@@ -154,139 +120,31 @@
     <div class="row">
         {% for produit in produits_en_vedette %}
         <div class="col-md-4 mb-4">
-            <div class="card h-100 shadow-lg hover-shadow">
-                <!-- Image avec effet de flou -->
+            <div class="product-card h-100">
+                <!-- Image with hover effect -->
                 <div class="card-img-top position-relative" style="height: 300px; overflow: hidden;">
                     {% if produit.image %}
-                    <img src="{{ produit.image.url }}" class="w-100" alt="{{ produit.reference }}" style="height: 100%; object-fit: cover;">
+                    <img src="{{ produit.image.url }}" class="w-100" alt="{{ produit.reference }}">
                     {% else %}
                     <div class="bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 100%;">
                         <i class="fas fa-box-open fa-3x"></i>
                     </div>
                     {% endif %}
-                    <!-- Effet de flou sur l'image -->
-                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-gradient-overlay"></div>
                 </div>
-                <!-- Corps de la carte -->
-                <div class="card-body p-4">
-                    <div class="d-flex align-items-center mb-3">
-                        <span class="badge bg-success me-2">Nouveau</span>
-                        <span class="text-muted small">{{ produit.date_creation|date:'d/m/Y' }}</span>
+                <!-- Card body -->
+                <div class="card-body">
+                    <div class="date">
+                        <i class="fas fa-calendar-day me-1"></i>
+                        {{ produit.date_creation|date:'d/m/Y' }}
                     </div>
-                    <h5 class="card-title mb-2 fw-bold">{{ produit.reference }}</h5>
-                    <p class="card-text mb-3">{{ produit.designation|truncatewords:20 }}</p>
-                    <!-- Bouton avec effet de gradient -->
-                    <div class="d-grid">
-                        <a href="{% url 'produits:detail_produit' produit.id %}" class="btn btn-gradient-blue py-2">
-                            <i class="fas fa-search me-2"></i> Découvrir
-                        </a>
-                    </div>
+                    <h5 class="card-title">{{ produit.reference }}</h5>
+                    <p class="card-text">{{ produit.designation|truncatewords:20 }}</p>
+
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </section>
-<section class="container mt-5 py-5">
-  <h2 class="text-center mb-5">Les avis de nos clients</h2>
-  <div class="row justify-content-center">
-    <!-- Avis 1 -->
-    <div class="col-md-4 mb-4">
-      <div class="card p-3 shadow-sm">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar bg-secondary text-white rounded-circle me-3">CG</div>
-          <div>
-            <strong>Christian Gaudillat</strong><br>
-            <span class="text-muted small">Client depuis 2023</span>
-          </div>
-        </div>
-        <div class="stars text-success mb-2">★★★★★ 5/5</div>
-        <p class="mb-1">Un service client remarquable, toujours à l’écoute.</p>
-        <p class="text-muted small">Il y a 1 mois</p>
-      </div>
-    </div>
-
-    <!-- Avis 2 -->
-    <div class="col-md-4 mb-4">
-      <div class="card p-3 shadow-sm">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar bg-secondary text-white rounded-circle me-3">HK</div>
-          <div>
-            <strong>Helene K.</strong><br>
-            <span class="text-muted small">Professionnelle</span>
-          </div>
-        </div>
-        <div class="stars text-success mb-2">★★★★★ 5/5</div>
-        <p class="mb-1">Très bons conseils et grande réactivité. Merci !</p>
-        <p class="text-muted small">Il y a 1 mois</p>
-      </div>
-    </div>
-
-    <!-- Avis 3 -->
-    <div class="col-md-4 mb-4">
-      <div class="card p-3 shadow-sm">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar bg-secondary text-white rounded-circle me-3">ID</div>
-          <div>
-            <strong>Isabelle D.</strong><br>
-            <span class="text-muted small">Particulier</span>
-          </div>
-        </div>
-        <div class="stars text-success mb-2">★★★★★ 5/5</div>
-        <p class="mb-1">Une équipe disponible et efficace pour répondre à mes questions.</p>
-        <p class="text-muted small">Il y a 3 mois</p>
-      </div>
-    </div>
-
-    <!-- Avis 4 -->
-    <div class="col-md-4 mb-4">
-      <div class="card p-3 shadow-sm">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar bg-secondary text-white rounded-circle me-3">PM</div>
-          <div>
-            <strong>Paul M.</strong><br>
-            <span class="text-muted small">Client fidèle</span>
-          </div>
-        </div>
-        <div class="stars text-success mb-2">★★★★★ 5/5</div>
-        <p class="mb-1">Le suivi est sérieux et personnalisé. Très professionnel.</p>
-        <p class="text-muted small">Il y a 2 semaines</p>
-      </div>
-    </div>
-
-    <!-- Avis 5 -->
-    <div class="col-md-4 mb-4">
-      <div class="card p-3 shadow-sm">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar bg-secondary text-white rounded-circle me-3">LT</div>
-          <div>
-            <strong>Lucie T.</strong><br>
-            <span class="text-muted small">Consultante</span>
-          </div>
-        </div>
-        <div class="stars text-success mb-2">★★★★★ 5/5</div>
-        <p class="mb-1">On sent une vraie volonté d’accompagner et de comprendre nos besoins.</p>
-        <p class="text-muted small">Il y a 3 semaines</p>
-      </div>
-    </div>
-
-    <!-- Avis 6 -->
-    <div class="col-md-4 mb-4">
-      <div class="card p-3 shadow-sm">
-        <div class="d-flex align-items-center mb-2">
-          <div class="avatar bg-secondary text-white rounded-circle me-3">AR</div>
-          <div>
-            <strong>Ahmed R.</strong><br>
-            <span class="text-muted small">Partenaire</span>
-          </div>
-        </div>
-        <div class="stars text-success mb-2">★★★★★ 5/5</div>
-        <p class="mb-1">Rapidité et efficacité au top. Bravo à toute l’équipe.</p>
-        <p class="text-muted small">Il y a 5 jours</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 
 {% endblock %}

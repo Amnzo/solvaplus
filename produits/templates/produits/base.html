@@ -102,59 +102,17 @@
                     </li>
     
                     {% for famille in familles %}
-                        <li class="nav-item dropdown position-relative hover-dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown{{ famille.id }}" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                                {{ famille.famille }} <i class="fas fa-chevron-down ms-1"></i>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'produits:liste_produits' famille.id %}">
+                                {{ famille.famille }}
                             </a>
-
-                            <div class="dropdown-menu dropdown-flash p-5 shadow-lg rounded-4 animate__animated" 
-                                aria-labelledby="navbarDropdown{{ famille.id }}" 
-                                style="min-width: 850px; max-width: 950px; position: fixed; top: 60px; left: 50%; transform: translateX(-50%); z-index: 1000;">
-
-                                <div class="row g-4 align-items-center">
-                                    <!-- Contenu texte -->
-                                    <div class="col-md-7">
-                                        <h5 class="text-primary fw-bold mb-3" style="font-size: 1.4rem;">
-                                            {{ famille.famille }}
-                                        </h5>
-
-                                        <p class="text-muted mb-2" style="font-size: 1rem;">
-                                            {{ famille.description|default:"Une catégorie soigneusement sélectionnée pour vous offrir le meilleur des produits. Alliant qualité, design et performance."|safe }}
-                                        </p>
-
-                                        <p class="text-muted small">
-                                            Idéal pour les professionnels et les particuliers exigeants. Explorez les nouveautés et faites le bon choix !
-                                        </p>
-
-                                        <a href="{% url 'produits:liste_produits' famille.id %}" 
-                                        class="btn btn-gradient-blue mt-3 rounded-pill px-4 py-2 shadow-sm">
-                                        <i class="fas fa-search me-2"></i> Découvrir cette catégorie
-                                        </a>
-                                    </div>
-
-                                    <!-- Image à droite -->
-                                    <div class="col-md-5 text-end">
-                                        {% if famille.image %}
-                                        <img src="{{ famille.image.url }}" alt="{{ famille.famille }}" 
-                                            class="img-fluid rounded-4 border shadow-sm" 
-                                            style="max-height: 200px; object-fit: cover; width: 100%;">
-                                        {% else %}
-                                        <div class="bg-light d-flex align-items-center justify-content-center border rounded-4" 
-                                            style="height: 200px;">
-                                            <i class="fas fa-box-open fa-3x text-muted"></i>
-                                        </div>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                            </div>
                         </li>
                         {% endfor %}
 
                     
     
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'produits:contact' %}">Service Client <i class="fas fa-headset"></i></a>
+                        <a class="nav-link" href="{% url 'produits:contact' %}">Contact <i class="fas fa-headset"></i></a>
                     </li>
                 </ul>
             </div>

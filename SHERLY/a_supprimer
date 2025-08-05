@@ -1,0 +1,69 @@
+WITH FilteredDocuments AS (
+    SELECT
+        r.document_id,
+        v.field_request_id
+    FROM
+        nitro.field_identification_value v
+    INNER JOIN
+        nitro.field_identification_request r
+        ON v.field_request_id = r.id
+    WHERE
+        r.required_identifications_count > r.required_matching_values_count and required_matching_values_count > 0
+        AND v.identified_value IS NOT NULL
+        #AND v.identified_value != ''
+        AND v.status != "DISPLAYED"
+    GROUP BY
+        r.document_id, v.field_request_id
+    #HAVING
+    #    COUNT(*) > 2
+    )
+    SELECT
+        cd.status,
+        CASE
+            WHEN tp.tpeFullName IS NOT NULL THEN tp.tpeFullName
+            ELSE v.identified_value
+        END AS identified_value_,
+        DATE(DATETIME(a.creation_time, "Europe/Brussels")) AS creation_date,
+        FORMAT_DATETIME("%Y-%m-%d %H:%M:%S", DATETIME(v.update_time, "Europe/Brussels")) AS indexor_datetime,
+        c.customerFullName,
+        c.customerAccountingReference,
+        c.trusteeName,
+        c.customerTrusteeId,
+        fd.document_id,
+        v.field_request_id,
+        r.status AS field_status,
+        r.field_name,
+        CONCAT(v.problem_type, IF(v.field_problem_details IS NOT NULL, CONCAT(' (', v.field_problem_details, ')'), '')) AS problem_description,
+        v.identified_value,
+        v.user_id,
+        cd.full_name AS document_name,
+        CONCAT(u.full_name, ' (', u.email, ')') AS User
+    FROM
+        FilteredDocuments fd
+    INNER JOIN
+        nitro.field_identification_value v
+        ON fd.field_request_id = v.field_request_id
+    LEFT JOIN
+        nitro.thirdparties tp
+        ON v.identified_value = CAST(tp.tpeId AS STRING)
+        OR SAFE_CAST(v.identified_value AS INT64) = tp.tpeId
+    INNER JOIN
+        nitro.field_identification_request r
+        ON fd.field_request_id = r.id
+    INNER JOIN
+        nitro.customer_document cd
+        ON r.document_id = cd.id
+    INNER JOIN
+        nitro.accounting_data a
+        ON a.id = cd.accounting_data_id
+    INNER JOIN
+        nitro.nitro_user u
+        ON u.id = v.user_id
+    INNER JOIN
+        nitro.view_customers c
+        ON c.customerId = a.customer_id
+    WHERE
+        v.identified_value IS NOT NULL
+        #AND v.identified_value != ''
+    ORDER BY
+        fd.document_id DESC;
